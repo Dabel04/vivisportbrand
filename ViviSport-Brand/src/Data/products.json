@@ -1,0 +1,147 @@
+[ 
+   {
+        "id": 11,
+        "name": "Adidas X Pop Polo Shirt",
+        "price": 69.99,
+        "originalPrice": 89.99,
+        "description": "Premium polo shirt with modern design and comfortable fit.",
+        "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
+        "images": [
+            "./img/f3.jpg",
+            "./img/f3.jpg", 
+            "./img/f3.jpg"
+        ],
+        "sizes": [
+            { "size": "S", "inStock": true, "stock": 15 },
+            { "size": "M", "inStock": true, "stock": 25 },
+            { "size": "L", "inStock": true, "stock": 8 },
+            { "size": "XL", "inStock": true, "stock": 12 },
+            { "size": "XXL", "inStock": false, "stock": 0 }
+        ],
+        "colors": [
+            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
+            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
+            { "name": "Black", "value": "#000000", "inStock": true },
+            { "name": "White", "value": "#ffffff", "inStock": false }
+        ],
+        "specifications": {
+            "Material": "92% Cotton, 8% Elastane",
+            "Fit": "Regular Fit",
+            "Care": "Machine washable",
+            "Origin": "Imported",
+            "Style": "Casual Polo",
+            "Neckline": "Polo Collar",
+            "Sleeve": "Short Sleeve"
+        },
+        "category": "men"
+    },
+
+  {
+        "id": 12,
+        "name": "Adidas X Pop TRX Vintage",
+        "price": 69.99,
+        "originalPrice": 79.99,
+        "description": "Vintage-inspired TRX jacket with retro design elements.",
+        "fullDescription": "Embrace retro style with this vintage-inspired Adidas TRX jacket. Featuring classic design elements and modern comfort, this jacket is perfect for casual wear or light athletic activities.",
+        "images": [
+            "./img/f2.jpg",
+            "./img/f2.jpg",
+            "./img/f2.jpg"
+        ],
+        "sizes": [
+            { "size": "S", "inStock": true, "stock": 10 },
+            { "size": "M", "inStock": true, "stock": 18 },
+            { "size": "L", "inStock": true, "stock": 5 },
+            { "size": "XL", "inStock": true, "stock": 8 }
+        ],
+        "colors": [
+            { "name": "Navy/White", "value": "linear-gradient(45deg, #1e3a5f 50%, #ffffff 50%)", "inStock": true },
+            { "name": "Black/Red", "value": "linear-gradient(45deg, #000000 50%, #ff0000 50%)", "inStock": true },
+            { "name": "Grey", "value": "#808080", "inStock": true }
+        ],
+        "specifications": {
+            "Material": "100% Polyester",
+            "Fit": "Regular Fit",
+            "Care": "Machine wash cold",
+            "Origin": "Imported",
+            "Style": "Vintage Jacket",
+            "Closure": "Zip Front",
+            "Pockets": "2 Side Pockets"
+        },
+        "category": "men"
+    },
+
+  {
+        "id": 13,
+        "name": "Adidas X Pop Beckenbauer Track Jacket",
+        "price": 129.00,
+        "originalPrice": 159.00,
+        "description": "Classic Beckenbauer track jacket with iconic design.",
+        "fullDescription": "The iconic Adidas Beckenbauer track jacket returns with its classic design and modern updates. This jacket features the signature three stripes and comfortable fit that made it a legend.",
+        "images": [
+            "./img/f1.jpg",
+            "./img/f1.jpg",
+            "./img/f1.jpg"
+        ],
+        "sizes": [
+            { "size": "S", "inStock": true, "stock": 6 },
+            { "size": "M", "inStock": true, "stock": 12 },
+            { "size": "L", "inStock": true, "stock": 3 },
+            { "size": "XL", "inStock": false, "stock": 0 }
+        ],
+        "colors": [
+            { "name": "Navy", "value": "#1e3a5f", "inStock": true },
+            { "name": "Black", "value": "#000000", "inStock": true },
+            { "name": "Green", "value": "#228B22", "inStock": true }
+        ],
+        "specifications": {
+            "Material": "100% Nylon",
+            "Fit": "Classic Fit",
+            "Care": "Machine washable",
+            "Origin": "Germany",
+            "Style": "Track Jacket",
+            "Closure": "Zip Front",
+            "Collar": "Ribbed Collar"
+        },
+        "category": "men"
+  },
+
+  { 
+      "id": 14, 
+      "name": "Adidas X Pop Classic T-shirt", 
+      "price": 120.00, 
+      "image": "kugvkluhvljkgvlj", 
+      "description": "adidas X Pop Classic t-shirt, grey / navy" 
+  },
+
+  { 
+      "id": 15, "name": "Adidas X Pop SL Cap", 
+      "price": 59.00, 
+      "image": "./img/f4.jpg", 
+      "description": "adidas X Pop SL Cap, navy / white" 
+  },
+
+  { 
+      "id": 16, 
+      "name": "Butter Yard Pullover Hood", 
+      "price": 120.00, 
+      "image": "kuhvkuhvkugv", 
+      "description": "Butter Yard Pullover Hood, denim" 
+  },
+
+  { 
+      "id": 17, 
+      "name": "Parra Rug Pull T-shirt", 
+      "price": 60.00, 
+      "image": "hhhhhhh", 
+      "description": "Parra Rug Pull t-shirt, white" 
+  },
+  
+  { 
+    "id": 18, 
+    "name": "Carhartt L/S Sweat", 
+    "price": 130.00, 
+    "image": "kjhblvihvlhiv", 
+    "description": "Carhartt L/S DeadKebab Knock Knock Sweat" 
+  }
+]
