@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
-import Navbar from './NavBar'
+import NavBar from './NavBar'
 
 function LandingPage() {
   return (
@@ -11,88 +11,6 @@ function LandingPage() {
           <div className="top-bar text-center">
               Free Delivery on orders above $100
           </div>
-          
-          {/* Navigation */}
-          <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3">
-              <div className="container">
-                  <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                      <span className="navbar-toggler-icon"></span>
-                  </button>
-                  
-                  <a className="navbar-brand" href="#">44:11</a>
-                  
-                  {/* Mobile Icons Container */}
-                  <div className="mobile-icons-container d-lg-none">
-                      <div className="nav-icons mobile-version">
-                          <i className="bi bi-search" id="mobile-search-toggle"></i>
-                          <i className="bi bi-person"></i>
-                          <div className="position-relative">
-                              <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
-                              <span id="cart-count-mobile" className="cart-count">0</span>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div className="collapse navbar-collapse" id="navbarNav">
-                      <ul className="navbar-nav mx-auto">
-                          <li className="nav-item"><a className="nav-link" href="#">Shop</a></li>
-                          <li className="nav-item"><a className="nav-link" href="#">Blog</a></li>
-                          <li className="nav-item"><a className="nav-link" href="#">About</a></li>
-                          <li className="nav-item"><a className="nav-link" href="#">FAQ</a></li>
-                          <li className="nav-item"><a className="nav-link" href="#">Contact</a></li>
-                      </ul>
-                      
-                      <div className="mobile-currency d-lg-none">
-                          <div className="currency-selector" id="mobile-currency-toggle">
-                              Currency: <span id="mobile-currency-text">USD $</span> <i className="bi bi-chevron-down"></i>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  {/* Desktop Icons */}
-                  <div className="nav-icons d-none d-lg-flex align-items-center">
-                      {/* Currency Dropdown */}
-                      <div className="position-relative">
-                          <div className="currency-selector" id="desktop-currency-toggle">
-                              <span id="desktop-currency-text">USD $</span> <i className="bi bi-chevron-down"></i>
-                          </div>
-                          <div className="currency-dropdown" id="desktop-currency-dropdown">
-                              <div className="currency-item active" data-currency="USD">USD $</div>
-                              <div className="currency-item" data-currency="EUR">EUR €</div>
-                              <div className="currency-item" data-currency="GBP">GBP £</div>
-                              <div className="currency-item" data-currency="CAD">CAD $</div>
-                          </div>
-                      </div>
-                      
-                      {/* Search Dropdown */}
-                      <div className="position-relative">
-                          <i className="bi bi-search" id="desktop-search-toggle"></i>
-                          <div className="search-dropdown" id="desktop-search-dropdown">
-                              <form className="search-form" id="desktop-search-form">
-                                  <input type="text" className="search-input" placeholder="Search products..." id="desktop-search-input"/>
-                                  <button type="submit" className="search-btn">
-                                      <i className="bi bi-search"></i>
-                                  </button>
-                              </form>
-                              <div className="search-suggestions">
-                                  <div className="suggestion-title">Popular Searches</div>
-                                  <a href="#" className="suggestion-item">Leggings</a>
-                                  <a href="#" className="suggestion-item">Sports Bras</a>
-                                  <a href="#" className="suggestion-item">Training Sets</a>
-                                  <a href="#" className="suggestion-item">Accessories</a>
-                              </div>
-                          </div>
-                      </div>
-                      
-                      <i className="bi bi-person"></i>
-                      
-                      <div className="position-relative">
-                          <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
-                          <span id="cart-count-desktop" className="cart-count">0</span>
-                      </div>
-                  </div>
-              </div>
-          </nav>
           
           {/* Mobile Search Dropdown */}
           <div className="mobile-search-dropdown d-xl-none" id="mobile-search-dropdown">
@@ -194,7 +112,7 @@ function LandingPage() {
           <section className="container">
               <div className="d-flex justify-content-between align-items-end mb-4">
                   <h2 className="section-header mb-0 mt-5">Hot Right Now</h2>
-                  <a href="#" className="view-all-link" style={{'fontSize': '0.8rem'}}>VIEW ALL</a>
+                  <a href="#" className="view-all-link" style={{fontSize: '0.8rem'}}>VIEW ALL</a>
               </div>
               <div className="row">
                   {/* Product 1 */}
@@ -207,8 +125,8 @@ function LandingPage() {
                           <div className="product-title">High-Waist Training Leggings</div>
                           <div className="product-price"><span className="old-price">$69.00</span> $49.00</div>
                           <div className="mt-2">
-                              <span className="color-swatch selected" style={{'background': '#000'}}></span>
-                              <span className="color-swatch" style={{"background": "#555"}}></span>
+                              <span className="color-swatch selected" style={{background: '#000'}}></span>
+                              <span className="color-swatch" style={{background: "#555"}}></span>
                           </div>
                           <div className="mt-1">
                               <button className="size-selector selected">XS</button>
@@ -228,8 +146,8 @@ function LandingPage() {
                           <div className="product-title">Ribbed Performance Set</div>
                           <div className="product-price">$58.00</div>
                           <div className="mt-2">
-                              <span className="color-swatch selected" style={{"background": "#fff", "border": "1px solid #ccc"}}></span>
-                              <span className="color-swatch" style={{"background": "#000"}}></span>
+                              <span className="color-swatch selected" style={{background: "#fff", border: "1px solid #ccc"}}></span>
+                              <span className="color-swatch" style={{background: "#000"}}></span>
                           </div>
                           <div className="mt-1">
                               <button className="size-selector selected">XS</button>
@@ -250,7 +168,7 @@ function LandingPage() {
                           <div className="product-title">High-Rise Athletic Tights</div>
                           <div className="product-price">$61.00</div>
                           <div className="mt-2">
-                              <span className="color-swatch selected" style={{"background": "#D2B48C"}}></span>
+                              <span className="color-swatch selected" style={{background: "#D2B48C"}}></span>
                           </div>
                           <div className="mt-1">
                               <button className="size-selector selected">S</button>
@@ -270,8 +188,8 @@ function LandingPage() {
                           <div className="product-title">Full-Support Sports Bra</div>
                           <div className="product-price">$42.00</div>
                           <div className="mt-2">
-                              <span className="color-swatch selected" style={{"background": "#ADD8E6"}}></span>
-                              <span className="color-swatch" style={{"background": "#FFB6C1"}}></span>
+                              <span className="color-swatch selected" style={{background: "#ADD8E6"}}></span>
+                              <span className="color-swatch" style={{background: "#FFB6C1"}}></span>
                           </div>
                           <div className="mt-1">
                               <button className="size-selector selected">XS</button>
@@ -325,107 +243,6 @@ function LandingPage() {
               </div>
           </section>
           
-          {/* Footer */}
-          <footer className="footer">
-              <div className="container">
-                  <div className="row">
-                      {/* Brand & Description */}
-                      <div className="col-lg-4 col-md-6 mb-5">
-                          <a href="#" className="footer-brand">44:11</a>
-                          <p className="footer-tagline">
-                              Elevate your workout with premium activewear designed for performance and style. 
-                              Experience the perfect blend of comfort, durability, and elegance in every piece.
-                          </p>
-                          <div className="newsletter-form">
-                              <input type="email" className="newsletter-input" placeholder="Your email address" />
-                              <button type="submit" className="newsletter-btn">Subscribe</button>
-                          </div>
-                          <div className="social-icons">
-                              <a href="#" className="social-icon"><i className="bi bi-instagram"></i></a>
-                              <a href="#" className="social-icon"><i className="bi bi-facebook"></i></a>
-                              <a href="#" className="social-icon"><i className="bi bi-twitter"></i></a>
-                              <a href="#" className="social-icon"><i className="bi bi-pinterest"></i></a>
-                              <a href="#" className="social-icon"><i className="bi bi-tiktok"></i></a>
-                          </div>
-                      </div>
-                      
-                      {/* Quick Links */}
-                      <div className="col-lg-2 col-md-6 mb-5">
-                          <h6 className="footer-title">Shop</h6>
-                          <ul className="footer-links">
-                              <li><a href="#">Tops</a></li>
-                              <li><a href="#">Bottoms</a></li>
-                              <li><a href="#">Sports Bras</a></li>
-                              <li><a href="#">Accessories</a></li>
-                              <li><a href="#">New Arrivals</a></li>
-                              <li><a href="#">Best Sellers</a></li>
-                          </ul>
-                      </div>
-                      
-                      {/* Support */}
-                      <div className="col-lg-2 col-md-6 mb-5">
-                          <h6 className="footer-title">Support</h6>
-                          <ul className="footer-links">
-                              <li><a href="#">Contact Us</a></li>
-                              <li><a href="#">FAQ</a></li>
-                              <li><a href="#">Shipping</a></li>
-                              <li><a href="#">Returns</a></li>
-                              <li><a href="#">Size Guide</a></li>
-                              <li><a href="#">Care Instructions</a></li>
-                          </ul>
-                      </div>
-                      
-                      {/* Company */}
-                      <div className="col-lg-2 col-md-6 mb-5">
-                          <h6 className="footer-title">Company</h6>
-                          <ul className="footer-links">
-                              <li><a href="#">About Us</a></li>
-                              <li><a href="#">Blog</a></li>
-                              <li><a href="#">Sustainability</a></li>
-                              <li><a href="#">Careers</a></li>
-                              <li><a href="#">Press</a></li>
-                              <li><a href="#">Wholesale</a></li>
-                          </ul>
-                      </div>
-                      
-                      {/* Contact Info */}
-                      <div className="col-lg-2 col-md-6 mb-5">
-                          <h6 className="footer-title">Contact</h6>
-                          <ul className="footer-links">
-                              <li><a href="mailto:hello@44eleven.com">hello@44eleven.com</a></li>
-                              <li><a href="tel:+18005551234">1-800-555-1234</a></li>
-                              <li>Mon-Fri: 9am-6pm EST</li>
-                              <li>123 Active Street</li>
-                              <li>New York, NY 10001</li>
-                          </ul>
-                      </div>
-                  </div>
-                  
-                  {/* Footer Bottom */}
-                  <div className="footer-bottom">
-                      <div className="footer-bottom-content">
-                          <div className="copyright">
-                              &copy; 2024 44:11 Activewear. All rights reserved.
-                          </div>
-                          
-                          <div className="footer-links-bottom">
-                              <a href="#">Privacy Policy</a>
-                              <a href="#">Terms of Service</a>
-                              <a href="#">Cookie Policy</a>
-                              <a href="#">Accessibility</a>
-                          </div>
-                          
-                          <div className="payment-methods">
-                              <i className="bi bi-credit-card payment-icon"></i>
-                              <i className="bi bi-paypal payment-icon"></i>
-                              <i className="bi bi-google payment-icon"></i>
-                              <i className="bi bi-apple payment-icon"></i>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </footer>
-          
           {/* Side Cart (Right Sliding Panel) */}
           <div className="side-cart-overlay" id="cart-overlay"></div>
           
@@ -440,7 +257,7 @@ function LandingPage() {
                   <div id="cart-items-container">
                       {/* Cart items will be dynamically added here */}
                       <div className="text-center py-4" id="empty-cart-message">
-                          <i className="bi bi-bag" style={{"fontSize": "2rem", "color": "#ccc"}}></i>
+                          <i className="bi bi-bag" style={{fontSize: "2rem", color: "#ccc"}}></i>
                           <p className="mt-2">Your cart is empty</p>
                       </div>
                   </div>
