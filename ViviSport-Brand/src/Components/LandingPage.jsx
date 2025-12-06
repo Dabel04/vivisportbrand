@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
 import NavBar from './NavBar'
+import {ass, bras, bottoms, leggings} from './images'
+
 
 function LandingPage() {
   return (
@@ -53,21 +55,21 @@ function LandingPage() {
                   {/* Col 2 */}
                   <div className="col-md-3">
                       <div className="category-card shop-now">
-                          <img src="img/bottoms.jpg" alt="Bottoms" />
+                          <img src={bottoms} alt="Bottoms" />
                           <div className="category-text">Bottoms</div>
                       </div>
                   </div>
                   {/* Col 3 */}
                   <div className="col-md-3">
                       <div className="category-card shop-now">
-                          <img src="img/bras.jpg" alt="Sports Bras" />
+                          <img src={bras} alt="Sports Bras" />
                           <div className="category-text">Sports Bras</div>
                       </div>
                   </div>
                   {/* Col 4 */}
                   <div className="col-md-3">
                       <div className="category-card shop-now">
-                          <img src="https://images.unsplash.com/photo-1623945419356-9d3298c4d29a?q=80&w=2070&auto=format&fit=crop" alt="Accessories" />
+                          <img src={ass} alt="Accessories" />
                           <div className="category-text">Accessories</div>
                       </div>
                   </div>
@@ -86,21 +88,21 @@ function LandingPage() {
                       {/* Slide 2 */}
                       <div className="category-slide">
                           <div className="category-card shop-now">
-                              <img src="img/bottoms.jpg" alt="Bottoms" />
+                              <img src={bottoms} alt="Bottoms" />
                               <div className="category-text">Bottoms</div>
                           </div>
                       </div>
                       {/* Slide 3 */}
                       <div className="category-slide">
                           <div className="category-card shop-now">
-                              <img src="img/bras.jpg" alt="Sports Bras" />
+                              <img src={bras} alt="Sports Bras" />
                               <div className="category-text">Sports Bras</div>
                           </div>
                       </div>
                       {/* Slide 4 */}
                       <div className="category-slide">
                           <div className="category-card shop-now">
-                              <img src="img/ass.jpg" alt="Accessories" />
+                              <img src={ass} alt="Accessories" />
                               <div className="category-text">Accessories</div>
                           </div>
                       </div>
@@ -120,7 +122,7 @@ function LandingPage() {
                       <div className="product-card">
                           <div className="product-img-wrapper">
                               <span className="badge badge-custom badge-sale">Save $20</span>
-                              <img src="img/leggings.jpg" alt="Leggings" />
+                              <img src={leggings} alt="Leggings" />
                           </div>
                           <div className="product-title">High-Waist Training Leggings</div>
                           <div className="product-price"><span className="old-price">$69.00</span> $49.00</div>
