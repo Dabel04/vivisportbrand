@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
-import NavBar from './NavBar'
 import {ass, bras, bottoms, leggings} from './images'
 
 
@@ -12,16 +11,6 @@ function LandingPage() {
         <div>
           <div className="top-bar text-center">
               Free Delivery on orders above $100
-          </div>
-          
-          {/* Mobile Search Dropdown */}
-          <div className="mobile-search-dropdown d-xl-none" id="mobile-search-dropdown">
-              <form className="mobile-search-form" id="mobile-search-form">
-                  <input type="text" className="mobile-search-input" placeholder="Search products..." id="mobile-search-input" />
-                  <button type="submit" className="mobile-search-btn">
-                      <i className="bi bi-search"></i>
-                  </button>
-              </form>
           </div>
           
           {/* Hero Section */}
@@ -245,36 +234,6 @@ function LandingPage() {
               </div>
           </section>
           
-          {/* Side Cart (Right Sliding Panel) */}
-          <div className="side-cart-overlay" id="cart-overlay"></div>
-          
-          <div className="side-cart" id="side-cart">
-              <div className="side-cart-header">
-                  <h3 className="side-cart-title">Your Shopping Cart</h3>
-                  <button className="side-cart-close" id="close-side-cart">
-                      <i className="bi bi-x"></i>
-                  </button>
-              </div>
-              <div className="side-cart-body">
-                  <div id="cart-items-container">
-                      {/* Cart items will be dynamically added here */}
-                      <div className="text-center py-4" id="empty-cart-message">
-                          <i className="bi bi-bag" style={{fontSize: "2rem", color: "#ccc"}}></i>
-                          <p className="mt-2">Your cart is empty</p>
-                      </div>
-                  </div>
-              </div>
-              <div className="side-cart-footer">
-                  <div className="cart-total">
-                      <span>Total:</span>
-                      <span>$<span id="cart-total-price">0.00</span></span>
-                  </div>
-                  <div className="cart-actions">
-                      <button type="button" className="btn btn-outline-dark" id="continue-shopping">Continue Shopping</button>
-                      <button type="button" className="btn btn-dark" id="checkout-btn">Checkout</button>
-                  </div>
-              </div>
-          </div>
           
           <div className="chat-widget">
               <i className="bi bi-chat-dots-fill"></i>

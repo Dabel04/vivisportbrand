@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
-import '../styles/style.css'
+import Cart from './Cart'
+import { useState } from 'react';
 
 const Navbar = () => {
+    const [isActive, setIsActive] = useState(false)
+
   return (
     <>
         {/* Navigation */}
@@ -11,14 +14,14 @@ const Navbar = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
             
-            <Link to='/' className='navbar-brand'>11:44</Link>
+            <a className="navbar-brand" href="#">44:11</a>
             
             {/* Mobile Icons Container */}
             <div className="mobile-icons-container d-lg-none">
                 <div className="nav-icons mobile-version">
                     <i className="bi bi-search" id="mobile-search-toggle"></i>
                     <i className="bi bi-person"></i>
-                    <div className="position-relative">
+                    <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                         <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
                         <span id="cart-count-mobile" className="cart-count">0</span>
                     </div>
@@ -61,7 +64,7 @@ const Navbar = () => {
                     <i className="bi bi-search" id="desktop-search-toggle"></i>
                     <div className="search-dropdown" id="desktop-search-dropdown">
                         <form className="search-form" id="desktop-search-form">
-                            <input type="text" className="search-input" placeholder="Search products..." id="desktop-search-input" />
+                            <input type="text" className="search-input" placeholder="Search products..." id="desktop-search-input"/>
                             <button type="submit" className="search-btn">
                                 <i className="bi bi-search"></i>
                             </button>
@@ -78,19 +81,26 @@ const Navbar = () => {
                 
                 <i className="bi bi-person"></i>
                 
-                <div className="position-relative">
+                <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                     <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
                     <span id="cart-count-desktop" className="cart-count">0</span>
                 </div>
             </div>
         </div>
     </nav>
+    
+    {/* Mobile Search Dropdown */}
+    <div className="mobile-search-dropdown d-xl-none" id="mobile-search-dropdown">
+        <form className="mobile-search-form" id="mobile-search-form">
+            <input type="text" className="mobile-search-input" placeholder="Search products..." id="mobile-search-input"/>
+            <button type="submit" className="mobile-search-btn">
+                <i className="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <Cart isActive={isActive}/>
     </>
-  //   <nav>   
-  //  <Link to='/contact'>
-  //   Contact
-  //  </Link>
-  //   </nav>
   );
 };
 export default Navbar;
