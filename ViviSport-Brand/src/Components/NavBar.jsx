@@ -1,0 +1,127 @@
+import { Link } from 'react-router-dom';
+import Cart from './Cart'
+import { useState } from 'react';
+import { useAtomValue } from 'jotai'
+import { productAtom } from '../App'
+
+const Navbar = () => {
+    const [isActive, setIsActive] = useState(false)
+    const selectedValue = useAtomValue(productAtom)
+    const [cartItems, setCartItems] = useState([])
+    const [cartIndex, setCartIndex] = useState(0)
+
+    function updateCart(item, quantitys) {
+    setCartIndex(cartIndex + 1)
+      setIsActive(() => !isActive)
+      console.log(item)
+      const qty = Number(quantitys) || 1
+      setCartItems(prev => {
+      const existing = prev.find(p => p.id === item.id)
+      if (existing) {
+        return prev.map(p => p.id === item.id ? { ...p, quantity: p.quantity + qty } : p)
+      }
+      return [...prev, { id: item.id, name: item.name, price: item.price, image: item.image, quantity: qty }]
+    })
+  }
+
+    const cartNumber = cartItems.reduce((s, i) => s + (i.quantity || 0), 0)
+    const cartTotal = cartItems.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
+  return (
+    <>
+        {/* Navigation */}
+    <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3">
+        <div className="container">
+            <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            
+            <a className="navbar-brand" href="#">44:11</a>
+            
+            {/* Mobile Icons Container */}
+            <div className="mobile-icons-container d-lg-none">
+                <div className="nav-icons mobile-version">
+                    <i className="bi bi-search" id="mobile-search-toggle"></i>
+                    <i className="bi bi-person"></i>
+                    <div className="position-relative">
+                        <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
+                        <span id="cart-count-mobile" className="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav mx-auto">
+                    <li className="nav-item"><Link to='/shop' className='nav-link'>Shop</Link></li>
+                    <li className="nav-item"><Link to='/blog' className='nav-link'>Blog</Link></li>
+                    <li className="nav-item"><Link to='/about' className='nav-link'>About</Link></li>
+                    <li className="nav-item"><Link to='/faq' className='nav-link'>Faq</Link></li>
+                    <li className="nav-item"><Link to='/contact' className='nav-link'>Contact</Link></li>
+                </ul>
+                
+                <div className="mobile-currency d-lg-none">
+                    <div className="currency-selector" id="mobile-currency-toggle">
+                        Currency: <span id="mobile-currency-text">USD $</span> <i className="bi bi-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+            
+            {/* Desktop Icons */}
+            <div className="nav-icons d-none d-lg-flex align-items-center">
+                {/* Currency Dropdown */}
+                <div className="position-relative">
+                    <div className="currency-selector" id="desktop-currency-toggle">
+                        <span id="desktop-currency-text">USD $</span> <i className="bi bi-chevron-down"></i>
+                    </div>
+                    <div className="currency-dropdown" id="desktop-currency-dropdown">
+                        <div className="currency-item active" data-currency="USD">USD $</div>
+                        <div className="currency-item" data-currency="EUR">EUR €</div>
+                        <div className="currency-item" data-currency="GBP">GBP £</div>
+                        <div className="currency-item" data-currency="CAD">CAD $</div>
+                    </div>
+                </div>
+                
+                {/* Search Dropdown */}
+                <div className="position-relative">
+                    <i className="bi bi-search" id="desktop-search-toggle"></i>
+                    <div className="search-dropdown" id="desktop-search-dropdown">
+                        <form className="search-form" id="desktop-search-form">
+                            <input type="text" className="search-input" placeholder="Search products..." id="desktop-search-input"/>
+                            <button type="submit" className="search-btn">
+                                <i className="bi bi-search"></i>
+                            </button>
+                        </form>
+                        <div className="search-suggestions">
+                            <div className="suggestion-title">Popular Searches</div>
+                            <a href="#" className="suggestion-item">Leggings</a>
+                            <a href="#" className="suggestion-item">Sports Bras</a>
+                            <a href="#" className="suggestion-item">Training Sets</a>
+                            <a href="#" className="suggestion-item">Accessories</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <i className="bi bi-person"></i>
+                
+                <div className="position-relative" onClick={() => updateCart(selectedValue)}>
+                    <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
+                    <span id="cart-count-desktop" className="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    {/* Mobile Search Dropdown */}
+    <div className="mobile-search-dropdown d-xl-none" id="mobile-search-dropdown">
+        <form className="mobile-search-form" id="mobile-search-form">
+            <input type="text" className="mobile-search-input" placeholder="Search products..." id="mobile-search-input"/>
+            <button type="submit" className="mobile-search-btn">
+                <i className="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <Cart isActive={isActive} cartItems={cartItems} cartNumber={cartNumber} cartTotal={cartTotal}/>
+    </>
+  );
+};
+export default Navbar;

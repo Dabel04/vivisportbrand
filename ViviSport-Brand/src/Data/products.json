@@ -1,6 +1,150 @@
 [ 
    {
+        "id": 10,
+        "name": "High-Waist Training Leggings",
+        "price": 49.00,
+        "originalPrice": 69.00,
+        "description": "Premium polo shirt with modern design and comfortable fit.",
+        "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
+        "images": [
+            "./img/f3.jpg",
+            "./img/f3.jpg", 
+            "./img/f3.jpg"
+        ],
+        "sizes": [
+            { "size": "S", "inStock": true, "stock": 15 },
+            { "size": "M", "inStock": true, "stock": 25 },
+            { "size": "L", "inStock": true, "stock": 8 },
+            { "size": "XL", "inStock": true, "stock": 12 },
+            { "size": "XXL", "inStock": false, "stock": 0 }
+        ],
+        "colors": [
+            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
+            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
+            { "name": "Black", "value": "#000000", "inStock": true },
+            { "name": "White", "value": "#ffffff", "inStock": false }
+        ],
+        "specifications": {
+            "Material": "92% Cotton, 8% Elastane",
+            "Fit": "Regular Fit",
+            "Care": "Machine washable",
+            "Origin": "Imported",
+            "Style": "Casual Polo",
+            "Neckline": "Polo Collar",
+            "Sleeve": "Short Sleeve"
+        },
+        "category": "women"
+    },
+   {
         "id": 11,
+        "name": "Ribbed Performance Set",
+        "price": 58.00,
+        "originalPrice": 89.99,
+        "description": "Premium polo shirt with modern design and comfortable fit.",
+        "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
+        "images": [
+            "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop",
+            "./img/f3.jpg", 
+            "./img/f3.jpg"
+        ],
+        "sizes": [
+            { "size": "S", "inStock": true, "stock": 15 },
+            { "size": "M", "inStock": true, "stock": 25 },
+            { "size": "L", "inStock": true, "stock": 8 },
+            { "size": "XL", "inStock": true, "stock": 12 },
+            { "size": "XXL", "inStock": false, "stock": 0 }
+        ],
+        "colors": [
+            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
+            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
+            { "name": "Black", "value": "#000000", "inStock": true },
+            { "name": "White", "value": "#ffffff", "inStock": false }
+        ],
+        "specifications": {
+            "Material": "92% Cotton, 8% Elastane",
+            "Fit": "Regular Fit",
+            "Care": "Machine washable",
+            "Origin": "Imported",
+            "Style": "Casual Polo",
+            "Neckline": "Polo Collar",
+            "Sleeve": "Short Sleeve"
+        },
+        "category": "men"
+    },
+   {
+        "id": 12,
+        "name": "High-Rise Athletic Tights",
+        "price": 61.00,
+        "originalPrice": 89.99,
+        "description": "Premium polo shirt with modern design and comfortable fit.",
+        "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
+        "images": [
+            "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop",
+            "./img/f3.jpg", 
+            "./img/f3.jpg"
+        ],
+        "sizes": [
+            { "size": "S", "inStock": true, "stock": 15 },
+            { "size": "M", "inStock": true, "stock": 25 },
+            { "size": "L", "inStock": true, "stock": 8 },
+            { "size": "XL", "inStock": true, "stock": 12 },
+            { "size": "XXL", "inStock": false, "stock": 0 }
+        ],
+        "colors": [
+            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
+            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
+            { "name": "Black", "value": "#000000", "inStock": true },
+            { "name": "White", "value": "#ffffff", "inStock": false }
+        ],
+        "specifications": {
+            "Material": "92% Cotton, 8% Elastane",
+            "Fit": "Regular Fit",
+            "Care": "Machine washable",
+            "Origin": "Imported",
+            "Style": "Casual Polo",
+            "Neckline": "Polo Collar",
+            "Sleeve": "Short Sleeve"
+        },
+        "category": "men"
+    },
+   {
+        "id": 13,
+        "name": "Full-Support Sports Bra",
+        "price": 42.00,
+        "originalPrice": 89.99,
+        "description": "Premium polo shirt with modern design and comfortable fit.",
+        "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
+        "images": [
+            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop",
+            "./img/f3.jpg", 
+            "./img/f3.jpg"
+        ],
+        "sizes": [
+            { "size": "S", "inStock": true, "stock": 15 },
+            { "size": "M", "inStock": true, "stock": 25 },
+            { "size": "L", "inStock": true, "stock": 8 },
+            { "size": "XL", "inStock": true, "stock": 12 },
+            { "size": "XXL", "inStock": false, "stock": 0 }
+        ],
+        "colors": [
+            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
+            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
+            { "name": "Black", "value": "#000000", "inStock": true },
+            { "name": "White", "value": "#ffffff", "inStock": false }
+        ],
+        "specifications": {
+            "Material": "92% Cotton, 8% Elastane",
+            "Fit": "Regular Fit",
+            "Care": "Machine washable",
+            "Origin": "Imported",
+            "Style": "Casual Polo",
+            "Neckline": "Polo Collar",
+            "Sleeve": "Short Sleeve"
+        },
+        "category": "men"
+    },
+   {
+        "id": 14,
         "name": "Adidas X Pop Polo Shirt",
         "price": 69.99,
         "originalPrice": 89.99,
@@ -37,7 +181,7 @@
     },
 
   {
-        "id": 12,
+        "id": 15,
         "name": "Adidas X Pop TRX Vintage",
         "price": 69.99,
         "originalPrice": 79.99,
@@ -72,7 +216,7 @@
     },
 
   {
-        "id": 13,
+        "id": 16,
         "name": "Adidas X Pop Beckenbauer Track Jacket",
         "price": 129.00,
         "originalPrice": 159.00,
@@ -107,7 +251,7 @@
   },
 
   { 
-      "id": 14, 
+      "id": 17, 
       "name": "Adidas X Pop Classic T-shirt", 
       "price": 120.00, 
       "image": "kugvkluhvljkgvlj", 
@@ -115,14 +259,14 @@
   },
 
   { 
-      "id": 15, "name": "Adidas X Pop SL Cap", 
+      "id": 18, "name": "Adidas X Pop SL Cap", 
       "price": 59.00, 
       "image": "./img/f4.jpg", 
       "description": "adidas X Pop SL Cap, navy / white" 
   },
 
   { 
-      "id": 16, 
+      "id": 19, 
       "name": "Butter Yard Pullover Hood", 
       "price": 120.00, 
       "image": "kuhvkuhvkugv", 
@@ -130,7 +274,7 @@
   },
 
   { 
-      "id": 17, 
+      "id": 20, 
       "name": "Parra Rug Pull T-shirt", 
       "price": 60.00, 
       "image": "hhhhhhh", 
@@ -138,7 +282,7 @@
   },
   
   { 
-    "id": 18, 
+    "id": 21, 
     "name": "Carhartt L/S Sweat", 
     "price": 130.00, 
     "image": "kjhblvihvlhiv", 

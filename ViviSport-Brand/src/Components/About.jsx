@@ -5,6 +5,7 @@ function About() {
     <>
     <div>This is the About Section</div>
     </>
+    
   )
 }
 
