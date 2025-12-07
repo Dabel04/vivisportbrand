@@ -1,10 +1,31 @@
 import { Link } from 'react-router-dom';
 import Cart from './Cart'
 import { useState } from 'react';
+import { useAtomValue } from 'jotai'
+import { productAtom } from '../App'
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState(false)
+    const selectedValue = useAtomValue(productAtom)
+    const [cartItems, setCartItems] = useState([])
+    const [cartIndex, setCartIndex] = useState(0)
 
+    function updateCart(item, quantitys) {
+    setCartIndex(cartIndex + 1)
+      setIsActive(() => !isActive)
+      console.log(item)
+      const qty = Number(quantitys) || 1
+      setCartItems(prev => {
+      const existing = prev.find(p => p.id === item.id)
+      if (existing) {
+        return prev.map(p => p.id === item.id ? { ...p, quantity: p.quantity + qty } : p)
+      }
+      return [...prev, { id: item.id, name: item.name, price: item.price, image: item.image, quantity: qty }]
+    })
+  }
+
+    const cartNumber = cartItems.reduce((s, i) => s + (i.quantity || 0), 0)
+    const cartTotal = cartItems.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
   return (
     <>
         {/* Navigation */}
@@ -21,7 +42,7 @@ const Navbar = () => {
                 <div className="nav-icons mobile-version">
                     <i className="bi bi-search" id="mobile-search-toggle"></i>
                     <i className="bi bi-person"></i>
-                    <div className="position-relative" onClick={() => setIsActive(!isActive)}>
+                    <div className="position-relative">
                         <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
                         <span id="cart-count-mobile" className="cart-count">0</span>
                     </div>
@@ -81,7 +102,7 @@ const Navbar = () => {
                 
                 <i className="bi bi-person"></i>
                 
-                <div className="position-relative" onClick={() => setIsActive(!isActive)}>
+                <div className="position-relative" onClick={() => updateCart(selectedValue)}>
                     <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
                     <span id="cart-count-desktop" className="cart-count">0</span>
                 </div>
@@ -99,7 +120,7 @@ const Navbar = () => {
         </form>
     </div>
 
-    <Cart isActive={isActive}/>
+    <Cart isActive={isActive} cartItems={cartItems} cartNumber={cartNumber} cartTotal={cartTotal}/>
     </>
   );
 };

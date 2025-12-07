@@ -2,9 +2,15 @@ import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
 import {ass, bras, bottoms, leggings} from './images'
+import products from '../Data/products'
+import {useAtom} from 'jotai'
+import { productAtom } from '../App'
 
 
 function LandingPage() {
+    const [product, setProduct] = useAtom(productAtom);
+    console.log(product)
+
   return (
     <>
         <>
@@ -127,30 +133,40 @@ function LandingPage() {
                           <button className="add-to-cart-btn" data-product-id="1" data-product-name="High-Waist Training Leggings" data-product-price="49.00" data-product-image="https://images.unsplash.com/photo-1506619216599-9d939743f39d?q=80&w=2070&auto=format&fit=crop">Add to Cart</button>
                       </div>
                   </div>
+
+                  {/* Products looped */}
+                   
+                     {
+                        products.map((product) => (
+                    <div className="col-6 col-lg-3" key={product.id}>
+                         <div className="product-card">
+                            <div className="product-img-wrapper">
+                                <span className="badge badge-custom badge-popular">Popular</span>
+                                <img src={product.images} alt="Bra" />
+                            </div>
+                            <div className="product-title">{product.name}</div>
+                            <div className="product-price">${product.price}</div>
+                            <div className="mt-2">
+                                <span className="color-swatch selected" style={{background: "#fff", border: "1px solid #ccc"}}></span>
+                                <span className="color-swatch" style={{background: "#000"}}></span>
+                            </div>
+                            <div className="mt-1">
+                                <button className="size-selector selected">XS</button>
+                                <button className="size-selector">S</button>
+                                <button className="size-selector">M</button>
+                                <button className="size-selector">L</button>
+                            </div>
+                            <button className="add-to-cart-btn" onClick={() => setProduct(product)}>Add to Cart</button>
+                         </div>
+                    </div>
+                        ))
+                     }
+                   
+
                   {/* Product 2 */}
-                  <div className="col-6 col-lg-3">
-                      <div className="product-card">
-                          <div className="product-img-wrapper">
-                              <span className="badge badge-custom badge-popular">Popular</span>
-                              <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop" alt="Bra" />
-                          </div>
-                          <div className="product-title">Ribbed Performance Set</div>
-                          <div className="product-price">$58.00</div>
-                          <div className="mt-2">
-                              <span className="color-swatch selected" style={{background: "#fff", border: "1px solid #ccc"}}></span>
-                              <span className="color-swatch" style={{background: "#000"}}></span>
-                          </div>
-                          <div className="mt-1">
-                              <button className="size-selector selected">XS</button>
-                              <button className="size-selector">S</button>
-                              <button className="size-selector">M</button>
-                              <button className="size-selector">L</button>
-                          </div>
-                          <button className="add-to-cart-btn" data-product-id="2" data-product-name="Ribbed Performance Set" data-product-price="58.00" data-product-image="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop">Add to Cart</button>
-                      </div>
-                  </div>
+                  {/*  */}
                   {/* Product 3 */}
-                  <div className="col-6 col-lg-3">
+                  {/* <div className="col-6 col-lg-3">
                       <div className="product-card">
                           <div className="product-img-wrapper">
                               <span className="badge badge-custom badge-popular">Popular</span>
@@ -168,9 +184,9 @@ function LandingPage() {
                           </div>
                           <button className="add-to-cart-btn" data-product-id="3" data-product-name="High-Rise Athletic Tights" data-product-price="61.00" data-product-image="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop">Add to Cart</button>
                       </div>
-                  </div>
+                  </div> */}
                   {/* Product 4 */}
-                  <div className="col-6 col-lg-3">
+                  {/* <div className="col-6 col-lg-3">
                       <div className="product-card">
                           <div className="product-img-wrapper">
                               <span className="badge badge-custom badge-new">New</span>
@@ -189,7 +205,7 @@ function LandingPage() {
                           </div>
                           <button className="add-to-cart-btn" data-product-id="4" data-product-name="Full-Support Sports Bra" data-product-price="42.00" data-product-image="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop">Add to Cart</button>
                       </div>
-                  </div>
+                  </div> */}
               </div>
           </section>
           
