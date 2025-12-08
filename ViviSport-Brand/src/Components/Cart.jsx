@@ -1,7 +1,8 @@
 
 import React from 'react'
 
-function Cart({isActive, cartItems={cartItems}, cartNumber={cartNumber}, cartTotal={cartTotal}}) {
+
+function Cart({isActive, selectedValue, cartTotal}) {
 
   return (
     <>
@@ -18,13 +19,13 @@ function Cart({isActive, cartItems={cartItems}, cartNumber={cartNumber}, cartTot
         <div className="side-cart-body">
             <div id="cart-items-container">
                 {/* Cart items will be dynamically added here */}
-                {cartItems.lenght === 0 ? (
+                {selectedValue.lenght === 0 ? (
                     <div className="text-center py-4" id="empty-cart-message">
                     <i className="bi bi-bag" style={{fontSize: "2rem", color: "#ccc"}}></i>
                     <p className="mt-2">Your cart is empty</p>
                 </div>
                 ) : (
-                    cartItems.map(ci => (
+                    selectedValue.map(ci => (
                         <div className="cart-item" key={ci.id}>
                             <img src={ci.image} className="cart-item-img" alt={ci.name}/>
                             <div className="cart-item-details">
@@ -44,7 +45,7 @@ function Cart({isActive, cartItems={cartItems}, cartNumber={cartNumber}, cartTot
             <div className="cart-total">
                 <span>Total:</span>
                 <span>$<span id="cart-total-price">{cartTotal}</span></span>
-            </div>
+            </div> 
             <div className="cart-actions">
                     <button type="button" className="btn btn-outline-dark" id="continue-shopping">Continue Shopping</button>
                     <button type="button" className="btn btn-dark" id="checkout-btn">Checkout</button>
