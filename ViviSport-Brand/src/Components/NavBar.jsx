@@ -6,26 +6,11 @@ import { productAtom } from '../App'
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState(false)
+
     const selectedValue = useAtomValue(productAtom)
-    const [cartItems, setCartItems] = useState([])
-    const [cartIndex, setCartIndex] = useState(0)
 
-    function updateCart(item, quantitys) {
-    setCartIndex(cartIndex + 1)
-      setIsActive(() => !isActive)
-      console.log(item)
-      const qty = Number(quantitys) || 1
-      setCartItems(prev => {
-      const existing = prev.find(p => p.id === item.id)
-      if (existing) {
-        return prev.map(p => p.id === item.id ? { ...p, quantity: p.quantity + qty } : p)
-      }
-      return [...prev, { id: item.id, name: item.name, price: item.price, image: item.image, quantity: qty }]
-    })
-  }
-
-    const cartNumber = cartItems.reduce((s, i) => s + (i.quantity || 0), 0)
-    const cartTotal = cartItems.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
+    const cartNumber = selectedValue.reduce((s, i) => s + (i.quantity || 0), 0)
+    const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
   return (
     <>
         {/* Navigation */}
@@ -102,9 +87,9 @@ const Navbar = () => {
                 
                 <i className="bi bi-person"></i>
                 
-                <div className="position-relative" onClick={() => updateCart(selectedValue)}>
+                <div className="position-relative" onClick={() => setIsActive(!false)}>
                     <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
-                    <span id="cart-count-desktop" className="cart-count">0</span>
+                    <span id="cart-count-desktop" className="cart-count">{cartNumber}</span>
                 </div>
             </div>
         </div>
@@ -120,7 +105,7 @@ const Navbar = () => {
         </form>
     </div>
 
-    <Cart isActive={isActive} cartItems={cartItems} cartNumber={cartNumber} cartTotal={cartTotal}/>
+    <Cart isActive={isActive} cartNumber={cartNumber} cartTotal={cartTotal} selectedValue={selectedValue}/>
     </>
   );
 };

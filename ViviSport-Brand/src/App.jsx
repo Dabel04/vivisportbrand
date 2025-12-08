@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {atom} from 'jotai'
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const productAtom = atom(null);
+export const productAtom = atom([]);
 
 function App() {
 

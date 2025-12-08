@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
 import {ass, bras, bottoms, leggings} from './images'
@@ -9,7 +9,23 @@ import { productAtom } from '../App'
 
 function LandingPage() {
     const [product, setProduct] = useAtom(productAtom);
+    const [cartItems, setCartItems] = useState([])
+    
+    function updateCart(item, quantitys) {
+      const qty = Number(quantitys) || 1
+      setCartItems(prev => {
+      const existing = prev.find(p => p.id === item.id)
+      if (existing) {
+        return prev.map(p => p.id === item.id ? { ...p, quantity: p.quantity + qty } : p)
+      }
+      return [...prev, { id: item.id, name: item.name, price: item.price, image: item.image, quantity: qty }]
+    })
+
+    setProduct(cartItems)
+  }
+
     console.log(product)
+      
 
   return (
     <>
@@ -156,7 +172,7 @@ function LandingPage() {
                                 <button className="size-selector">M</button>
                                 <button className="size-selector">L</button>
                             </div>
-                            <button className="add-to-cart-btn" onClick={() => setProduct(product)}>Add to Cart</button>
+                            <button className="add-to-cart-btn" onClick={() => updateCart(product)}>Add to Cart</button>
                          </div>
                     </div>
                         ))
