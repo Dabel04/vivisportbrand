@@ -10,7 +10,7 @@ const Navbar = () => {
     const selectedValue = useAtomValue(productAtom)
 
     const cartNumber = selectedValue.reduce((s, i) => s + (i.quantity || 0), 0)
-    const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
+    
   return (
     <>
         {/* Navigation */}
@@ -27,9 +27,9 @@ const Navbar = () => {
                 <div className="nav-icons mobile-version">
                     <i className="bi bi-search" id="mobile-search-toggle"></i>
                     <i className="bi bi-person"></i>
-                    <div className="position-relative">
+                    <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                         <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
-                        <span id="cart-count-mobile" className="cart-count">0</span>
+                        <span id="cart-count-mobile" className="cart-count">{cartNumber}</span>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@ const Navbar = () => {
                 
                 <i className="bi bi-person"></i>
                 
-                <div className="position-relative" onClick={() => setIsActive(!false)}>
+                <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                     <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
                     <span id="cart-count-desktop" className="cart-count">{cartNumber}</span>
                 </div>
@@ -105,7 +105,7 @@ const Navbar = () => {
         </form>
     </div>
 
-    <Cart isActive={isActive} cartNumber={cartNumber} cartTotal={cartTotal} selectedValue={selectedValue}/>
+    <Cart isActive={isActive} selectedValue={selectedValue} setIsActive={setIsActive}/>
     </>
   );
 };

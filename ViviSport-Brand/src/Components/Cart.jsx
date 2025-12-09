@@ -1,9 +1,21 @@
-
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { useSetAtom } from 'jotai'
+import { productAtom } from '../App'
+
+/* import all the icons in Free Solid, Free Regular, and Brands styles */
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fas)
 
 
-function Cart({isActive, selectedValue, cartTotal}) {
-
+function Cart({isActive, selectedValue, setIsActive}) {
+        const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
+        const setSelectedValue = useSetAtom(productAtom)
+        function removeFromCart(id) {
+            setSelectedValue(prev => prev.filter(p => p.id !== id))
+        }
   return (
     <>
                 {/* Side Cart (Right Sliding Panel) */}
@@ -12,8 +24,8 @@ function Cart({isActive, selectedValue, cartTotal}) {
     <div className={isActive ? 'side-cart active' : 'side-cart'} id="side-cart">
         <div className="side-cart-header">
             <h3 className="side-cart-title">Your Shopping Cart</h3>
-            <button className="side-cart-close" id="close-side-cart">
-                <i className="bi bi-x"></i>
+            <button className="side-cart-close" id="close-side-cart" onClick={() => setIsActive(false)}>
+                <FontAwesomeIcon icon="fa-solid fa-x" size="2xs" />
             </button>
         </div>
         <div className="side-cart-body">
@@ -33,8 +45,8 @@ function Cart({isActive, selectedValue, cartTotal}) {
                                 <div className="cart-item-price">${ci.price.toFixed(2)} × {ci.quantity}</div>
                                 <div className="small text-muted">Size: {ci.size} | Color: <span className="d-inline-block"></span></div>
                             </div>
-                            <button className="cart-item-remove">
-                                <i className="bi bi-x"></i>
+                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id)}>
+                                <FontAwesomeIcon icon="fa-solid fa-x" size="2xs" />
                             </button>
                         </div>
                     ))
