@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
 import {ass, bras, bottoms} from './images'
@@ -6,22 +6,43 @@ import products from '../Data/products'
 import {useAtom} from 'jotai'
 import { productAtom } from '../App'
 
-
 function LandingPage() {
     const [product, setProduct] = useAtom(productAtom);
+    const [selectedSizes, setSelectedSizes] = useState({});
+    
+    function handleSizeSelect(productId, size) {
+      setSelectedSizes(prev => ({
+        ...prev,
+        [productId]: size
+      }));
+    }
     
     function updateCart(item, quantitys) {
       const qty = Number(quantitys) || 1
+      const size = selectedSizes[item.id] || 'M'; // Default to M if no size selected
+      
       setProduct(prev => {
-      const existing = prev.find(p => p.id === item.id)
-      if (existing) {
-        return prev.map(p => p.id === item.id ? { ...p, quantity: p.quantity + qty } : p)
-      }
-      return [...prev, { id: item.id, name: item.name, price: item.price, image: item.image, quantity: qty }]
-    })
-  }
+        const existing = prev.find(p => p.id === item.id && p.size === size)
+        if (existing) {
+          return prev.map(p => 
+            p.id === item.id && p.size === size 
+              ? { ...p, quantity: p.quantity + qty } 
+              : p
+          )
+        }
+        return [...prev, { 
+          id: item.id, 
+          name: item.name, 
+          price: item.price, 
+          image: item.image, 
+          quantity: qty,
+          size: size
+        }]
+      })
+    }
 
     console.log(product)
+      
       
 
   return (
@@ -141,10 +162,15 @@ function LandingPage() {
                                 <span className="color-swatch" style={{background: "#000"}}></span>
                             </div>
                             <div className="mt-1">
-                                <button className="size-selector selected">XS</button>
-                                <button className="size-selector">S</button>
-                                <button className="size-selector">M</button>
-                                <button className="size-selector">L</button>
+                                {['XS', 'S', 'M', 'L'].map(size => (
+                                  <button 
+                                    key={size}
+                                    className={`size-selector ${selectedSizes[product.id] === size ? 'selected' : ''}`}
+                                    onClick={() => handleSizeSelect(product.id, size)}
+                                  >
+                                    {size}
+                                  </button>
+                                ))}
                             </div>
                             <button className="add-to-cart-btn" onClick={() => updateCart(product)}>Add to Cart</button>
                          </div>
