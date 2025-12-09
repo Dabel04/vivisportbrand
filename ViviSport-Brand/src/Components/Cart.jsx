@@ -2,11 +2,6 @@ import React from 'react'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
 
-/* import all the icons in Free Solid, Free Regular, and Brands styles */
-import { fas } from '@fortawesome/free-solid-svg-icons'
-
-library.add(fas)
-
 
 function Cart({isActive, selectedValue, setIsActive}) {
         const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
