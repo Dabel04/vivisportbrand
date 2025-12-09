@@ -2,6 +2,9 @@ import React from 'react'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
 
+/* import all the icons in Free Solid, Free Regular, and Brands styles */
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
 library.add(fas)
 
 
@@ -20,7 +23,7 @@ function Cart({isActive, selectedValue, setIsActive}) {
         <div className="side-cart-header">
             <h3 className="side-cart-title">Your Shopping Cart</h3>
             <button className="side-cart-close" id="close-side-cart" onClick={() => setIsActive(false)}>
-                <FontAwesomeIcon icon="fa-solid fa-x" size="2xs" />
+                <i class="bi bi-x"></i>
             </button>
         </div>
         <div className="side-cart-body">
@@ -41,7 +44,7 @@ function Cart({isActive, selectedValue, setIsActive}) {
                                 <div className="small text-muted">Size: {ci.size} | Color: <span className="d-inline-block"></span></div>
                             </div>
                             <button className="cart-item-remove" onClick={() => removeFromCart(ci.id)}>
-                                <FontAwesomeIcon icon="fa-solid fa-x" size="2xs" />
+                                <i class="bi bi-x"></i>
                             </button>
                         </div>
                     ))
