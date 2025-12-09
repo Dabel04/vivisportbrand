@@ -20,7 +20,7 @@ const Navbar = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
             
-            <a className="navbar-brand" href="#">44:11</a>
+            <span className="navbar-brand"><Link to='/'>44:11</Link></span>
             
             {/* Mobile Icons Container */}
             <div className="mobile-icons-container d-lg-none">

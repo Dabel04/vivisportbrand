@@ -5,8 +5,8 @@ import { productAtom } from '../App'
 function Cart({isActive, selectedValue, setIsActive}) {
         const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
         const setSelectedValue = useSetAtom(productAtom)
-        function removeFromCart(id) {
-            setSelectedValue(prev => prev.filter(p => p.id !== id))
+        function removeFromCart(id, size) {
+            setSelectedValue(prev => prev.filter(p => !(p.id === id && p.size === size)))
         }
   return (
     <>
@@ -23,22 +23,22 @@ function Cart({isActive, selectedValue, setIsActive}) {
         <div className="side-cart-body">
             <div id="cart-items-container">
                 {/* Cart items will be dynamically added here */}
-                {selectedValue.lenght === 0 ? (
+                {selectedValue.length === 0 ? (
                     <div className="text-center py-4" id="empty-cart-message">
                     <i className="bi bi-bag" style={{fontSize: "2rem", color: "#ccc"}}></i>
                     <p className="mt-2">Your cart is empty</p>
                 </div>
                 ) : (
-                    selectedValue.map(ci => (
-                        <div className="cart-item" key={ci.id}>
+                    selectedValue.map((ci, index) => (
+                        <div className="cart-item" key={`${ci.id}-${ci.size}-${index}`}>
                             <img src={ci.image} className="cart-item-img" alt={ci.name}/>
                             <div className="cart-item-details">
                                 <div className="cart-item-title">{ci.name}</div>
                                 <div className="cart-item-price">${ci.price.toFixed(2)} × {ci.quantity}</div>
                                 <div className="small text-muted">Size: {ci.size} | Color: <span className="d-inline-block"></span></div>
                             </div>
-                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id)}>
-                                <i class="bi bi-x"></i>
+                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size)}>
+                                <i className="bi bi-x"></i>
                             </button>
                         </div>
                     ))
