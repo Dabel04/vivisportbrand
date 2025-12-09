@@ -5,11 +5,11 @@ import { useAtomValue } from 'jotai'
 import { productAtom } from '../App'
 
 const Navbar = () => {
-    const [isActive, setIsActive] = useState(false)
+    const [isActive, setIsActive] = useState(false);
+    const [searchActive, setSearchActive] = useState(false);
 
-    const selectedValue = useAtomValue(productAtom)
-
-    const cartNumber = selectedValue.reduce((s, i) => s + (i.quantity || 0), 0)
+    const selectedValue = useAtomValue(productAtom);
+    const cartNumber = selectedValue.reduce((s, i) => s + (i.quantity || 0), 0);
     
   return (
     <>
@@ -25,7 +25,7 @@ const Navbar = () => {
             {/* Mobile Icons Container */}
             <div className="mobile-icons-container d-lg-none">
                 <div className="nav-icons mobile-version">
-                    <i className="bi bi-search" id="mobile-search-toggle"></i>
+                    <i className="bi bi-search" id="mobile-search-toggle" onClick={() => setSearchActive(!searchActive)}></i>
                     <i className="bi bi-person"></i>
                     <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                         <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
@@ -66,9 +66,9 @@ const Navbar = () => {
                 </div>
                 
                 {/* Search Dropdown */}
-                <div className="position-relative">
+                <div className="position-relative" onClick={() => setSearchActive(!searchActive)}>
                     <i className="bi bi-search" id="desktop-search-toggle"></i>
-                    <div className="search-dropdown" id="desktop-search-dropdown">
+                    <div className={searchActive ? 'search-dropdown active' : 'search-dropdown'} id="desktop-search-dropdown">
                         <form className="search-form" id="desktop-search-form">
                             <input type="text" className="search-input" placeholder="Search products..." id="desktop-search-input"/>
                             <button type="submit" className="search-btn">
@@ -96,7 +96,7 @@ const Navbar = () => {
     </nav>
     
     {/* Mobile Search Dropdown */}
-    <div className="mobile-search-dropdown d-xl-none" id="mobile-search-dropdown">
+    <div className={searchActive ? 'mobile-search-dropdown d-xl-none active' : 'mobile-search-dropdown d-xl-none'} id="mobile-search-dropdown">
         <form className="mobile-search-form" id="mobile-search-form">
             <input type="text" className="mobile-search-input" placeholder="Search products..." id="mobile-search-input"/>
             <button type="submit" className="mobile-search-btn">

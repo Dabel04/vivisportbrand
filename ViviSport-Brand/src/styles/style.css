@@ -429,7 +429,7 @@
             /* Mobile Search Dropdown */
             .mobile-search-dropdown {
                 position: fixed;
-                top: 56px;
+                top: 75px;
                 left: 0;
                 right: 0;
                 background: var(--bg-white);
@@ -475,7 +475,7 @@
             /* Mobile promo stays visible */
             .top-bar {
                 position: relative;
-                z-index: var(--z-navbar);
+                z-index: 10;
             }
         }
         
