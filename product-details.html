@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Name - 44:11 Activewear</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Colors */
+            --primary-red: #d7263d;     /* Vibrant red */
+            --primary-navy: #02182b;    /* Deep navy blue */
+            
+            /* Background Colors */
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-dark: #000000;
+            
+            /* Text Colors */
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --text-white: #ffffff;
+            
+            /* Accent Colors */
+            --accent-green: #28a745;
+            --accent-yellow: #FFD700;
+            --accent-blue: #4DA6FF;
+            --accent-light-blue: #ADD8E6;
+            --accent-pink: #FFB6C1;
+            
+            /* UI Colors */
+            --border-light: #eeeeee;
+            --border-dark: #333333;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --overlay-color: rgba(0, 0, 0, 0.5);
+            
+            /* Font Settings */
+            --font-main: 'Montserrat', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.85rem;
+            --font-size-md: 0.9rem;
+            --font-size-lg: 1rem;
+            --font-size-xl: 1.1rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2.5rem;
+            --font-size-4xl: 3.5rem;
+            
+            /* Spacing */
+            --spacing-xs: 5px;
+            --spacing-sm: 10px;
+            --spacing-md: 15px;
+            --spacing-lg: 20px;
+            --spacing-xl: 30px;
+            --spacing-2xl: 40px;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 30px;
+            --radius-circle: 50%;
+            
+            /* Transitions */
+            --transition-fast: 0.2s;
+            --transition-normal: 0.3s;
+            --transition-slow: 0.5s;
+            
+            /* Shadows */
+            --shadow-light: 0 2px 5px var(--shadow-color);
+            --shadow-medium: 0 5px 15px var(--shadow-color);
+            --shadow-heavy: 0 10px 30px var(--shadow-color);
+        }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-primary);
+            background-color: var(--bg-white);
+            overflow-x: hidden;
+        }
+        
+        /* Top Promo Bar */
+        .top-bar {
+            background-color: var(--primary-navy);
+            font-size: var(--font-size-xs);
+            letter-spacing: 1px;
+            padding: var(--spacing-sm) 0;
+            text-transform: uppercase;
+            color: var(--text-white);
+            font-weight: 600;
+        }
+        
+        /* Updated Logo Styling for 44:11 */
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: 1.6rem;
+            background: linear-gradient(45deg, var(--primary-red), #ff4d6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            transition: all var(--transition-normal) ease;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        .navbar-brand::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+            opacity: 0.7;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--text-primary) !important;
+            margin: 0 var(--spacing-md);
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-red) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            transition: width var(--transition-normal);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-red);
+            color: var(--text-white);
+            border-radius: var(--radius-circle);
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: transparent;
+            padding: var(--spacing-xl) 0;
+            margin-bottom: 0;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--primary-red);
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--primary-navy);
+            font-weight: 600;
+        }
+        
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: var(--spacing-xl);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            cursor: zoom-in;
+            transition: transform var(--transition-slow);
+        }
+        
+        .main-image:hover {
+            transform: scale(1.01);
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: var(--spacing-sm);
+            overflow-x: auto;
+            padding: var(--spacing-sm) 0;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--primary-red);
+        }
+        
+        /* Product Info */
+        .product-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+        
+        .product-price {
+            font-size: var(--font-size-2xl);
+            color: var(--primary-red);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: var(--font-size-xl);
+            margin-right: var(--spacing-sm);
+        }
+        
+        .sale-badge {
+            background-color: var(--primary-red);
+            color: var(--text-white);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            display: inline-block;
+            margin-left: var(--spacing-sm);
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .stars {
+            color: var(--primary-red);
+            font-size: var(--font-size-lg);
+        }
+        
+        .review-count {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .product-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-2xl);
+            font-size: var(--font-size-md);
+        }
+        
+        /* Color Selector */
+        .color-selector {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .color-label {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+            letter-spacing: 1px;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-circle);
+            cursor: pointer;
+            border: 2px solid var(--border-light);
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-red);
+        }
+        
+        .color-option.selected {
+            border-color: var(--primary-red);
+            transform: scale(1.1);
+        }
+        
+        .color-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-white);
+            font-weight: bold;
+            font-size: var(--font-size-sm);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .color-name {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+            margin-top: var(--spacing-xs);
+            text-align: center;
+        }
+        
+        /* Size Selector */
+        .size-selector {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .size-label {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+            letter-spacing: 1px;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+        
+        .size-option {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-weight: 600;
+            text-align: center;
+            min-width: 60px;
+        }
+        
+        .size-option:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+        
+        .size-option.selected {
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            border-color: var(--primary-navy);
+        }
+        
+        .size-option.unavailable {
+            opacity: 0.3;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        
+        .size-guide {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-sm);
+            display: inline-block;
+            transition: color var(--transition-fast);
+        }
+        
+        .size-guide:hover {
+            color: var(--primary-navy);
+        }
+        
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            background: var(--bg-light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+        }
+        
+        .quantity-btn:hover {
+            background: var(--primary-red);
+            color: var(--text-white);
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-weight: 600;
+            font-size: var(--font-size-md);
+            color: var(--primary-navy);
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+            flex-wrap: wrap;
+        }
+        
+        .btn-add-to-cart {
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            border: none;
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .btn-add-to-cart:hover {
+            background-color: #033050;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .btn-add-to-cart.added {
+            background-color: var(--accent-green);
+        }
+        
+        .btn-wishlist {
+            background-color: transparent;
+            color: var(--primary-navy);
+            border: 2px solid var(--primary-navy);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .btn-wishlist:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            color: var(--text-white);
+            transform: translateY(-2px);
+        }
+        
+        .btn-wishlist.active {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            color: var(--text-white);
+        }
+        
+        /* Product Details Tabs */
+        .product-tabs {
+            margin: var(--spacing-2xl) 0;
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid var(--border-light);
+        }
+        
+        .nav-tabs .nav-link {
+            color: var(--text-secondary);
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+        }
+        
+        .nav-tabs .nav-link:hover {
+            color: var(--primary-red);
+            border-bottom-color: var(--primary-red);
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--primary-navy);
+            border-bottom-color: var(--primary-red);
+            background: transparent;
+        }
+        
+        .tab-content {
+            padding: var(--spacing-2xl);
+            border: 1px solid var(--border-light);
+            border-top: none;
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+        }
+        
+        .details-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .details-list li {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .details-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .details-list strong {
+            color: var(--primary-navy);
+            font-weight: 600;
+        }
+        
+        /* Related Products */
+        .related-products {
+            margin: var(--spacing-2xl) 0;
+        }
+        
+        .section-title {
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-xl);
+            color: var(--primary-navy);
+            position: relative;
+            padding-bottom: var(--spacing-md);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-red);
+        }
+        
+        .related-card {
+            border: none;
+            transition: transform var(--transition-normal);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .related-img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .related-title {
+            font-weight: 600;
+            font-size: var(--font-size-md);
+            margin-bottom: var(--spacing-xs);
+            color: var(--primary-navy);
+        }
+        
+        .related-price {
+            color: var(--primary-red);
+            font-weight: 600;
+            font-size: var(--font-size-md);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            padding: 60px 0 30px 0;
+            margin-top: 80px;
+        }
+        
+        .footer-brand {
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-xl);
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--primary-red), #ff4d6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-image {
+                height: 400px;
+            }
+            
+            .product-title {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-add-to-cart,
+            .btn-wishlist {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .thumbnail-container {
+                justify-content: flex-start;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-image {
+                height: 300px;
+            }
+            
+            .product-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .size-options {
+                justify-content: center;
+            }
+        }
+        
+        /* Modal for Image Zoom */
+        .image-modal .modal-content {
+            background: transparent;
+            border: none;
+        }
+        
+        .image-modal .modal-body {
+            padding: 0;
+        }
+        
+        .zoomed-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+        }
+        
+        /* Mobile Navbar Styles (same as index.html) */
+        @media (max-width: 991.98px) {
+            .navbar .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+            }
+            
+            .navbar-toggler {
+                order: 1;
+                margin-right: 15px;
+                border: none;
+                padding: 5px;
+                color: var(--primary-red);
+            }
+            
+            .navbar-brand {
+                order: 2;
+                margin: 0;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 1.3rem;
+            }
+            
+            .mobile-icons-container {
+                order: 3;
+                display: flex !important;
+                align-items: center;
+                gap: 15px;
+                margin-left: auto;
+            }
+            
+            .nav-icons.mobile-version {
+                display: flex !important;
+                align-items: center;
+                gap: 15px;
+                margin: 0;
+            }
+            
+            .nav-icons.mobile-version i {
+                margin-left: 0;
+                font-size: var(--font-size-xl);
+                color: var(--primary-red);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Promo Bar -->
+    <div class="top-bar text-center">
+        Free Delivery on orders above $100
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3">
+        <div class="container">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <a class="navbar-brand" href="index.html">44:11</a>
+            
+            <!-- Mobile Icons Container -->
+            <div class="mobile-icons-container d-lg-none">
+                <div class="nav-icons mobile-version">
+                    <i class="bi bi-search"></i>
+                    <i class="bi bi-person"></i>
+                    <div class="position-relative">
+                        <i class="bi bi-bag cart-icon" id="open-side-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Desktop Icons -->
+            <div class="nav-icons d-none d-lg-flex align-items-center">
+                <i class="bi bi-search"></i>
+                <i class="bi bi-person"></i>
+                <div class="position-relative">
+                    <i class="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Breadcrumb -->
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html#shop-essentials">Shop</a></li>
+                <li class="breadcrumb-item"><a href="#">Tops</a></li>
+                <li class="breadcrumb-item active" aria-current="page">High-Waist Training Leggings</li>
+            </ol>
+        </nav>
+    </div>
+    
+    <!-- Product Detail Section -->
+    <section class="container">
+        <div class="row g-5">
+            <!-- Product Images -->
+            <div class="col-lg-6">
+                <div class="product-gallery">
+                    <img src="https://images.unsplash.com/photo-1506619216599-9d939743f39d?q=80&w=2070&auto=format&fit=crop" 
+                         alt="High-Waist Training Leggings" 
+                         class="main-image" 
+                         id="main-image"
+                         data-bs-toggle="modal" 
+                         data-bs-target="#imageModal">
+                    
+                    <div class="thumbnail-container">
+                        <img src="https://images.unsplash.com/photo-1506619216599-9d939743f39d?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Front View" 
+                             class="thumbnail active"
+                             data-image="https://images.unsplash.com/photo-1506619216599-9d939743f39d?q=80&w=2070&auto=format&fit=crop">
+                        
+                        <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Side View" 
+                             class="thumbnail"
+                             data-image="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop">
+                        
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Back View" 
+                             class="thumbnail"
+                             data-image="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop">
+                        
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Detail View" 
+                             class="thumbnail"
+                             data-image="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Information -->
+            <div class="col-lg-6">
+                <h1 class="product-title">High-Waist Training Leggings</h1>
+                
+                <div class="product-price">
+                    <span class="old-price">$69.00</span>
+                    $49.00
+                    <span class="sale-badge">Save $20</span>
+                </div>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                    </div>
+                    <span class="review-count">(128 reviews)</span>
+                </div>
+                
+                <p class="product-description">
+                    Experience ultimate comfort and support with our High-Waist Training Leggings. Designed for high-intensity workouts, these leggings feature our patented FlexFit technology that moves with you. The four-way stretch fabric provides compression where you need it while allowing full range of motion. Perfect for yoga, running, weight training, or any activity that demands both style and performance.
+                </p>
+                
+                <!-- Color Selector -->
+                <div class="color-selector">
+                    <div class="color-label">Color: <span id="selected-color-name">Black</span></div>
+                    <div class="color-options">
+                        <div class="color-option-container">
+                            <div class="color-option selected" 
+                                 style="background-color: #000000;" 
+                                 data-color="Black"
+                                 data-color-hex="#000000"></div>
+                            <div class="color-name">Black</div>
+                        </div>
+                        <div class="color-option-container">
+                            <div class="color-option" 
+                                 style="background-color: #555555;" 
+                                 data-color="Charcoal"
+                                 data-color-hex="#555555"></div>
+                            <div class="color-name">Charcoal</div>
+                        </div>
+                        <div class="color-option-container">
+                            <div class="color-option" 
+                                 style="background-color: #D2B48C;" 
+                                 data-color="Sand"
+                                 data-color-hex="#D2B48C"></div>
+                            <div class="color-name">Sand</div>
+                        </div>
+                        <div class="color-option-container">
+                            <div class="color-option" 
+                                 style="background-color: #02182b;" 
+                                 data-color="Navy"
+                                 data-color-hex="#02182b"></div>
+                            <div class="color-name">Navy</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Size Selector -->
+                <div class="size-selector">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="size-label">Size: <span id="selected-size">XS</span></div>
+                        <a href="#" class="size-guide" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">
+                            <i class="bi bi-rulers"></i> Size Guide
+                        </a>
+                    </div>
+                    <div class="size-options">
+                        <div class="size-option selected" data-size="XS">XS</div>
+                        <div class="size-option" data-size="S">S</div>
+                        <div class="size-option" data-size="M">M</div>
+                        <div class="size-option" data-size="L">L</div>
+                        <div class="size-option unavailable" data-size="XL">XL</div>
+                    </div>
+                </div>
+                
+                <!-- Quantity Selector -->
+                <div class="quantity-selector">
+                    <div class="quantity-label" style="font-weight: 600; color: var(--primary-navy);">Quantity:</div>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" id="decrease-qty">-</button>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" id="increase-qty">+</button>
+                    </div>
+                    <div class="stock-status" style="color: var(--accent-green); font-weight: 600;">
+                        <i class="bi bi-check-circle"></i> In Stock
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-add-to-cart" id="add-to-cart">
+                        <i class="bi bi-bag-plus"></i> Add to Cart
+                    </button>
+                    <button class="btn-wishlist" id="wishlist-btn">
+                        <i class="bi bi-heart"></i> Wishlist
+                    </button>
+                </div>
+                
+                <!-- Additional Info -->
+                <div class="additional-info" style="color: var(--text-secondary); font-size: var(--font-size-sm);">
+                    <p><i class="bi bi-truck" style="color: var(--primary-red);"></i> Free shipping on orders over $100</p>
+                    <p><i class="bi bi-arrow-left-right" style="color: var(--primary-red);"></i> Free returns within 30 days</p>
+                    <p><i class="bi bi-shield-check" style="color: var(--primary-red);"></i> 1-year warranty on all products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Product Details Tabs -->
+    <section class="container product-tabs">
+        <ul class="nav nav-tabs" id="productTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">
+                    Description
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab">
+                    Details & Care
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+                    Reviews (128)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab">
+                    Shipping & Returns
+                </button>
+            </li>
+        </ul>
+        
+        <div class="tab-content" id="productTabContent">
+            <!-- Description Tab -->
+            <div class="tab-pane fade show active" id="description" role="tabpanel">
+                <h4 class="mb-4" style="color: var(--primary-navy);">Premium Performance Leggings</h4>
+                <p>Our High-Waist Training Leggings are engineered for serious athletes who demand both style and functionality. The high-rise waistband provides abdominal support and stays in place during even the most intense workouts.</p>
+                
+                <h5 class="mt-4" style="color: var(--primary-navy);">Key Features:</h5>
+                <ul>
+                    <li><strong>FlexFit Technology:</strong> Four-way stretch fabric that moves with your body</li>
+                    <li><strong>Moisture-Wicking:</strong> Quick-dry material keeps you comfortable</li>
+                    <li><strong>Compression Support:</strong> Strategic compression zones for muscle support</li>
+                    <li><strong>Sweat-Resistant:</strong> Special coating prevents sweat marks</li>
+                    <li><strong>No-Slip Waistband:</strong> Stays in place during all movements</li>
+                    <li><strong>Hidden Pocket:</strong> Secure pocket for keys or cards</li>
+                </ul>
+                
+                <h5 class="mt-4" style="color: var(--primary-navy);">Perfect For:</h5>
+                <p>Yoga, Pilates, running, weight training, HIIT workouts, dance, and everyday wear.</p>
+            </div>
+            
+            <!-- Details & Care Tab -->
+            <div class="tab-pane fade" id="details" role="tabpanel">
+                <h4 class="mb-4" style="color: var(--primary-navy);">Product Details</h4>
+                <ul class="details-list">
+                    <li><strong>Material:</strong> 85% Nylon, 15% Spandex</li>
+                    <li><strong>Fabric:</strong> Performance compression knit</li>
+                    <li><strong>Weight:</strong> Medium compression</li>
+                    <li><strong>Waist:</strong> High-rise, wide band</li>
+                    <li><strong>Length:</strong> Full length (28" inseam)</li>
+                    <li><strong>Closure:</strong> Pull-on with elastic waist</li>
+                    <li><strong>Opacity:</strong> Opaque (non-see-through)</li>
+                    <li><strong>Origin:</strong> Designed in USA</li>
+                </ul>
+                
+                <h4 class="mt-5 mb-4" style="color: var(--primary-navy);">Care Instructions</h4>
+                <ul>
+                    <li>Machine wash cold with similar colors</li>
+                    <li>Use mild detergent</li>
+                    <li>Do not use fabric softener</li>
+                    <li>Hang dry or tumble dry low</li>
+                    <li>Do not iron</li>
+                    <li>Do not bleach</li>
+                </ul>
+            </div>
+            
+            <!-- Reviews Tab -->
+            <div class="tab-pane fade" id="reviews" role="tabpanel">
+                <h4 class="mb-4" style="color: var(--primary-navy);">Customer Reviews</h4>
+                
+                <!-- Review Summary -->
+                <div class="row mb-5">
+                    <div class="col-md-4 text-center">
+                        <div class="display-4 fw-bold" style="color: var(--primary-red);">4.5</div>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <p class="text-muted">Based on 128 reviews</p>
+                    </div>
+                </div>
+                
+                <!-- Individual Reviews -->
+                <div class="review">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <small class="text-muted">2 days ago</small>
+                    </div>
+                    <h6 style="color: var(--primary-navy);">Perfect for intense workouts!</h6>
+                    <p class="mb-2">"These leggings stay in place during my HIIT sessions. The compression is just right - supportive but not restrictive. Love the hidden pocket too!"</p>
+                    <p class="text-muted"><strong>Sarah M.</strong> · Verified Purchase</p>
+                    <hr>
+                </div>
+                
+                <div class="review">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <small class="text-muted">1 week ago</small>
+                    </div>
+                    <h6 style="color: var(--primary-navy);">Great quality, true to size</h6>
+                    <p class="mb-2">"I ordered my usual size and they fit perfectly. The material is thick enough to be squat-proof. Only wish they had more colors!"</p>
+                    <p class="text-muted"><strong>Jessica L.</strong> · Verified Purchase</p>
+                    <hr>
+                </div>
+                
+                <button class="btn btn-outline-primary mt-3" style="border-color: var(--primary-red); color: var(--primary-red);">
+                    <i class="bi bi-chat-left-text"></i> Write a Review
+                </button>
+            </div>
+            
+            <!-- Shipping & Returns Tab -->
+            <div class="tab-pane fade" id="shipping" role="tabpanel">
+                <h4 class="mb-4" style="color: var(--primary-navy);">Shipping Information</h4>
+                <ul>
+                    <li><strong>Standard Shipping:</strong> 3-5 business days · $4.99</li>
+                    <li><strong>Express Shipping:</strong> 1-2 business days · $9.99</li>
+                    <li><strong>Free Shipping:</strong> On all orders over $100</li>
+                    <li><strong>International Shipping:</strong> Available to select countries</li>
+                </ul>
+                
+                <h4 class="mt-5 mb-4" style="color: var(--primary-navy);">Return Policy</h4>
+                <p>We offer a 30-day return policy on all unworn items with original tags attached. Returns are free for US customers.</p>
+                
+                <h5>How to Return:</h5>
+                <ol>
+                    <li>Initiate return through your account page</li>
+                    <li>Print the prepaid return label</li>
+                    <li>Package items securely</li>
+                    <li>Drop off at any USPS location</li>
+                    <li>Refund processed within 5-7 business days</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Products -->
+    <section class="container related-products">
+        <h2 class="section-title">You Might Also Like</h2>
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <div class="related-card">
+                    <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop" 
+                         alt="Ribbed Performance Set" 
+                         class="related-img">
+                    <h5 class="related-title">Ribbed Performance Set</h5>
+                    <div class="related-price">$58.00</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="related-card">
+                    <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop" 
+                         alt="High-Rise Athletic Tights" 
+                         class="related-img">
+                    <h5 class="related-title">High-Rise Athletic Tights</h5>
+                    <div class="related-price">$61.00</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="related-card">
+                    <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop" 
+                         alt="Full-Support Sports Bra" 
+                         class="related-img">
+                    <h5 class="related-title">Full-Support Sports Bra</h5>
+                    <div class="related-price">$42.00</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="related-card">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" 
+                         alt="Training Tank Top" 
+                         class="related-img">
+                    <h5 class="related-title">Training Tank Top</h5>
+                    <div class="related-price">$38.00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <a href="index.html" class="footer-brand">44:11</a>
+                    <p class="footer-tagline">
+                        Elevate your workout with premium activewear designed for performance and style. 
+                        Experience the perfect blend of comfort, durability, and elegance in every piece.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h6 class="footer-title">Shop</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Tops</a></li>
+                        <li><a href="#">Bottoms</a></li>
+                        <li><a href="#">Sports Bras</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h6 class="footer-title">Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <h6 class="footer-title">Newsletter</h6>
+                    <p class="footer-tagline">Subscribe for exclusive offers and fitness tips</p>
+                    <div class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        &copy; 2024 44:11 Activewear. All rights reserved.
+                    </div>
+                    
+                    <div class="footer-links-bottom">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Image Modal -->
+    <div class="modal fade image-modal" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1506619216599-9d939743f39d?q=80&w=2070&auto=format&fit=crop" 
+                         alt="High-Waist Training Leggings" 
+                         class="zoomed-image">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Size Guide Modal -->
+    <div class="modal fade" id="sizeGuideModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: var(--primary-navy); color: white;">
+                    <h5 class="modal-title">Size Guide</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="mb-3" style="color: var(--primary-navy);">Women's Leggings Size Chart</h6>
+                    <table class="table table-striped">
+                        <thead style="background-color: var(--bg-light);">
+                            <tr>
+                                <th>Size</th>
+                                <th>Waist (in)</th>
+                                <th>Hips (in)</th>
+                                <th>Inseam (in)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>XS</td>
+                                <td>24-26</td>
+                                <td>34-36</td>
+                                <td>28</td>
+                            </tr>
+                            <tr>
+                                <td>S</td>
+                                <td>27-29</td>
+                                <td>37-39</td>
+                                <td>28</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td>30-32</td>
+                                <td>40-42</td>
+                                <td>28</td>
+                            </tr>
+                            <tr>
+                                <td>L</td>
+                                <td>33-35</td>
+                                <td>43-45</td>
+                                <td>28</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-muted mt-3"><small>All measurements in inches. For best fit, measure your waist at the narrowest point and hips at the fullest point.</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Thumbnail Click Handler
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImage = document.getElementById('main-image');
+            const modalImage = document.querySelector('.zoomed-image');
+            
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    // Update active thumbnail
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update main image
+                    const newImage = this.getAttribute('data-image');
+                    mainImage.src = newImage;
+                    modalImage.src = newImage;
+                });
+            });
+            
+            // Color Selector
+            const colorOptions = document.querySelectorAll('.color-option');
+            const selectedColorName = document.getElementById('selected-color-name');
+            
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const colorName = this.getAttribute('data-color');
+                    selectedColorName.textContent = colorName;
+                });
+            });
+            
+            // Size Selector
+            const sizeOptions = document.querySelectorAll('.size-option:not(.unavailable)');
+            const selectedSize = document.getElementById('selected-size');
+            
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    sizeOptions.forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const size = this.getAttribute('data-size');
+                    selectedSize.textContent = size;
+                });
+            });
+            
+            // Quantity Selector
+            const quantityInput = document.getElementById('quantity');
+            const decreaseBtn = document.getElementById('decrease-qty');
+            const increaseBtn = document.getElementById('increase-qty');
+            
+            decreaseBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+            
+            increaseBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue < 10) {
+                    quantityInput.value = currentValue + 1;
+                }
+            });
+            
+            // Add to Cart Button
+            const addToCartBtn = document.getElementById('add-to-cart');
+            const cartCounts = document.querySelectorAll('.cart-count');
+            
+            addToCartBtn.addEventListener('click', function() {
+                const selectedColor = document.querySelector('.color-option.selected').getAttribute('data-color');
+                const selectedSize = document.querySelector('.size-option.selected').getAttribute('data-size');
+                const quantity = quantityInput.value;
+                
+                // Show feedback
+                const originalText = addToCartBtn.innerHTML;
+                addToCartBtn.innerHTML = '<i class="bi bi-check-circle"></i> Added to Cart!';
+                addToCartBtn.classList.add('added');
+                
+                // Update cart count
+                let currentCount = parseInt(cartCounts[0].textContent);
+                currentCount += parseInt(quantity);
+                cartCounts.forEach(count => {
+                    count.textContent = currentCount;
+                });
+                
+                // In a real implementation, you would add to cart storage
+                console.log(`Added to cart: High-Waist Training Leggings | Color: ${selectedColor} | Size: ${selectedSize} | Quantity: ${quantity}`);
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    addToCartBtn.innerHTML = originalText;
+                    addToCartBtn.classList.remove('added');
+                }, 2000);
+            });
+            
+            // Wishlist Button
+            const wishlistBtn = document.getElementById('wishlist-btn');
+            const wishlistIcon = wishlistBtn.querySelector('i');
+            
+            wishlistBtn.addEventListener('click', function() {
+                if (wishlistBtn.classList.contains('active')) {
+                    wishlistBtn.classList.remove('active');
+                    wishlistIcon.className = 'bi bi-heart';
+                    console.log('Removed from wishlist');
+                } else {
+                    wishlistBtn.classList.add('active');
+                    wishlistIcon.className = 'bi bi-heart-fill';
+                    console.log('Added to wishlist');
+                }
+            });
+            
+            // Tab functionality
+            const tabLinks = document.querySelectorAll('.nav-tabs .nav-link');
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
