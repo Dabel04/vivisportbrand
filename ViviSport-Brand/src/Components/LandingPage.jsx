@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
-import {ass, bras, bottoms, leggings} from './images'
+import {ass, bras, bottoms} from './images'
 import products from '../Data/products'
 import {useAtom} from 'jotai'
 import { productAtom } from '../App'
@@ -9,19 +9,16 @@ import { productAtom } from '../App'
 
 function LandingPage() {
     const [product, setProduct] = useAtom(productAtom);
-    const [cartItems, setCartItems] = useState([])
     
     function updateCart(item, quantitys) {
       const qty = Number(quantitys) || 1
-      setCartItems(prev => {
+      setProduct(prev => {
       const existing = prev.find(p => p.id === item.id)
       if (existing) {
         return prev.map(p => p.id === item.id ? { ...p, quantity: p.quantity + qty } : p)
       }
       return [...prev, { id: item.id, name: item.name, price: item.price, image: item.image, quantity: qty }]
     })
-
-    setProduct(cartItems)
   }
 
     console.log(product)
@@ -128,30 +125,7 @@ function LandingPage() {
                   <a href="#" className="view-all-link" style={{fontSize: '0.8rem'}}>VIEW ALL</a>
               </div>
               <div className="row">
-                  {/* Product 1 */}
-                  <div className="col-6 col-lg-3">
-                      <div className="product-card">
-                          <div className="product-img-wrapper">
-                              <span className="badge badge-custom badge-sale">Save $20</span>
-                              <img src={leggings} alt="Leggings" />
-                          </div>
-                          <div className="product-title">High-Waist Training Leggings</div>
-                          <div className="product-price"><span className="old-price">$69.00</span> $49.00</div>
-                          <div className="mt-2">
-                              <span className="color-swatch selected" style={{background: '#000'}}></span>
-                              <span className="color-swatch" style={{background: "#555"}}></span>
-                          </div>
-                          <div className="mt-1">
-                              <button className="size-selector selected">XS</button>
-                              <button className="size-selector">S</button>
-                              <button className="size-selector">M</button>
-                          </div>
-                          <button className="add-to-cart-btn" data-product-id="1" data-product-name="High-Waist Training Leggings" data-product-price="49.00" data-product-image="https://images.unsplash.com/photo-1506619216599-9d939743f39d?q=80&w=2070&auto=format&fit=crop">Add to Cart</button>
-                      </div>
-                  </div>
-
-                  {/* Products looped */}
-                   
+                  {/* Products looped */}           
                      {
                         products.map((product) => (
                     <div className="col-6 col-lg-3" key={product.id}>
@@ -178,50 +152,6 @@ function LandingPage() {
                         ))
                      }
                    
-
-                  {/* Product 2 */}
-                  {/*  */}
-                  {/* Product 3 */}
-                  {/* <div className="col-6 col-lg-3">
-                      <div className="product-card">
-                          <div className="product-img-wrapper">
-                              <span className="badge badge-custom badge-popular">Popular</span>
-                              <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop" alt="Tights" />
-                          </div>
-                          <div className="product-title">High-Rise Athletic Tights</div>
-                          <div className="product-price">$61.00</div>
-                          <div className="mt-2">
-                              <span className="color-swatch selected" style={{background: "#D2B48C"}}></span>
-                          </div>
-                          <div className="mt-1">
-                              <button className="size-selector selected">S</button>
-                              <button className="size-selector">M</button>
-                              <button className="size-selector">L</button>
-                          </div>
-                          <button className="add-to-cart-btn" data-product-id="3" data-product-name="High-Rise Athletic Tights" data-product-price="61.00" data-product-image="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop">Add to Cart</button>
-                      </div>
-                  </div> */}
-                  {/* Product 4 */}
-                  {/* <div className="col-6 col-lg-3">
-                      <div className="product-card">
-                          <div className="product-img-wrapper">
-                              <span className="badge badge-custom badge-new">New</span>
-                              <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop" alt="Bra" />
-                          </div>
-                          <div className="product-title">Full-Support Sports Bra</div>
-                          <div className="product-price">$42.00</div>
-                          <div className="mt-2">
-                              <span className="color-swatch selected" style={{background: "#ADD8E6"}}></span>
-                              <span className="color-swatch" style={{background: "#FFB6C1"}}></span>
-                          </div>
-                          <div className="mt-1">
-                              <button className="size-selector selected">XS</button>
-                              <button className="size-selector">S</button>
-                              <button className="size-selector">M</button>
-                          </div>
-                          <button className="add-to-cart-btn" data-product-id="4" data-product-name="Full-Support Sports Bra" data-product-price="42.00" data-product-image="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop">Add to Cart</button>
-                      </div>
-                  </div> */}
               </div>
           </section>
           
