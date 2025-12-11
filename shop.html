@@ -99,7 +99,7 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
-            height: 100%; /* Ensure uniform height in grid */
+            height: 100%; 
         }
 
         .product-card:hover {
@@ -114,7 +114,7 @@
 
         .card-image-wrapper img {
             width: 100%;
-            height: 300px; /* Desktop Height */
+            height: 300px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
@@ -132,7 +132,6 @@
             font-weight: 600;
             margin-bottom: var(--spacing-xs);
             color: var(--text-primary);
-            /* Prevent long titles from breaking layout */
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis; 
@@ -151,21 +150,32 @@
             margin-bottom: var(--spacing-md);
         }
 
-        .color-swatch {
+        /* --- CHANGED: Size Option Styles (Replaces .color-swatch) --- */
+        .size-option {
             display: inline-block;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 28px; /* Vertical center */
+            border: 1px solid #ddd;
+            border-radius: 4px; /* Square with slight radius */
             margin: 0 2px;
             cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.2s;
         }
 
-        .color-swatch.selected {
+        .size-option:hover {
             border-color: var(--primary-navy);
-            transform: scale(1.2); /* Visual cue */
         }
+
+        .size-option.selected {
+            background-color: var(--primary-navy);
+            color: #fff;
+            border-color: var(--primary-navy);
+        }
+        /* ----------------------------------------------------------- */
 
         .btn-add-to-cart {
             width: 100%;
@@ -177,6 +187,7 @@
             font-weight: 600;
             transition: background-color 0.3s;
             font-size: 0.9rem;
+            margin-top: 8px; /* Added spacing from sizes */
         }
 
         .btn-add-to-cart:hover {
@@ -238,15 +249,14 @@
             .shop-filter-sidebar.open + .filter-overlay { display: block; }
             .mobile-filter-btn { display: block !important; }
             
-            /* ADJUSTMENT: 2-Column Mobile Grid Image Height */
             .card-image-wrapper img {
-                height: 180px; /* Reduced height for mobile 2-column view */
+                height: 180px; 
             }
             .card-body-custom {
-                padding: 10px; /* Reduce padding on mobile */
+                padding: 10px; 
             }
             .card-title-custom {
-                font-size: 0.9rem; /* Slightly smaller text */
+                font-size: 0.9rem; 
             }
         }
         @media (min-width: 769px) {
@@ -332,7 +342,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/02182b/ffffff?text=Performance+Legging" alt="Legging">
+                                    <img src="img/Essential Core Legging.jpg" alt="Legging">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -340,8 +350,9 @@
                                 <p class="card-subtitle-custom">Leggings</p>
                                 <p class="card-price">$68.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: black;"></span>
-                                    <span class="color-swatch" style="background-color: var(--primary-red);"></span>
+                                    <span class="size-option selected">S</span>
+                                    <span class="size-option">M</span>
+                                    <span class="size-option">L</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="1">Quick Add</button>
                             </div>
@@ -352,7 +363,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/d7263d/ffffff?text=Sculpt+Bra" alt="Bra">
+                                    <img src="img/Sculpt Sports Bra.jpg" alt="Bra">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -360,8 +371,9 @@
                                 <p class="card-subtitle-custom">Tops & Bras</p>
                                 <p class="card-price">$42.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: var(--primary-red);"></span>
-                                    <span class="color-swatch" style="background-color: var(--primary-navy);"></span>
+                                    <span class="size-option selected">XS</span>
+                                    <span class="size-option">S</span>
+                                    <span class="size-option">M</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="2">Quick Add</button>
                             </div>
@@ -372,7 +384,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/f8f9fa/02182b?text=Elevate+Jacket" alt="Jacket">
+                                    <img src="img/Elevate Training Jacket.jpg" alt="Jacket">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -380,8 +392,9 @@
                                 <p class="card-subtitle-custom">Outerwear</p>
                                 <p class="card-price">$99.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: #fff; border:1px solid #ddd;"></span>
-                                    <span class="color-swatch" style="background-color: #000;"></span>
+                                    <span class="size-option">S</span>
+                                    <span class="size-option selected">M</span>
+                                    <span class="size-option">L</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="3">Quick Add</button>
                             </div>
@@ -392,7 +405,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/02182b/ffffff?text=Core+Hoodie" alt="Hoodie">
+                                    <img src="img/Unisex Core Hoodie.jpg" alt="Hoodie">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -400,8 +413,9 @@
                                 <p class="card-subtitle-custom">Outerwear</p>
                                 <p class="card-price">$85.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: #555;"></span>
-                                    <span class="color-swatch" style="background-color: var(--primary-navy);"></span>
+                                    <span class="size-option">M</span>
+                                    <span class="size-option selected">L</span>
+                                    <span class="size-option">XL</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="4">Quick Add</button>
                             </div>
@@ -412,7 +426,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/f0e68c/000000?text=Flow+Tank" alt="Tank">
+                                    <img src="img/Flow Seamless Tank.jpg" alt="Tank">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -420,8 +434,9 @@
                                 <p class="card-subtitle-custom">Tops & Bras</p>
                                 <p class="card-price">$35.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: #f0e68c;"></span>
-                                    <span class="color-swatch" style="background-color: #000;"></span>
+                                    <span class="size-option selected">S</span>
+                                    <span class="size-option">M</span>
+                                    <span class="size-option">L</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="5">Quick Add</button>
                             </div>
@@ -432,7 +447,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/87cefa/000000?text=Runner+Short" alt="Shorts">
+                                    <img src="img/Runner 5 Short.jpg" alt="Shorts">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -440,8 +455,9 @@
                                 <p class="card-subtitle-custom">Shorts</p>
                                 <p class="card-price">$52.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: #87cefa;"></span>
-                                    <span class="color-swatch" style="background-color: var(--primary-navy);"></span>
+                                    <span class="size-option">S</span>
+                                    <span class="size-option selected">M</span>
+                                    <span class="size-option">L</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="6">Quick Add</button>
                             </div>
@@ -452,7 +468,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/333333/ffffff?text=Yoga+Mat" alt="Yoga Mat">
+                                    <img src="img/Pro Grip Yoga Mat.jpg" alt="Yoga Mat">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -460,8 +476,7 @@
                                 <p class="card-subtitle-custom">Accessories</p>
                                 <p class="card-price">$60.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: #333;"></span>
-                                    <span class="color-swatch" style="background-color: #800080;"></span>
+                                    <span class="size-option selected" style="width: auto; padding: 0 5px;">OS</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="7">Quick Add</button>
                             </div>
@@ -472,7 +487,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/ff69b4/ffffff?text=Crop+Tee" alt="Crop Tee">
+                                    <img src="img/Boxy Crop Tee.jpg" alt="Crop Tee">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -480,8 +495,9 @@
                                 <p class="card-subtitle-custom">Tops & Bras</p>
                                 <p class="card-price">$38.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: #ff69b4;"></span>
-                                    <span class="color-swatch" style="background-color: #fff; border:1px solid #ddd;"></span>
+                                    <span class="size-option">XS</span>
+                                    <span class="size-option selected">S</span>
+                                    <span class="size-option">M</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="8">Quick Add</button>
                             </div>
@@ -492,7 +508,7 @@
                         <div class="product-card">
                             <a href="product-details.html" class="text-decoration-none">
                                 <div class="card-image-wrapper">
-                                    <img src="https://placehold.co/600x600/4b0082/ffffff?text=Compression+Tight" alt="Compression">
+                                    <img src="img/Recovery Compression.jpg" alt="Compression">
                                 </div>
                             </a>
                             <div class="card-body-custom">
@@ -500,8 +516,9 @@
                                 <p class="card-subtitle-custom">Leggings</p>
                                 <p class="card-price">$75.00</p>
                                 <div class="mb-2">
-                                    <span class="color-swatch selected" style="background-color: #4b0082;"></span>
-                                    <span class="color-swatch" style="background-color: #000;"></span>
+                                    <span class="size-option">S</span>
+                                    <span class="size-option selected">M</span>
+                                    <span class="size-option">L</span>
                                 </div>
                                 <button class="btn-add-to-cart" data-product-id="9">Quick Add</button>
                             </div>
@@ -548,9 +565,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // ... (Same JS as before) ... 
-        // Re-paste the ShoppingCart class and initialization logic here
-        
         class ShoppingCart {
             constructor() {
                 this.cart = [];
@@ -589,11 +603,15 @@
                 const productId = button.dataset.productId;
                 const productName = productCard.querySelector('.card-title-custom').textContent;
                 const price = parseFloat(productCard.querySelector('.card-price').textContent.replace('$',''));
-                const color = productCard.querySelector('.color-swatch.selected')?.dataset.color || 'Default';
                 
-                const existingItem = this.cart.find(item => item.id === productId && item.color === color);
+                // --- CHANGED: Get Size instead of Color ---
+                const size = productCard.querySelector('.size-option.selected')?.textContent || 'M';
+                // ------------------------------------------
+
+                const existingItem = this.cart.find(item => item.id === productId && item.size === size);
+                
                 if (existingItem) existingItem.quantity++;
-                else this.cart.push({ id: productId, name: productName, price, quantity: 1, color, image: productCard.querySelector('img').src });
+                else this.cart.push({ id: productId, name: productName, price, quantity: 1, size: size, image: productCard.querySelector('img').src });
                 
                 this.renderCart();
                 this.openSideCart();
@@ -610,6 +628,7 @@
                         <img src="${item.image}" class="rounded me-3" style="width:50px; height:50px; object-fit:cover">
                         <div class="flex-grow-1">
                             <h6 class="mb-0 small fw-bold">${item.name}</h6>
+                            <small class="text-secondary">Size: ${item.size}</small><br>
                             <small class="text-secondary">${item.quantity} x $${item.price}</small>
                         </div>
                         <button class="btn btn-sm text-danger remove-btn" data-index="${index}">&times;</button>
@@ -645,13 +664,14 @@
             document.getElementById('close-filter-mobile')?.addEventListener('click', closeFilter);
             overlay?.addEventListener('click', closeFilter);
             
-            // Swatch Logic
-            document.querySelectorAll('.color-swatch').forEach(s => {
+            // --- CHANGED: Size Selection Logic ---
+            document.querySelectorAll('.size-option').forEach(s => {
                 s.addEventListener('click', function() {
-                    this.closest('.product-card').querySelectorAll('.color-swatch').forEach(el => el.classList.remove('selected'));
+                    this.closest('.product-card').querySelectorAll('.size-option').forEach(el => el.classList.remove('selected'));
                     this.classList.add('selected');
                 });
             });
+            // -------------------------------------
         });
     </script>
 </body>
