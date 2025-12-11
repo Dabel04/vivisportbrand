@@ -7,8 +7,16 @@ import {useAtom} from 'jotai'
 import { productAtom } from '../App'
 
 function LandingPage() {
-    const [product, setProduct] = useAtom(productAtom);
+      const [product, setProduct] = useAtom(productAtom);
     const [selectedSizes, setSelectedSizes] = useState({});
+    const [selectedColors, setSelectedColors] = useState({});
+    
+    const colors = [
+      { name: 'White', value: '#fff', border: '1px solid #ccc' },
+      { name: 'Black', value: '#000' },
+      { name: 'Pink', value: '#e91e63' },
+      { name: 'Blue', value: '#2196f3' }
+    ];
     
     function handleSizeSelect(productId, size) {
       setSelectedSizes(prev => ({
@@ -17,15 +25,29 @@ function LandingPage() {
       }));
     }
     
+    function handleColorSelect(productId, color) {
+      setSelectedColors(prev => ({
+        ...prev,
+        [productId]: color
+      }));
+    }
+    
     function updateCart(item, quantitys) {
       const qty = Number(quantitys) || 1
-      const size = selectedSizes[item.id] || 'M'; // Default to M if no size selected
+      const size = selectedSizes[item.id] || 'M';
+      const color = selectedColors[item.id] || colors[0]; // Default color
       
       setProduct(prev => {
-        const existing = prev.find(p => p.id === item.id && p.size === size)
+        const existing = prev.find(p => 
+          p.id === item.id && 
+          p.size === size && 
+          p.color.value === color.value
+        )
         if (existing) {
           return prev.map(p => 
-            p.id === item.id && p.size === size 
+            p.id === item.id && 
+            p.size === size && 
+            p.color.value === color.value
               ? { ...p, quantity: p.quantity + qty } 
               : p
           )
@@ -36,15 +58,13 @@ function LandingPage() {
           price: item.price, 
           image: item.image, 
           quantity: qty,
-          size: size
+          size: size,
+          color: color
         }]
       })
     }
 
     console.log(product)
-      
-      
-
   return (
     <>
         <>
@@ -151,15 +171,27 @@ function LandingPage() {
                         products.map((product) => (
                     <div className="col-6 col-lg-3" key={product.id}>
                          <div className="product-card">
+                            <Link to={`/shop/${product.id}`}>
                             <div className="product-img-wrapper">
                                 <span className="badge badge-custom badge-popular">Popular</span>
                                 <img src={product.images} alt="Bra" />
                             </div>
+                            </Link>
                             <div className="product-title">{product.name}</div>
                             <div className="product-price">${product.price}</div>
                             <div className="mt-2">
-                                <span className="color-swatch selected" style={{background: "#fff", border: "1px solid #ccc"}}></span>
-                                <span className="color-swatch" style={{background: "#000"}}></span>
+                                {colors.map((color, idx) => (
+                                  <span 
+                                    key={idx}
+                                    className={`color-swatch ${selectedColors[product.id]?.value === color.value ? 'selected' : ''}`}
+                                    style={{
+                                      background: color.value, 
+                                      border: color.border || 'none',
+                                      cursor: 'pointer'
+                                    }}
+                                    onClick={() => handleColorSelect(product.id, color)}
+                                  ></span>
+                                ))}
                             </div>
                             <div className="mt-1">
                                 {['XS', 'S', 'M', 'L'].map(size => (
@@ -172,6 +204,7 @@ function LandingPage() {
                                   </button>
                                 ))}
                             </div>
+                            
                             <button className="add-to-cart-btn" onClick={() => updateCart(product)}>Add to Cart</button>
                          </div>
                     </div>

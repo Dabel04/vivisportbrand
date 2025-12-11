@@ -9,6 +9,7 @@ import Shop from "./Components/Shop"
 import {Routes, Route} from 'react-router-dom' 
 import Error from "./Components/Error"
 import {atom} from 'jotai'
+import ShopDetails from './Components/ShopDetails'
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const productAtom = atom([]);
@@ -25,6 +26,7 @@ function App() {
       <Route path="/about" element={<About />}/>
       <Route path="/faq" element={<Faq />}/>
       <Route path="/contact" element={<Contact />}/>
+      <Route path="/shop/:id" element={<ShopDetails />}/>
       <Route path='*' element={<Error />} />
     </Routes>
     <Footer />

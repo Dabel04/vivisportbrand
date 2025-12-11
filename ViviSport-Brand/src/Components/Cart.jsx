@@ -2,14 +2,15 @@ import React from 'react'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
 
-
-
 function Cart({isActive, selectedValue, setIsActive}) {
-        const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
-        const setSelectedValue = useSetAtom(productAtom)
-        function removeFromCart(id, size) {
-            setSelectedValue(prev => prev.filter(p => !(p.id === id && p.size === size)))
-        }
+    const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
+    const setSelectedValue = useSetAtom(productAtom)
+    
+    function removeFromCart(id, size, colorValue) {
+        setSelectedValue(prev => prev.filter(p => 
+            !(p.id === id && p.size === size && p.color.value === colorValue)
+        ))
+    }
   return (
     <>
                 {/* Side Cart (Right Sliding Panel) */}
@@ -19,7 +20,7 @@ function Cart({isActive, selectedValue, setIsActive}) {
         <div className="side-cart-header">
             <h3 className="side-cart-title">Your Shopping Cart</h3>
             <button className="side-cart-close" id="close-side-cart" onClick={() => setIsActive(false)}>
-                <i class="bi bi-x"></i>
+                <i className="bi bi-x"></i>
             </button>
         </div>
         <div className="side-cart-body">
@@ -32,14 +33,28 @@ function Cart({isActive, selectedValue, setIsActive}) {
                 </div>
                 ) : (
                     selectedValue.map((ci, index) => (
-                        <div className="cart-item" key={`${ci.id}-${ci.size}-${index}`}>
+                        <div className="cart-item" key={`${ci.id}-${ci.size}-${ci.color.value}-${index}`}>
                             <img src={ci.image} className="cart-item-img" alt={ci.name}/>
                             <div className="cart-item-details">
                                 <div className="cart-item-title">{ci.name}</div>
                                 <div className="cart-item-price">${ci.price.toFixed(2)} × {ci.quantity}</div>
-                                <div className="small text-muted">Size: {ci.size} | Color: <span className="d-inline-block"></span></div>
+                                <div className="small text-muted">
+                                  Size: {ci.size} | Color: 
+                                  <span 
+                                    className="d-inline-block ms-1" 
+                                    style={{
+                                      width: '12px', 
+                                      height: '12px', 
+                                      background: ci.color.value,
+                                      border: ci.color.border || '1px solid #ddd',
+                                      borderRadius: '50%',
+                                      verticalAlign: 'middle'
+                                    }}
+                                  ></span>
+                                  <span className="ms-1">{ci.color.name}</span>
+                                </div>
                             </div>
-                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size)}>
+                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color.value)}>
                                 <i className="bi bi-x"></i>
                             </button>
                         </div>
