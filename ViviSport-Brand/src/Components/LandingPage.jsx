@@ -153,7 +153,7 @@ function LandingPage() {
                          <div className="product-card">
                             <div className="product-img-wrapper">
                                 <span className="badge badge-custom badge-popular">Popular</span>
-                                <img src={product.images} alt="Bra" />
+                                <img src={product.images} alt={product.name} />
                             </div>
                             <div className="product-title">{product.name}</div>
                             <div className="product-price">${product.price}</div>
