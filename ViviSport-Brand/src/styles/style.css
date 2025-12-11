@@ -1034,7 +1034,7 @@
         .hero-section {
             position: relative;
             height: 85vh;
-            background-image: url('img/anotherhero.jpg');
+            background-image: url('../img/image.png');
             background-size: cover;
             background-position: center top;
             display: flex;

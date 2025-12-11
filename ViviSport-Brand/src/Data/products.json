@@ -7,7 +7,7 @@
         "description": "Premium polo shirt with modern design and comfortable fit.",
         "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
         "images": [
-            "https://media.istockphoto.com/id/1441759606/photo/happy-sportswoman-with-earbuds-running-in-the-park.jpg?s=612x612&w=0&k=20&c=_RHiYpQFiZRxESWzCsr8k9SsOr-T-Qj3OcpINB1aVrg=",
+            "",
             "./img/f3.jpg", 
             "./img/f3.jpg"
         ],
@@ -261,7 +261,7 @@
   { 
       "id": 18, "name": "Adidas X Pop SL Cap", 
       "price": 59.00, 
-      "image": "./img/f4.jpg", 
+      "image": "./img/Elevate Training jacket.jpg", 
       "description": "adidas X Pop SL Cap, navy / white" 
   },
 
