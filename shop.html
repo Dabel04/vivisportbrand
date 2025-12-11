@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All - 44:11 Activewear</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #d7263d;
+            --primary-navy: #02182b;
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-dark: #000000;
+            --text-primary: #000000;
+            --text-secondary: #666;
+            --text-light: #fff;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 32px;
+            --spacing-xl: 64px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-light);
+            padding-top: 100px;
+        }
+
+        /* --- Global Styles --- */
+        .promo-bar {
+            background-color: var(--primary-navy);
+            color: var(--text-light);
+            font-size: 0.75rem;
+            padding: var(--spacing-sm) 0;
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1050;
+        }
+
+        .navbar-custom {
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 36px;
+            left: 0;
+            width: 100%;
+            z-index: 1040;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-decoration: none;
+            background: linear-gradient(90deg, var(--primary-red) 0%, var(--primary-navy) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link-custom {
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-link-custom:hover, .nav-link-custom.active {
+            color: var(--primary-red);
+        }
+
+        .icon-btn {
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            transition: color 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: var(--primary-red);
+        }
+
+        /* --- Product Card Styles --- */
+        .product-card {
+            background: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            height: 100%; /* Ensure uniform height in grid */
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 300px; /* Desktop Height */
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-body-custom {
+            padding: var(--spacing-md);
+        }
+
+        .card-title-custom {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+            /* Prevent long titles from breaking layout */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; 
+        }
+
+        .card-subtitle-custom {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .card-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin: 0 2px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .color-swatch.selected {
+            border-color: var(--primary-navy);
+            transform: scale(1.2); /* Visual cue */
+        }
+
+        .btn-add-to-cart {
+            width: 100%;
+            background-color: var(--primary-red);
+            color: var(--text-light);
+            border: none;
+            padding: var(--spacing-sm) 0;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #a31c2d;
+        }
+        
+        .btn-add-to-cart.added {
+            background-color: #28a745;
+        }
+
+        /* --- Footer & Side Cart --- */
+        .footer-custom {
+            background-color: var(--bg-dark);
+            color: #ccc;
+            padding: var(--spacing-xl) 0;
+        }
+        .footer-custom a { color: #aaa; text-decoration: none; }
+        .footer-custom a:hover { color: var(--primary-red); }
+
+        .side-cart {
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px;
+            height: 100%; background: var(--bg-white); z-index: 2000;
+            transition: right 0.4s ease-in-out; display: flex; flex-direction: column;
+        }
+        .side-cart.open { right: 0; }
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 1999; display: none;
+        }
+        .side-cart.open + .cart-overlay { display: block; }
+
+        /* --- Sidebar & Filter Styles --- */
+        .shop-filter-sidebar {
+            background: var(--bg-white);
+            padding: var(--spacing-lg) var(--spacing-md);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            position: sticky; top: 120px;
+        }
+        .filter-header { font-weight: 700; font-size: 1.1rem; color: var(--primary-navy); margin-bottom: var(--spacing-md); }
+        .filter-group { border-bottom: 1px solid #e0e0e0; padding-bottom: var(--spacing-md); margin-bottom: var(--spacing-md); }
+        .list-group-item { border: none; padding: 8px 0; color: var(--text-secondary); cursor: pointer; }
+        .list-group-item:hover, .list-group-item.active { color: var(--primary-red); background: transparent; }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            body { padding-top: 80px; }
+            .promo-bar { display: none; }
+            .navbar-custom { top: 0; }
+            .shop-filter-sidebar {
+                position: fixed; top: 0; left: -100%; width: 300px; height: 100%;
+                z-index: 1100; overflow-y: auto; transition: left 0.3s ease-in-out;
+            }
+            .shop-filter-sidebar.open { left: 0; }
+            .filter-overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0, 0, 0, 0.5); z-index: 1099; display: none;
+            }
+            .shop-filter-sidebar.open + .filter-overlay { display: block; }
+            .mobile-filter-btn { display: block !important; }
+            
+            /* ADJUSTMENT: 2-Column Mobile Grid Image Height */
+            .card-image-wrapper img {
+                height: 180px; /* Reduced height for mobile 2-column view */
+            }
+            .card-body-custom {
+                padding: 10px; /* Reduce padding on mobile */
+            }
+            .card-title-custom {
+                font-size: 0.9rem; /* Slightly smaller text */
+            }
+        }
+        @media (min-width: 769px) {
+            .mobile-filter-btn { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-bar">FREE SHIPPING ON ALL ORDERS OVER $75 | SHOP NOW</div>
+
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid container-xl">
+            <a class="navbar-brand logo" href="index.html">44:11</a>
+            <div class="d-flex d-lg-none align-items-center">
+                <button class="icon-btn border-0 bg-transparent me-3"><i class="bi bi-search"></i></button>
+                <button class="icon-btn border-0 bg-transparent" id="open-cart-mobile"><i class="bi bi-bag"></i></button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom active" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="#">New Arrivals</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="#">About Us</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-flex align-items-center">
+                <button class="icon-btn border-0 bg-transparent me-3"><i class="bi bi-search"></i></button>
+                <button class="icon-btn border-0 bg-transparent" id="open-cart-desktop"><i class="bi bi-bag"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-xl py-5">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html" class="text-secondary text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Shop All</li>
+            </ol>
+        </nav>
+
+        <h1 class="display-5 fw-bold text-center mb-5">All Products</h1>
+
+        <div class="row">
+            <div class="col-lg-3 d-none d-lg-block">
+                <aside id="filter-sidebar" class="shop-filter-sidebar">
+                    <div class="d-flex justify-content-between align-items-center mb-3 d-lg-none">
+                        <h5 class="filter-header mb-0">Filters</h5>
+                        <button class="btn-close" id="close-filter-mobile"></button>
+                    </div>
+                    <div class="filter-group">
+                        <h5 class="filter-header">Categories</h5>
+                        <div class="list-group category-list">
+                            <a href="#" class="list-group-item active">All Activewear (9)</a>
+                            <a href="#" class="list-group-item">Leggings (3)</a>
+                            <a href="#" class="list-group-item">Tops & Bras (3)</a>
+                            <a href="#" class="list-group-item">Outerwear (2)</a>
+                            <a href="#" class="list-group-item">Accessories (1)</a>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-secondary w-100 mt-3">Clear All Filters</button>
+                </aside>
+                <div id="filter-overlay" class="filter-overlay"></div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="shop-grid-header d-flex justify-content-between align-items-center">
+                    <p class="mb-0 text-secondary">Showing **1 - 9** of **9** results</p>
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-outline-dark mobile-filter-btn d-lg-none me-3" id="open-filter-mobile"><i class="bi bi-funnel"></i> Filter</button>
+                        <div class="dropdown sort-dropdown me-3">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Sort By: Bestselling</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 g-md-4 shop-grid">
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/02182b/ffffff?text=Performance+Legging" alt="Legging">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Essential Core Legging</h3>
+                                <p class="card-subtitle-custom">Leggings</p>
+                                <p class="card-price">$68.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: black;"></span>
+                                    <span class="color-swatch" style="background-color: var(--primary-red);"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="1">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/d7263d/ffffff?text=Sculpt+Bra" alt="Bra">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Sculpt Sports Bra</h3>
+                                <p class="card-subtitle-custom">Tops & Bras</p>
+                                <p class="card-price">$42.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: var(--primary-red);"></span>
+                                    <span class="color-swatch" style="background-color: var(--primary-navy);"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="2">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/f8f9fa/02182b?text=Elevate+Jacket" alt="Jacket">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Elevate Training Jacket</h3>
+                                <p class="card-subtitle-custom">Outerwear</p>
+                                <p class="card-price">$99.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: #fff; border:1px solid #ddd;"></span>
+                                    <span class="color-swatch" style="background-color: #000;"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="3">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/02182b/ffffff?text=Core+Hoodie" alt="Hoodie">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Unisex Core Hoodie</h3>
+                                <p class="card-subtitle-custom">Outerwear</p>
+                                <p class="card-price">$85.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: #555;"></span>
+                                    <span class="color-swatch" style="background-color: var(--primary-navy);"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="4">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/f0e68c/000000?text=Flow+Tank" alt="Tank">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Flow Seamless Tank</h3>
+                                <p class="card-subtitle-custom">Tops & Bras</p>
+                                <p class="card-price">$35.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: #f0e68c;"></span>
+                                    <span class="color-swatch" style="background-color: #000;"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="5">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/87cefa/000000?text=Runner+Short" alt="Shorts">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Runner 5" Short</h3>
+                                <p class="card-subtitle-custom">Shorts</p>
+                                <p class="card-price">$52.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: #87cefa;"></span>
+                                    <span class="color-swatch" style="background-color: var(--primary-navy);"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="6">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/333333/ffffff?text=Yoga+Mat" alt="Yoga Mat">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Pro Grip Yoga Mat</h3>
+                                <p class="card-subtitle-custom">Accessories</p>
+                                <p class="card-price">$60.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: #333;"></span>
+                                    <span class="color-swatch" style="background-color: #800080;"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="7">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/ff69b4/ffffff?text=Crop+Tee" alt="Crop Tee">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Boxy Crop Tee</h3>
+                                <p class="card-subtitle-custom">Tops & Bras</p>
+                                <p class="card-price">$38.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: #ff69b4;"></span>
+                                    <span class="color-swatch" style="background-color: #fff; border:1px solid #ddd;"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="8">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="product-card">
+                            <a href="product-details.html" class="text-decoration-none">
+                                <div class="card-image-wrapper">
+                                    <img src="https://placehold.co/600x600/4b0082/ffffff?text=Compression+Tight" alt="Compression">
+                                </div>
+                            </a>
+                            <div class="card-body-custom">
+                                <h3 class="card-title-custom">Recovery Compression</h3>
+                                <p class="card-subtitle-custom">Leggings</p>
+                                <p class="card-price">$75.00</p>
+                                <div class="mb-2">
+                                    <span class="color-swatch selected" style="background-color: #4b0082;"></span>
+                                    <span class="color-swatch" style="background-color: #000;"></span>
+                                </div>
+                                <button class="btn-add-to-cart" data-product-id="9">Quick Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <nav class="d-flex justify-content-center mt-5">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-custom">
+        <div class="container-xl">
+            <div class="text-center pt-4 border-top border-secondary opacity-50">
+                <small>&copy; 2025 44:11 Activewear.</small>
+            </div>
+        </div>
+    </footer>
+
+    <div class="side-cart" id="side-cart">
+        <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+            <h5 class="mb-0 text-dark">Your Cart (0)</h5>
+            <button class="btn-close" id="close-cart"></button>
+        </div>
+        <div class="cart-items flex-grow-1 p-3 overflow-auto" id="cart-items"></div>
+        <div class="cart-summary p-3 border-top">
+            <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            <button class="btn w-100 py-3 fw-bold" style="background-color: var(--primary-red); color: var(--text-light);" id="checkout-btn">CHECKOUT</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ... (Same JS as before) ... 
+        // Re-paste the ShoppingCart class and initialization logic here
+        
+        class ShoppingCart {
+            constructor() {
+                this.cart = [];
+                this.cartElement = document.getElementById('side-cart');
+                this.cartItemsElement = document.getElementById('cart-items');
+                this.subtotalElement = document.getElementById('cart-subtotal');
+                this.overlayElement = document.getElementById('cart-overlay');
+                this.initListeners();
+            }
+
+            initListeners() {
+                document.getElementById('open-cart-desktop')?.addEventListener('click', () => this.openSideCart());
+                document.getElementById('open-cart-mobile')?.addEventListener('click', () => this.openSideCart());
+                document.getElementById('close-cart')?.addEventListener('click', () => this.closeSideCart());
+                this.overlayElement?.addEventListener('click', () => this.closeSideCart());
+                document.getElementById('checkout-btn')?.addEventListener('click', () => this.checkout());
+
+                document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+                    button.addEventListener('click', (e) => this.addToCart(e, button));
+                });
+            }
+
+            openSideCart() {
+                this.cartElement.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            closeSideCart() {
+                this.cartElement.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            addToCart(e, button) {
+                e.preventDefault();
+                const productCard = button.closest('.product-card');
+                const productId = button.dataset.productId;
+                const productName = productCard.querySelector('.card-title-custom').textContent;
+                const price = parseFloat(productCard.querySelector('.card-price').textContent.replace('$',''));
+                const color = productCard.querySelector('.color-swatch.selected')?.dataset.color || 'Default';
+                
+                const existingItem = this.cart.find(item => item.id === productId && item.color === color);
+                if (existingItem) existingItem.quantity++;
+                else this.cart.push({ id: productId, name: productName, price, quantity: 1, color, image: productCard.querySelector('img').src });
+                
+                this.renderCart();
+                this.openSideCart();
+            }
+
+            renderCart() {
+                this.cartItemsElement.innerHTML = '';
+                let subtotal = 0;
+                this.cart.forEach((item, index) => {
+                    subtotal += item.price * item.quantity;
+                    const div = document.createElement('div');
+                    div.className = 'd-flex mb-3 pb-3 border-bottom';
+                    div.innerHTML = `
+                        <img src="${item.image}" class="rounded me-3" style="width:50px; height:50px; object-fit:cover">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-0 small fw-bold">${item.name}</h6>
+                            <small class="text-secondary">${item.quantity} x $${item.price}</small>
+                        </div>
+                        <button class="btn btn-sm text-danger remove-btn" data-index="${index}">&times;</button>
+                    `;
+                    div.querySelector('.remove-btn').addEventListener('click', () => {
+                        this.cart.splice(index, 1);
+                        this.renderCart();
+                    });
+                    this.cartItemsElement.appendChild(div);
+                });
+                this.subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+                document.querySelector('.side-cart h5').textContent = `Your Cart (${this.cart.length})`;
+            }
+            
+            checkout() { alert('Checkout logic here!'); }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            window.cart = new ShoppingCart();
+            
+            // Mobile Filter Logic
+            const sidebar = document.getElementById('filter-sidebar');
+            const overlay = document.getElementById('filter-overlay');
+            document.getElementById('open-filter-mobile')?.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                overlay.style.display = 'block';
+            });
+            const closeFilter = () => {
+                sidebar.classList.remove('open');
+                overlay.style.display = 'none';
+            };
+            document.getElementById('close-filter-mobile')?.addEventListener('click', closeFilter);
+            overlay?.addEventListener('click', closeFilter);
+            
+            // Swatch Logic
+            document.querySelectorAll('.color-swatch').forEach(s => {
+                s.addEventListener('click', function() {
+                    this.closest('.product-card').querySelectorAll('.color-swatch').forEach(el => el.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
