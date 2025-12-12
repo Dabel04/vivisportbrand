@@ -1,0 +1,153 @@
+        :root {
+            --primary-red: #d7263d;
+            --primary-navy: #02182b;
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-dark: #000000;
+            --text-primary: #000000;
+            --text-secondary: #666;
+            --text-light: #fff;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-xl: 64px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-light);
+        }
+
+        /* --- Global Components (Matching shop.html) --- */
+        .promo-bar {
+            background-color: var(--primary-navy);
+            color: var(--text-light);
+            font-size: 0.75rem;
+            padding: var(--spacing-sm) 0;
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1050;
+        }
+
+        .navbar-custom {
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 36px;
+            left: 0;
+            width: 100%;
+            z-index: 1040;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-decoration: none;
+            background: linear-gradient(90deg, var(--primary-red) 0%, var(--primary-navy) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link-custom {
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-link-custom:hover, .nav-link-custom.active {
+            color: var(--primary-red);
+        }
+
+        .icon-btn {
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            transition: color 0.2s;
+        }
+        .icon-btn:hover { color: var(--primary-red); }
+
+        /* --- Contact Page Specific Styles --- */
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .info-card {
+            background: var(--bg-white);
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            height: 100%;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+        }
+        .info-card:hover { transform: translateY(-5px); }
+        .info-icon {
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+        
+        .form-container {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-navy);
+            box-shadow: 0 0 0 0.2rem rgba(2, 24, 43, 0.1);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-navy);
+            color: var(--text-light);
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: none;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: var(--primary-red);
+            color: #fff;
+        }
+
+        /* Map Placeholder */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Footer */
+        .footer-custom {
+            background-color: var(--bg-dark);
+            color: #ccc;
+            padding: var(--spacing-xl) 0;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 80px; }
+            .promo-bar { display: none; }
+            .navbar-custom { top: 0; }
+            .form-container { padding: 20px; }
+        }
