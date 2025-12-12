@@ -32,8 +32,8 @@ function Cart({isActive, selectedValue, setIsActive}) {
                     <p className="mt-2">Your cart is empty</p>
                 </div>
                 ) : (
-                    selectedValue.map((ci, index) => (
-                        <div className="cart-item" key={`${ci.id}-${ci.size}-${ci.color.value}-${index}`}>
+                    selectedValue.map((ci) => (
+                        <div className="cart-item" key={`${ci.id}`}>
                             <img src={ci.image} className="cart-item-img" alt={ci.name}/>
                             <div className="cart-item-details">
                                 <div className="cart-item-title">{ci.name}</div>
@@ -45,16 +45,15 @@ function Cart({isActive, selectedValue, setIsActive}) {
                                     style={{
                                       width: '12px', 
                                       height: '12px', 
-                                      background: ci.color.value,
-                                      border: ci.color.border || '1px solid #ddd',
+                                      border:  '1px solid #ddd',
                                       borderRadius: '50%',
                                       verticalAlign: 'middle'
                                     }}
                                   ></span>
-                                  <span className="ms-1">{ci.color.name}</span>
+                                  <span className="ms-1">{ci.color}</span>
                                 </div>
                             </div>
-                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color.value)}>
+                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color)}>
                                 <i className="bi bi-x"></i>
                             </button>
                         </div>
