@@ -580,7 +580,10 @@
                 document.getElementById('open-cart-mobile')?.addEventListener('click', () => this.openSideCart());
                 document.getElementById('close-cart')?.addEventListener('click', () => this.closeSideCart());
                 this.overlayElement?.addEventListener('click', () => this.closeSideCart());
-                document.getElementById('checkout-btn')?.addEventListener('click', () => this.checkout());
+                document.getElementById('checkout-btn')?.addEventListener('click', () => {
+                    // Navigate to payment page
+                    window.location.href = 'payment.html';
+                });
 
                 document.querySelectorAll('.btn-add-to-cart').forEach(button => {
                     button.addEventListener('click', (e) => this.addToCart(e, button));
