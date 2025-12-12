@@ -7,7 +7,7 @@ import {useAtom} from 'jotai'
 import { productAtom } from '../App'
 
 function LandingPage() {
-      const [product, setProduct] = useAtom(productAtom);
+    const [product, setProduct] = useAtom(productAtom);
     const [selectedSizes, setSelectedSizes] = useState({});
     const [selectedColors, setSelectedColors] = useState({});
     
