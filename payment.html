@@ -4,506 +4,452 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>44:11 - Secure Checkout</title>
+
     <style>
-        /* --- Global Reset for Payment Page Context --- */
-.payment-wrapper {
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* Neutral, clean font */
-    color: #333;
-    line-height: 1.5;
-    background-color: #f9f9f9; /* Very light grey bg */
-    min-height: 100vh;
-    box-sizing: border-box;
-}
+        /* =============== GLOBAL RESETS =============== */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.4;
+        }
 
-.payment-wrapper *, .payment-wrapper *::before, .payment-wrapper *::after {
-    box-sizing: inherit;
-}
+        *, *::before, *::after { box-sizing: border-box; }
 
-/* --- Header --- */
-.payment-header {
-    background-color: #fff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 20px 0;
-}
+        /* =============== HEADER =============== */
+        .payment-header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+        .payment-header-inner {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .payment-brand {
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .payment-secure-badge {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-.payment-header-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        /* =============== MAIN GRID =============== */
+        .payment-container {
+            display: grid;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
 
-.payment-brand {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-}
+        .payment-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+        }
 
-.payment-secure-badge {
-    font-size: 13px;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 600;
-}
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
 
-/* --- Main Layout Grid --- */
-.payment-main-grid {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr; /* Form is wider than summary */
-    gap: 40px;
-    align-items: start;
-}
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
 
-/* --- Typography Helpers --- */
-.payment-h1 {
-    font-size: 28px;
-    margin: 0 0 5px 0;
-    font-weight: 700;
-}
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
 
-.payment-h2 {
-    font-size: 18px;
-    margin: 0 0 20px 0;
-    font-weight: 600;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}
+        input:focus, select:focus {
+            outline: none;
+            border-color: #333;
+        }
 
-.payment-subtext {
-    color: #777;
-    margin: 0;
-    font-size: 15px;
-}
+        .two-cols {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+        .two-cols > div { flex: 1; }
 
-.payment-section {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 30px;
-    margin-bottom: 25px;
-}
+        .payment-tabs {
+            display: flex;
+            gap: 10px;
+        }
+        .payment-tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .payment-tab-active {
+            border: 2px solid #333;
+            font-weight: 700;
+        }
+        .payment-method-content { display: none; margin-top: 20px; }
+        .payment-method-active { display: block; }
 
-.payment-section-header {
-    margin-bottom: 30px;
-}
+        /* =============== ORDER SUMMARY =============== */
+        .summary-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            position: sticky;
+            top: 20px;
+        }
+        .summary-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .summary-item img {
+            width: 60px;
+            height: 70px;
+            border-radius: 4px;
+            object-fit: cover;
+            background: #eee;
+        }
+        .item-meta {
+            font-size: 12px;
+            color: #777;
+        }
+        .remove-item {
+            color: red;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .summary-divider {
+            height: 1px;
+            background: #eee;
+            margin: 20px 0;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .summary-total {
+            font-size: 18px;
+            font-weight: 800;
+        }
 
-/* --- Payment Tabs --- */
-.payment-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-}
+        /* =============== BUTTONS =============== */
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            color: white;
+            background: #111;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
 
-.payment-tab-btn {
-    flex: 1;
-    padding: 12px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 14px;
-    transition: all 0.2s;
-}
+        /* Discount */
+        .discount-row {
+            display: flex;
+            gap: 10px;
+        }
+        .apply-btn {
+            padding: 12px;
+            background: #333;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            font-size: 13px;
+            white-space: nowrap;
+        }
 
-/* Active state relies on border thickness/darkness, not color */
-.payment-tab-active {
-    border: 2px solid #333;
-    font-weight: 700;
-    background: #fcfcfc;
-}
+        /* Terms */
+        .terms {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            font-size: 13px;
+        }
 
-/* --- Forms --- */
-.payment-form-group {
-    margin-bottom: 20px;
-}
-
-.payment-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.payment-col {
-    flex: 1;
-}
-
-.payment-label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #444;
-}
-
-.payment-input-wrapper {
-    position: relative;
-}
-
-.payment-input-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 16px;
-    pointer-events: none;
-}
-
-.payment-input {
-    width: 100%;
-    padding: 12px 12px 12px 40px; /* Left padding makes room for icon */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 15px;
-    background: #fff;
-}
-
-.payment-input:focus {
-    outline: none;
-    border-color: #333;
-}
-
-/* --- Billing Section --- */
-.payment-checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.payment-address-preview {
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 4px;
-    border: 1px solid #eee;
-}
-
-.payment-text-small {
-    font-size: 14px;
-    color: #555;
-    margin: 0;
-    line-height: 1.6;
-}
-
-/* --- Right Column (Summary) --- */
-.payment-summary-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 30px;
-    position: sticky;
-    top: 20px; /* Stays visible when scrolling */
-}
-
-.payment-item {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.payment-item-img-placeholder {
-    width: 60px;
-    height: 70px;
-    background-color: #eee;
-    border-radius: 4px;
-    flex-shrink: 0;
-}
-
-.payment-item-details {
-    flex: 1;
-}
-
-.payment-item-name {
-    font-size: 14px;
-    font-weight: 700;
-    margin: 0 0 5px 0;
-}
-
-.payment-item-meta {
-    font-size: 12px;
-    color: #888;
-    margin: 0 0 3px 0;
-}
-
-.payment-item-price {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.payment-divider {
-    height: 1px;
-    background-color: #eee;
-    margin: 20px 0;
-}
-
-.payment-cost-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.payment-total-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: 800;
-    color: #000;
-    margin-bottom: 25px;
-}
-
-/* --- Action Button --- */
-.payment-submit-btn {
-    width: 100%;
-    background-color: #222; /* Very dark grey, almost black */
-    color: #fff;
-    border: none;
-    padding: 16px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.2s;
-}
-
-.payment-submit-btn:hover {
-    background-color: #000;
-}
-
-.payment-security-footer {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 11px;
-    color: #888;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-/* --- Footer --- */
-.payment-footer {
-    text-align: center;
-    padding: 40px 20px;
-    border-top: 1px solid #e0e0e0;
-    margin-top: 40px;
-    font-size: 13px;
-    color: #888;
-}
-
-.payment-footer-links {
-    margin-top: 10px;
-}
-
-.payment-link {
-    color: #666;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-.payment-link:hover {
-    text-decoration: underline;
-}
-
-/* --- Responsive --- */
-@media (max-width: 900px) {
-    .payment-main-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .payment-summary-card {
-        position: static; /* Removes sticky on mobile */
-        order: -1; /* Puts summary above form on mobile? Remove this line if you want form first */
-    }
-}
+        /* =============== RESPONSIVE =============== */
+        @media(max-width: 900px){
+            .payment-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
+
 <body>
 
-    <div class="payment-wrapper">
-        
-        <header class="payment-header">
-            <div class="payment-header-inner">
-                <div class="payment-brand">
-                    <span class="payment-logo-text">44:11</span>
+    <!-- HEADER -->
+    <header class="payment-header">
+        <div class="payment-header-inner">
+            <div class="payment-brand">44:11</div>
+            <div class="payment-secure-badge">🔒 Secure Checkout</div>
+        </div>
+    </header>
+
+    <div class="payment-container">
+
+        <!-- LEFT SIDE -->
+        <div>
+
+            <!-- CONTACT INFO -->
+            <div class="payment-section">
+                <h2 class="section-title">Contact Information</h2>
+
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com">
+
+                <label style="margin-top: 15px;">Phone Number</label>
+                <input type="text" id="phone" placeholder="+234 801 234 5678">
+            </div>
+
+            <!-- SHIPPING ADDRESS -->
+            <div class="payment-section">
+                <h2 class="section-title">Shipping Address</h2>
+
+                <label>Full Name</label>
+                <input type="text" id="fullName" placeholder="John Doe">
+
+                <label style="margin-top: 15px;">Street Address</label>
+                <input type="text" id="address" placeholder="123 Athlete Way">
+
+                <div class="two-cols">
+                    <div>
+                        <label>City</label>
+                        <input type="text" id="city" placeholder="Lagos">
+                    </div>
+
+                    <div>
+                        <label>Postal Code</label>
+                        <input type="text" id="zip" placeholder="100001">
+                    </div>
                 </div>
-                <div class="payment-secure-badge">
-                    <span class="payment-icon-lock">🔒</span> Secure Checkout
+
+                <label>Country</label>
+                <select id="country">
+                    <option>Nigeria</option>
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Canada</option>
+                </select>
+            </div>
+
+            <!-- DELIVERY OPTIONS -->
+            <div class="payment-section">
+                <h2 class="section-title">Delivery Method</h2>
+
+                <label>
+                    <input type="radio" name="delivery" value="standard" checked>
+                    Standard Delivery — $10.00 (3–5 days)
+                </label><br>
+
+                <label>
+                    <input type="radio" name="delivery" value="express">
+                    Express Delivery — $25.00 (1–2 days)
+                </label>
+            </div>
+
+            <!-- PAYMENT METHOD -->
+            <div class="payment-section">
+                <h2 class="section-title">Payment Method</h2>
+
+                <div class="payment-tabs">
+                    <button class="payment-tab-btn payment-tab-active" data-tab="card">Credit Card</button>
+                    <button class="payment-tab-btn" data-tab="apple">Apple Pay</button>
+                    <button class="payment-tab-btn" data-tab="paypal">PayPal</button>
+                </div>
+
+                <!-- CARD FORM -->
+                <div class="payment-method-content payment-method-active" id="tab-card">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="0000 0000 0000 0000">
+
+                    <div class="two-cols" style="margin-top: 15px;">
+                        <div>
+                            <label>Expiry Date</label>
+                            <input type="text" placeholder="MM / YY">
+                        </div>
+                        <div>
+                            <label>CVC</label>
+                            <input type="text" placeholder="123">
+                        </div>
+                    </div>
+
+                    <label style="margin-top: 15px;">Name on Card</label>
+                    <input type="text" placeholder="Full Name">
+                </div>
+
+                <!-- APPLE PAY -->
+                <div class="payment-method-content" id="tab-apple">
+                    <p>Use Apple Pay on supported devices.</p>
+                    <button class="btn-primary">Pay with  Apple Pay</button>
+                </div>
+
+                <!-- PAYPAL -->
+                <div class="payment-method-content" id="tab-paypal">
+                    <p>You will be redirected to PayPal to complete payment.</p>
+                    <button class="btn-primary">Continue to PayPal</button>
                 </div>
             </div>
-        </header>
 
-        <div class="payment-main-grid">
-            
-            <main class="payment-form-column">
-                <div class="payment-section-header">
-                    <h1 class="payment-h1">Checkout</h1>
-                    <p class="payment-subtext">Complete your purchase securely.</p>
+            <!-- DISCOUNT CODE -->
+            <div class="payment-section">
+                <h2 class="section-title">Discount Code</h2>
+
+                <div class="discount-row">
+                    <input type="text" id="discountInput" placeholder="Enter promo code">
+                    <button class="apply-btn" id="applyDiscount">Apply</button>
                 </div>
 
-                <div class="payment-section">
-                    <h2 class="payment-h2">Payment Method</h2>
-                    <div class="payment-tabs">
-                        <button type="button" class="payment-tab-btn payment-active-tab" data-target="credit-card">Credit Card</button>
-                        <button type="button" class="payment-tab-btn" data-target="apple-pay">Apple Pay</button>
-                        <button type="button" class="payment-tab-btn" data-target="paypal">PayPal</button>
-                    </div>
+                <p id="discountMessage" style="margin-top:10px; font-size:13px;"></p>
+            </div>
 
-                    <div class="payment-method-content payment-show" id="payment-credit-card">
-                        <div class="payment-form-group">
-                            <label class="payment-label">Card Number</label>
-                            <div class="payment-input-wrapper">
-                                <span class="payment-input-icon">💳</span>
-                                <input type="text" class="payment-input" placeholder="0000 0000 0000 0000">
-                            </div>
-                        </div>
+            <!-- TERMS -->
+            <div class="terms">
+                <input type="checkbox" id="termsCheck">
+                <label for="termsCheck">I agree to the Terms & Conditions and Refund Policy.</label>
+            </div>
 
-                        <div class="payment-row">
-                            <div class="payment-col">
-                                <label class="payment-label">Expiry Date</label>
-                                <div class="payment-input-wrapper">
-                                    <span class="payment-input-icon">📅</span>
-                                    <input type="text" class="payment-input" placeholder="MM / YY">
-                                </div>
-                            </div>
-                            <div class="payment-col">
-                                <label class="payment-label">CVC</label>
-                                <div class="payment-input-wrapper">
-                                    <span class="payment-input-icon">🔒</span>
-                                    <input type="text" class="payment-input" placeholder="123">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="payment-form-group">
-                            <label class="payment-label">Name on Card</label>
-                            <div class="payment-input-wrapper">
-                                <span class="payment-input-icon">👤</span>
-                                <input type="text" class="payment-input" placeholder="Full Name">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="payment-section">
-                    <h2 class="payment-h2">Billing Address</h2>
-                    <label class="payment-checkbox-wrapper">
-                        <input type="checkbox" class="payment-checkbox" checked>
-                        Billing address same as shipping
-                    </label>
-                    
-                    <div class="payment-address-preview">
-                        <p class="payment-text-small">
-                            <strong>John Doe</strong><br>
-                            123 Athlete Way, Apt 4B<br>
-                            Sportsville, CA 90210<br>
-                            United States
-                        </p>
-                    </div>
-                </div>
-
-            </main>
-
-            <aside class="payment-summary-column">
-                <div class="payment-summary-card">
-                    <h2 class="payment-h2">Order Summary</h2>
-                    
-                    <div class="payment-item">
-                        <div class="payment-item-img-placeholder"></div>
-                        <div class="payment-item-details">
-                            <h3 class="payment-item-name">Performance Running Shorts</h3>
-                            <p class="payment-item-meta">Men's Training • Size: M</p>
-                            <p class="payment-item-meta">Qty: 1 • Color: Graphite</p>
-                        </div>
-                        <div class="payment-item-price">$45.00</div>
-                    </div>
-
-                    <div class="payment-item">
-                        <div class="payment-item-img-placeholder"></div>
-                        <div class="payment-item-details">
-                            <h3 class="payment-item-name">Thermal Compression Top</h3>
-                            <p class="payment-item-meta">Base Layer • Size: L</p>
-                            <p class="payment-item-meta">Qty: 1 • Color: Onyx</p>
-                        </div>
-                        <div class="payment-item-price">$60.00</div>
-                    </div>
-
-                    <div class="payment-divider"></div>
-
-                    <div class="payment-cost-row">
-                        <span>Subtotal</span>
-                        <span>$105.00</span>
-                    </div>
-                    <div class="payment-cost-row">
-                        <span>Shipping</span>
-                        <span>$10.00</span>
-                    </div>
-                    <div class="payment-cost-row">
-                        <span>Estimated Tax</span>
-                        <span>$8.50</span>
-                    </div>
-
-                    <div class="payment-divider"></div>
-
-                    <div class="payment-total-row">
-                        <span>Total</span>
-                        <span>$123.50</span>
-                    </div>
-                        
-                    <button class="payment-submit-btn">
-                        <span class="payment-btn-icon">🔒</span> Place Order
-                    </button>
-
-                    <div class="payment-security-footer">
-                        <span class="payment-sec-item">🛡️ SSL Secure</span>
-                        <span class="payment-sec-item">💳 Payment Protection</span>
-                    </div>
-                </div>
-            </aside>
-
+            <!-- PLACE ORDER BUTTON -->
+            <button class="btn-primary" id="placeOrderBtn" disabled>Place Order</button>
         </div>
 
-        <footer class="payment-footer">
-            <p class="payment-copyright">© 2025 44:11 Sportswear. All rights reserved.</p>
-            <div class="payment-footer-links">
-                <a href="#" class="payment-link">Privacy Policy</a>
-                <a href="#" class="payment-link">Terms of Service</a>
+        <!-- RIGHT SIDE (ORDER SUMMARY) -->
+        <aside>
+            <div class="summary-card">
+
+                <h3 class="section-title">Order Summary</h3>
+
+                <div id="order-items">
+                    <div class="summary-item">
+                        <img src="img/Essential Core Legging.jpg">
+                        <div>
+                            <div><strong>Essential Core Legging</strong></div>
+                            <div class="item-meta">Size: M • Qty: 1</div>
+                            <div class="remove-item">Remove</div>
+                        </div>
+                        <div>$68.00</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <img src="img/Unisex Core Hoodie.jpg">
+                        <div>
+                            <div><strong>Unisex Core Hoodie</strong></div>
+                            <div class="item-meta">Size: L • Qty: 1</div>
+                            <div class="remove-item">Remove</div>
+                        </div>
+                        <div>$85.00</div>
+                    </div>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-row"><span>Subtotal</span><span id="subtotal">$153.00</span></div>
+                <div class="summary-row"><span>Shipping</span><span id="shipping">$10.00</span></div>
+                <div class="summary-row"><span>Discount</span><span id="discount">$0.00</span></div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="total">$163.00</span>
+                </div>
+
             </div>
-        </footer>
+        </aside>
 
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.payment-tab-btn');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active class from all
-                    tabs.forEach(t => t.classList.remove('payment-active-tab'));
-                    // Add active class to clicked
-                    tab.classList.add('payment-active-tab');
-                    
-                    // Note: Since this is visual only for the prompt, 
-                    // real logic to switch forms would go here.
-                });
+        /* =============== PAYMENT TABS SWITCHING =============== */
+        document.querySelectorAll('.payment-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.payment-tab-btn')
+                    .forEach(b => b.classList.remove('payment-tab-active'));
+                btn.classList.add('payment-tab-active');
+
+                document.querySelectorAll('.payment-method-content')
+                    .forEach(c => c.classList.remove('payment-method-active'));
+
+                document.querySelector('#tab-' + btn.dataset.tab)
+                    .classList.add('payment-method-active');
+            });
+        });
+
+        /* =============== DISCOUNT LOGIC =============== */
+        const discountInput = document.getElementById("discountInput");
+        const discountMessage = document.getElementById("discountMessage");
+        const discountDisplay = document.getElementById("discount");
+        const totalDisplay = document.getElementById("total");
+
+        let subtotal = 153;
+        let shipping = 10;
+        let discount = 0;
+
+        document.getElementById("applyDiscount").addEventListener("click", () => {
+            const code = discountInput.value.trim().toUpperCase();
+
+            if (code === "FIT10") {
+                discount = subtotal * 0.10;
+                discountMessage.innerHTML = "✔ 10% discount applied!";
+            }
+            else if (code !== "") {
+                discount = 0;
+                discountMessage.innerHTML = "❌ Invalid code.";
+            }
+
+            discountDisplay.innerHTML = "-$" + discount.toFixed(2);
+            totalDisplay.innerHTML = "$" + (subtotal + shipping - discount).toFixed(2);
+        });
+
+        /* =============== TERMS CHECKBOX =============== */
+        const placeOrderBtn = document.getElementById("placeOrderBtn");
+        document.getElementById("termsCheck").addEventListener("change", (e) => {
+            placeOrderBtn.disabled = !e.target.checked;
+        });
+
+        /* =============== REMOVE ITEM LOGIC =============== */
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.summary-item').remove();
             });
         });
     </script>
+
 </body>
 </html>
