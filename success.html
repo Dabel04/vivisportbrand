@@ -3,155 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmed - 44:11</title>
+    <title>44:11 - Order Confirmed</title>
     <style>
-            /* --- Success Page Wrapper --- */
-    .success-wrapper {
-        min-height: 100vh;
-        background-color: #f9f9f9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-    }
+        /* Reusing your Global Resets */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.4;
+            height: 100%;
+        }
 
-    /* --- Main Card --- */
-    .success-card {
-        background-color: #fff;
-        width: 100%;
-        max-width: 500px;
-        padding: 50px 40px;
-        text-align: center;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-    }
+        /* Centering Wrapper */
+        .success-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    /* --- Icon --- */
-    .success-icon-circle {
-        width: 70px;
-        height: 70px;
-        background-color: #f0f0f0; /* Neutral grey background */
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto 25px auto;
-    }
+        /* Success Card */
+        .success-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
 
-    .success-checkmark {
-        font-size: 32px;
-        color: #333; /* Dark grey checkmark */
-        font-weight: 700;
-    }
+        /* Icon */
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #111;
+        }
 
-    /* --- Typography --- */
-    .success-title {
-        font-size: 26px;
-        font-weight: 800;
-        color: #111;
-        margin: 0 0 10px 0;
-    }
+        .success-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
 
-    .success-message {
-        color: #666;
-        font-size: 15px;
-        margin: 0 0 20px 0;
-        line-height: 1.5;
-    }
+        .success-text {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
 
-    .success-order-id {
-        background-color: #f5f5f5;
-        display: inline-block;
-        padding: 8px 15px;
-        border-radius: 4px;
-        font-family: monospace;
-        font-size: 14px;
-        color: #333;
-        margin-bottom: 30px;
-    }
+        /* Order Details Box */
+        .order-details {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
 
-    /* --- Details Box --- */
-    .success-details-box {
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        padding: 20px 0;
-        margin-bottom: 30px;
-        text-align: left;
-    }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .detail-row:last-child { margin-bottom: 0; }
+        
+        .detail-label { color: #777; font-weight: 500; }
+        .detail-value { font-weight: 700; color: #111; }
 
-    .success-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        font-size: 14px;
-    }
+        /* Reusing your Button Style */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            color: white;
+            background: #111;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none; /* For anchor tag */
+            box-sizing: border-box;
+        }
+        
+        .btn-secondary {
+            display: block;
+            margin-top: 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .btn-secondary:hover { color: #111; }
 
-    .success-row:last-child {
-        margin-bottom: 0;
-    }
-
-    .success-label {
-        color: #777;
-    }
-
-    .success-value {
-        color: #111;
-        font-weight: 600;
-    }
-
-    /* --- Button --- */
-    .success-home-btn {
-        display: inline-block;
-        background-color: #111;
-        color: #fff;
-        text-decoration: none;
-        padding: 15px 30px;
-        border-radius: 4px;
-        font-weight: 600;
-        font-size: 15px;
-        transition: background-color 0.2s;
-        width: 100%;
-    }
-
-    .success-home-btn:hover {
-        background-color: #000;
-    }
     </style>
 </head>
 <body>
 
     <div class="success-wrapper">
         <div class="success-card">
+            <div class="success-icon">✓</div>
             
-            <div class="success-icon-circle">
-                <span class="success-checkmark">✓</span>
-            </div>
+            <h1 class="success-title">Order Confirmed</h1>
+            <p class="success-text">Thank you for shopping with 44:11. Your gear is being prepared for shipment.</p>
 
-            <h1 class="success-title">Order Confirmed!</h1>
-            <p class="success-message">Thank you for shopping with 44:11. Your gear is being prepared.</p>
-            
-            <div class="success-order-id">Order #4411-8920</div>
-
-            <div class="success-details-box">
-                <div class="success-row">
-                    <span class="success-label">Amount Paid:</span>
-                    <span class="success-value">$123.50</span>
+            <div class="order-details">
+                <div class="detail-row">
+                    <span class="detail-label">Order Number</span>
+                    <span class="detail-value">#4411-829</span>
                 </div>
-                <div class="success-row">
-                    <span class="success-label">Payment Method:</span>
-                    <span class="success-value">Credit Card ending in 4242</span>
+                <div class="detail-row">
+                    <span class="detail-label">Estimated Delivery</span>
+                    <span class="detail-value">3–5 Business Days</span>
                 </div>
-                <div class="success-row">
-                    <span class="success-label">Estimated Delivery:</span>
-                    <span class="success-value">3-5 Business Days</span>
+                <div class="detail-row">
+                    <span class="detail-label">Payment Method</span>
+                    <span class="detail-value">Credit Card (**** 4242)</span>
                 </div>
             </div>
 
-            <div class="success-actions">
-                <a href="index.html" class="success-home-btn">Return to Shop</a>
-            </div>
+            <a href="index.html" class="btn-primary">Continue Shopping</a>
+            <a href="#" class="btn-secondary">Download Receipt</a>
         </div>
     </div>
 

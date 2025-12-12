@@ -439,8 +439,15 @@
 
         /* =============== TERMS CHECKBOX =============== */
         const placeOrderBtn = document.getElementById("placeOrderBtn");
-        document.getElementById("termsCheck").addEventListener("change", (e) => {
+        const termsCheck = document.getElementById("termsCheck");
+        termsCheck.addEventListener("change", (e) => {
             placeOrderBtn.disabled = !e.target.checked;
+        });
+
+        placeOrderBtn.addEventListener("click", () => {
+            if (!placeOrderBtn.disabled) {
+            window.location.href = "success.html";
+            }
         });
 
         /* =============== REMOVE ITEM LOGIC =============== */

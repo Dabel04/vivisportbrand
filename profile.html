@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Clothing.</title>
+    <style>
+        /* =========================================
+           RESET & GLOBAL VARIABLES
+           ========================================= */
+        :root {
+            --profile-primary: #111;
+            --profile-secondary: #6c757d;
+            --profile-success: #198754;
+            --profile-danger: #dc3545;
+            --profile-light: #f8f9fa;
+            --profile-border: #e0e0e0;
+            --profile-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--profile-font);
+            color: #333;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+
+        /* =========================================
+           A. ANNOUNCEMENT BAR
+           ========================================= */
+        .profile-announce-bar {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .profile-announce-link {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        /* =========================================
+           B. HEADER & NAVIGATION
+           ========================================= */
+        .profile-header {
+            border-bottom: 1px solid var(--profile-border);
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+        .profile-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .profile-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #000;
+            text-decoration: none;
+        }
+        .profile-nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+        .profile-nav-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .profile-nav-link:hover { color: #000; }
+        .profile-header-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .profile-icon-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+
+        /* =========================================
+           C. BREADCRUMB
+           ========================================= */
+        .profile-breadcrumb-section {
+            background-color: var(--profile-light);
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        .profile-breadcrumb-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 14px;
+            color: var(--profile-secondary);
+        }
+        .profile-breadcrumb-link { text-decoration: none; color: var(--profile-secondary); }
+        .profile-breadcrumb-active { color: #333; font-weight: 600; }
+
+        /* =========================================
+           D. DASHBOARD LAYOUT
+           ========================================= */
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+            display: grid;
+            grid-template-columns: 260px 1fr; /* Sidebar width + content */
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* --- Sidebar --- */
+        .profile-sidebar {
+            background: #fff;
+            border-right: 1px solid var(--profile-border);
+            padding-right: 20px;
+        }
+        .profile-menu-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 15px;
+            background: none;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            color: #555;
+            cursor: pointer;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+        .profile-menu-item:hover { background-color: var(--profile-light); color: #000; }
+        .profile-menu-active {
+            background-color: #000;
+            color: #fff !important;
+            font-weight: 600;
+        }
+        .profile-menu-logout { color: var(--profile-danger); font-weight: 600; margin-top: 20px; }
+        
+        /* --- Main Content Area --- */
+        .profile-section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--profile-border);
+        }
+        .profile-content-page { display: none; } /* Hidden by default */
+        .profile-page-visible { display: block; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================
+           PAGE 1: PERSONAL INFORMATION
+           ========================================= */
+        .profile-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .profile-form-group { margin-bottom: 5px; }
+        .profile-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .profile-input, .profile-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.2s;
+        }
+        .profile-input:focus, .profile-select:focus {
+            outline: none;
+            border-color: #000;
+        }
+        .profile-btn-primary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .profile-btn-primary:hover { background-color: #333; }
+
+        /* =========================================
+           PAGE 2: PAYMENT METHOD
+           ========================================= */
+        .profile-payment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .profile-pay-card {
+            border: 1px solid var(--profile-border);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .profile-pay-info { display: flex; align-items: center; gap: 15px; }
+        .profile-pay-icon { font-size: 24px; }
+        .profile-pay-details div { font-weight: 600; font-size: 14px; }
+        .profile-pay-details span { font-size: 12px; color: #777; }
+        
+        .profile-btn-link {
+            background: none;
+            border: 1px solid var(--profile-border);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .profile-btn-delete { color: var(--profile-danger); border-color: #ffecec; background: #fff5f5; }
+
+        .profile-subtitle { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+        .profile-checkbox-wrapper {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           PAGE 3: MY ORDERS
+           ========================================= */
+        .profile-order-card {
+            border: 1px solid var(--profile-border);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .profile-order-header {
+            background-color: var(--profile-light);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 13px;
+            color: #555;
+            border-bottom: 1px solid var(--profile-border);
+        }
+        .profile-order-header strong { color: #000; }
+        
+        .profile-status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .status-accepted { background-color: #d1e7dd; color: #0f5132; }
+        .status-delivered { background-color: #cfe2ff; color: #084298; }
+
+        .profile-order-body { padding: 20px; }
+        
+        /* Table simulation */
+        .profile-order-table { width: 100%; border-collapse: collapse; }
+        .profile-order-table th { text-align: left; font-size: 12px; color: #777; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .profile-order-table td { padding: 15px 0; font-size: 14px; border-bottom: 1px solid #eee; }
+        .profile-order-table tr:last-child td { border-bottom: none; }
+        
+        .profile-order-actions {
+            padding: 15px 20px;
+            border-top: 1px solid var(--profile-border);
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .profile-btn-action {
+            padding: 8px 16px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #fff;
+            border: 1px solid var(--profile-border);
+        }
+        .profile-btn-action:hover { background: #f9f9f9; border-color: #999; }
+        .profile-btn-dark { background: #111; color: #fff; border-color: #111; }
+        .profile-btn-dark:hover { background: #333; }
+
+        /* =========================================
+           E. FOOTER
+           ========================================= */
+        .profile-footer-top {
+            background: #fff;
+            border-top: 1px solid var(--profile-border);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .profile-features-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .profile-feature h4 { margin: 10px 0 5px; font-size: 16px; }
+        .profile-feature p { color: #777; font-size: 13px; margin: 0; }
+
+        .profile-footer-main {
+            background: #f8f9fa;
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+        }
+        .profile-footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        .profile-footer-col h5 { font-size: 16px; margin-bottom: 20px; }
+        .profile-footer-links { list-style: none; padding: 0; margin: 0; }
+        .profile-footer-links li { margin-bottom: 10px; }
+        .profile-footer-links a { text-decoration: none; color: #555; font-size: 14px; }
+        
+        .profile-footer-bottom {
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+        .profile-bottom-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+        @media (max-width: 900px) {
+            .profile-container { grid-template-columns: 1fr; }
+            .profile-sidebar { 
+                border-right: none; 
+                border-bottom: 1px solid var(--profile-border); 
+                padding-right: 0; 
+                margin-bottom: 30px;
+                display: flex;
+                overflow-x: auto;
+                gap: 10px;
+                padding-bottom: 10px;
+            }
+            .profile-menu-item { width: auto; white-space: nowrap; }
+            .profile-form-grid { grid-template-columns: 1fr; }
+            .profile-footer-grid, .profile-features-grid { grid-template-columns: 1fr; gap: 30px; }
+            .profile-bottom-inner { flex-direction: column; gap: 10px; text-align: center; }
+            .profile-nav-menu { display: none; } /* Hide center nav on mobile */
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        
+        <aside class="profile-sidebar">
+            <button class="profile-menu-item profile-menu-active" onclick="switchTab('personal')">Personal Information</button>
+            <button class="profile-menu-item" onclick="switchTab('orders')">My Orders</button>
+            <button class="profile-menu-item" onclick="switchTab('payment')">Payment Method</button>
+            <button class="profile-menu-item">Manage Address</button>
+            <button class="profile-menu-item">Password Manager</button>
+            <button class="profile-menu-item profile-menu-logout">Logout</button>
+        </aside>
+
+        <main class="profile-main-content">
+
+            <div id="page-personal" class="profile-content-page profile-page-visible">
+                <h2 class="profile-section-title">Personal Information</h2>
+                <form onsubmit="event.preventDefault(); alert('Profile Updated!');">
+                    <div class="profile-form-grid">
+                        <div class="profile-form-group">
+                            <label class="profile-label">First Name *</label>
+                            <input type="text" class="profile-input" value="Bessie" required>
+                        </div>
+                        <div class="profile-form-group">
+                            <label class="profile-label">Last Name *</label>
+                            <input type="text" class="profile-input" value="Cooper" required>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-form-grid" style="margin-top: 20px;">
+                        <div class="profile-form-group">
+                            <label class="profile-label">Email Address *</label>
+                            <input type="email" class="profile-input" value="bessie.cooper@example.com" required>
+                        </div>
+                        <div class="profile-form-group">
+                            <label class="profile-label">Phone Number *</label>
+                            <input type="text" class="profile-input" value="(406) 555-0120" required>
+                        </div>
+                    </div>
+
+                    <div class="profile-form-group" style="margin-top: 20px; max-width: 50%;">
+                        <label class="profile-label">Gender *</label>
+                        <select class="profile-select">
+                            <option>Male</option>
+                            <option selected>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <button class="profile-btn-primary">Update Changes</button>
+                </form>
+            </div>
+
+            <div id="page-payment" class="profile-content-page">
+                <h2 class="profile-section-title">Payment Method</h2>
+                
+                <div class="profile-payment-cards">
+                    <div class="profile-pay-card">
+                        <div class="profile-pay-info">
+                            <div class="profile-pay-icon">🅿️</div>
+                            <div class="profile-pay-details">
+                                <div>Paypal</div>
+                                <span>Safe payment online</span>
+                            </div>
+                        </div>
+                        <button class="profile-btn-link" onclick="this.innerText='Linked'">Link Account</button>
+                    </div>
+
+                    <div class="profile-pay-card" id="card-visa">
+                        <div class="profile-pay-info">
+                            <div class="profile-pay-icon">💳</div>
+                            <div class="profile-pay-details">
+                                <div>**** **** **** 8047</div>
+                                <span>Expires 12/26</span>
+                            </div>
+                        </div>
+                        <button class="profile-btn-link profile-btn-delete" onclick="deleteCard()">Delete</button>
+                    </div>
+
+                     <div class="profile-pay-card">
+                        <div class="profile-pay-info">
+                            <div class="profile-pay-icon">🇬</div>
+                            <div class="profile-pay-details">
+                                <div>Google Pay</div>
+                                <span>Wallet Linked</span>
+                            </div>
+                        </div>
+                        <button class="profile-btn-link">Unlink</button>
+                    </div>
+                </div>
+
+                <h3 class="profile-subtitle">Add New Credit/Debit Card</h3>
+                <form onsubmit="event.preventDefault(); alert('Card Added!');">
+                    <div class="profile-form-group">
+                        <label class="profile-label">Card Holder Name *</label>
+                        <input type="text" class="profile-input" placeholder="Name on card" required>
+                    </div>
+                    <div class="profile-form-group" style="margin-top: 15px;">
+                        <label class="profile-label">Card Number *</label>
+                        <input type="text" class="profile-input" placeholder="0000 0000 0000 0000" required>
+                    </div>
+                    <div class="profile-form-grid" style="margin-top: 15px;">
+                        <div class="profile-form-group">
+                            <label class="profile-label">Expiry Date *</label>
+                            <input type="text" class="profile-input" placeholder="MM/YY" required>
+                        </div>
+                        <div class="profile-form-group">
+                            <label class="profile-label">CVV *</label>
+                            <input type="text" class="profile-input" placeholder="123" required>
+                        </div>
+                    </div>
+                    <div class="profile-checkbox-wrapper">
+                        <input type="checkbox" checked> Save card for future payments
+                    </div>
+                    <button class="profile-btn-primary">Add Card</button>
+                </form>
+            </div>
+
+            <div id="page-orders" class="profile-content-page">
+                <h2 class="profile-section-title">My Orders</h2>
+
+                <div class="profile-order-card">
+                    <div class="profile-order-header">
+                        <div>Order ID <strong>#SDGT1254FD</strong></div>
+                        <div>Total <strong>$633.00</strong></div>
+                        <div>Paypal</div>
+                        <div>Est: 24 Feb 2024</div>
+                        <span class="profile-status-badge status-accepted">Accepted</span>
+                    </div>
+                    <div class="profile-order-body">
+                        <table class="profile-order-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Trendy Brown Coat</td>
+                                    <td>Brown</td>
+                                    <td>M</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="profile-order-actions">
+                        <button class="profile-btn-action profile-btn-dark" onclick="alert('Tracking...')">Track Order</button>
+                        <button class="profile-btn-action">Invoice</button>
+                        <button class="profile-btn-action" style="color:red; border-color:red;">Cancel Order</button>
+                    </div>
+                </div>
+
+                 <div class="profile-order-card">
+                    <div class="profile-order-header">
+                        <div>Order ID <strong>#SDGT1009AA</strong></div>
+                        <div>Total <strong>$120.50</strong></div>
+                        <div>Visa</div>
+                        <div>Delivered: 10 Jan 2024</div>
+                        <span class="profile-status-badge status-delivered">Delivered</span>
+                    </div>
+                    <div class="profile-order-body">
+                        <table class="profile-order-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Running Shoes</td>
+                                    <td>Black</td>
+                                    <td>10</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>Sports Cap</td>
+                                    <td>Grey</td>
+                                    <td>One Size</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="profile-order-actions">
+                        <button class="profile-btn-action profile-btn-dark">Add Review</button>
+                        <button class="profile-btn-action">Invoice</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // 1. Hide all pages
+            const pages = document.querySelectorAll('.profile-content-page');
+            pages.forEach(page => page.classList.remove('profile-page-visible'));
+
+            // 2. Show target page
+            const target = document.getElementById('page-' + tabName);
+            if (target) target.classList.add('profile-page-visible');
+
+            // 3. Update sidebar active state
+            const items = document.querySelectorAll('.profile-menu-item');
+            items.forEach(item => item.classList.remove('profile-menu-active'));
+            
+            // Find the button that was clicked and add active class (simplified logic)
+            // In a real app, you might match by text content or index
+            event.target.classList.add('profile-menu-active');
+        }
+
+        function deleteCard() {
+            if(confirm("Are you sure you want to remove this card?")) {
+                const card = document.getElementById('card-visa');
+                card.style.opacity = '0.5';
+                setTimeout(() => card.remove(), 300);
+            }
+        }
+    </script>
+</body>
+</html>
