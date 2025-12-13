@@ -6,24 +6,8 @@
         "originalPrice": 69.00,
         "description": "Premium polo shirt with modern design and comfortable fit.",
         "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
-        "images": [
-            "",
-            "./img/f3.jpg", 
-            "./img/f3.jpg"
-        ],
-        "sizes": [
-            { "size": "S", "inStock": true, "stock": 15 },
-            { "size": "M", "inStock": true, "stock": 25 },
-            { "size": "L", "inStock": true, "stock": 8 },
-            { "size": "XL", "inStock": true, "stock": 12 },
-            { "size": "XXL", "inStock": false, "stock": 0 }
-        ],
-        "colors": [
-            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
-            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
-            { "name": "Black", "value": "#000000", "inStock": true },
-            { "name": "White", "value": "#ffffff", "inStock": false }
-        ],
+        "images": 
+            "image/ass.jpg",
         "specifications": {
             "Material": "92% Cotton, 8% Elastane",
             "Fit": "Regular Fit",
@@ -33,7 +17,7 @@
             "Neckline": "Polo Collar",
             "Sleeve": "Short Sleeve"
         },
-        "category": "women"
+        "category": "Leggings"
     },
    {
         "id": 11,
@@ -42,24 +26,9 @@
         "originalPrice": 89.99,
         "description": "Premium polo shirt with modern design and comfortable fit.",
         "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
-        "images": [
+        "images": 
             "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop",
-            "./img/f3.jpg", 
-            "./img/f3.jpg"
-        ],
-        "sizes": [
-            { "size": "S", "inStock": true, "stock": 15 },
-            { "size": "M", "inStock": true, "stock": 25 },
-            { "size": "L", "inStock": true, "stock": 8 },
-            { "size": "XL", "inStock": true, "stock": 12 },
-            { "size": "XXL", "inStock": false, "stock": 0 }
-        ],
-        "colors": [
-            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
-            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
-            { "name": "Black", "value": "#000000", "inStock": true },
-            { "name": "White", "value": "#ffffff", "inStock": false }
-        ],
+        
         "specifications": {
             "Material": "92% Cotton, 8% Elastane",
             "Fit": "Regular Fit",
@@ -69,7 +38,7 @@
             "Neckline": "Polo Collar",
             "Sleeve": "Short Sleeve"
         },
-        "category": "men"
+        "category": "Tops and Bras"
     },
    {
         "id": 12,
@@ -78,24 +47,8 @@
         "originalPrice": 89.99,
         "description": "Premium polo shirt with modern design and comfortable fit.",
         "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
-        "images": [
+        "images": 
             "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop",
-            "./img/f3.jpg", 
-            "./img/f3.jpg"
-        ],
-        "sizes": [
-            { "size": "S", "inStock": true, "stock": 15 },
-            { "size": "M", "inStock": true, "stock": 25 },
-            { "size": "L", "inStock": true, "stock": 8 },
-            { "size": "XL", "inStock": true, "stock": 12 },
-            { "size": "XXL", "inStock": false, "stock": 0 }
-        ],
-        "colors": [
-            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
-            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
-            { "name": "Black", "value": "#000000", "inStock": true },
-            { "name": "White", "value": "#ffffff", "inStock": false }
-        ],
         "specifications": {
             "Material": "92% Cotton, 8% Elastane",
             "Fit": "Regular Fit",
@@ -105,7 +58,7 @@
             "Neckline": "Polo Collar",
             "Sleeve": "Short Sleeve"
         },
-        "category": "men"
+        "category": "Outerwear"
     },
    {
         "id": 13,
@@ -115,22 +68,7 @@
         "description": "Premium polo shirt with modern design and comfortable fit.",
         "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
         "images": [
-            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop",
-            "./img/f3.jpg", 
-            "./img/f3.jpg"
-        ],
-        "sizes": [
-            { "size": "S", "inStock": true, "stock": 15 },
-            { "size": "M", "inStock": true, "stock": 25 },
-            { "size": "L", "inStock": true, "stock": 8 },
-            { "size": "XL", "inStock": true, "stock": 12 },
-            { "size": "XXL", "inStock": false, "stock": 0 }
-        ],
-        "colors": [
-            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
-            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
-            { "name": "Black", "value": "#000000", "inStock": true },
-            { "name": "White", "value": "#ffffff", "inStock": false }
+            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop"
         ],
         "specifications": {
             "Material": "92% Cotton, 8% Elastane",
@@ -141,7 +79,7 @@
             "Neckline": "Polo Collar",
             "Sleeve": "Short Sleeve"
         },
-        "category": "men"
+        "category": "Accessories"
     },
    {
         "id": 14,
@@ -150,24 +88,8 @@
         "originalPrice": 89.99,
         "description": "Premium polo shirt with modern design and comfortable fit.",
         "fullDescription": "This premium Adidas polo shirt combines classic style with modern performance features. Made from high-quality cotton blend, it offers exceptional comfort and durability. Perfect for casual outings or sporting activities.",
-        "images": [
-            "./img/f3.jpg",
-            "./img/f3.jpg", 
-            "./img/f3.jpg"
-        ],
-        "sizes": [
-            { "size": "S", "inStock": true, "stock": 15 },
-            { "size": "M", "inStock": true, "stock": 25 },
-            { "size": "L", "inStock": true, "stock": 8 },
-            { "size": "XL", "inStock": true, "stock": 12 },
-            { "size": "XXL", "inStock": false, "stock": 0 }
-        ],
-        "colors": [
-            { "name": "Navy Blue", "value": "#1e3a5f", "inStock": true },
-            { "name": "Royal Blue", "value": "#4169e1", "inStock": true },
-            { "name": "Black", "value": "#000000", "inStock": true },
-            { "name": "White", "value": "#ffffff", "inStock": false }
-        ],
+        "images": 
+            "./image/Elevate Training Jacket.jpg",
         "specifications": {
             "Material": "92% Cotton, 8% Elastane",
             "Fit": "Regular Fit",
@@ -177,7 +99,7 @@
             "Neckline": "Polo Collar",
             "Sleeve": "Short Sleeve"
         },
-        "category": "men"
+        "category": "Tops and Bras"
     },
 
   {
@@ -187,22 +109,8 @@
         "originalPrice": 79.99,
         "description": "Vintage-inspired TRX jacket with retro design elements.",
         "fullDescription": "Embrace retro style with this vintage-inspired Adidas TRX jacket. Featuring classic design elements and modern comfort, this jacket is perfect for casual wear or light athletic activities.",
-        "images": [
-            "./img/f2.jpg",
-            "./img/f2.jpg",
-            "./img/f2.jpg"
-        ],
-        "sizes": [
-            { "size": "S", "inStock": true, "stock": 10 },
-            { "size": "M", "inStock": true, "stock": 18 },
-            { "size": "L", "inStock": true, "stock": 5 },
-            { "size": "XL", "inStock": true, "stock": 8 }
-        ],
-        "colors": [
-            { "name": "Navy/White", "value": "linear-gradient(45deg, #1e3a5f 50%, #ffffff 50%)", "inStock": true },
-            { "name": "Black/Red", "value": "linear-gradient(45deg, #000000 50%, #ff0000 50%)", "inStock": true },
-            { "name": "Grey", "value": "#808080", "inStock": true }
-        ],
+        "images": 
+            "/image/anotherhero.jpg",
         "specifications": {
             "Material": "100% Polyester",
             "Fit": "Regular Fit",
@@ -212,7 +120,7 @@
             "Closure": "Zip Front",
             "Pockets": "2 Side Pockets"
         },
-        "category": "men"
+        "category": "Leggings"
     },
 
   {
@@ -222,22 +130,8 @@
         "originalPrice": 159.00,
         "description": "Classic Beckenbauer track jacket with iconic design.",
         "fullDescription": "The iconic Adidas Beckenbauer track jacket returns with its classic design and modern updates. This jacket features the signature three stripes and comfortable fit that made it a legend.",
-        "images": [
-            "./img/f1.jpg",
-            "./img/f1.jpg",
-            "./img/f1.jpg"
-        ],
-        "sizes": [
-            { "size": "S", "inStock": true, "stock": 6 },
-            { "size": "M", "inStock": true, "stock": 12 },
-            { "size": "L", "inStock": true, "stock": 3 },
-            { "size": "XL", "inStock": false, "stock": 0 }
-        ],
-        "colors": [
-            { "name": "Navy", "value": "#1e3a5f", "inStock": true },
-            { "name": "Black", "value": "#000000", "inStock": true },
-            { "name": "Green", "value": "#228B22", "inStock": true }
-        ],
+        "images": 
+            "/image/bottoms.jpg",
         "specifications": {
             "Material": "100% Nylon",
             "Fit": "Classic Fit",
@@ -247,46 +141,406 @@
             "Closure": "Zip Front",
             "Collar": "Ribbed Collar"
         },
-        "category": "men"
+        "category": "Accessories"
   },
-
   { 
       "id": 17, 
       "name": "Adidas X Pop Classic T-shirt", 
       "price": 120.00, 
-      "image": "kugvkluhvljkgvlj", 
+      "originalPrice" : 200.00,
+      "images": "image/crop.jpg", 
       "description": "adidas X Pop Classic t-shirt, grey / navy" ,
-      "fullDescription": "Experience ultimate comfort and support with our High-Waist Training Leggings. Designed for high-intensity workouts, these leggings feature our patented FlexFit technology that moves with you. The four-way stretch fabric provides compression where you need it while allowing full range of motion. Perfect for yoga, running, weight training, or any activity that demands both style and performance."
+      "fullDescription": "Experience ultimate comfort and support with our High-Waist Training Leggings. Designed for high-intensity workouts, these leggings feature our patented FlexFit technology that moves with you. The four-way stretch fabric provides compression where you need it while allowing full range of motion. Perfect for yoga, running, weight training, or any activity that demands both style and performance.",
+      "category" : "Leggings",
+      "specifications": 
+      {
+            "Material": "100% Nylon",
+            "Fit": "Classic Fit",
+            "Care": "Machine washable",
+            "Origin": "Germany",
+            "Style": "Track Jacket",
+            "Closure": "Zip Front",
+            "Collar": "Ribbed Collar"
+        }
   },
-
-  { 
-      "id": 18, "name": "Adidas X Pop SL Cap", 
-      "price": 59.00, 
-      "image": "./img/Elevate Training jacket.jpg", 
-      "description": "adidas X Pop SL Cap, navy / white" 
+  {
+    "id": 18,
+    "name": "Nike Tech Fleece Joggers",
+    "price": 95.00,
+    "originalPrice": 140.00,
+    "images": "/image/Elevate Training Jacket.jpg",
+    "description": "Nike Tech Fleece Joggers, black/dark grey",
+    "fullDescription": "Stay warm without the bulk in the Nike Tech Fleece Joggers. Featuring a modern, streamlined silhouette, these pants offer lightweight warmth and comfort. The tapered fit and ribbed cuffs give a clean look, perfect for everyday wear or warming up before a workout. Multiple zippered pockets provide secure storage.",
+    "category": "Leggings",
+    "specifications": {
+      "Material": "66% Cotton, 34% Polyester",
+      "Fit": "Tapered Fit",
+      "Care": "Machine washable",
+      "Origin": "Vietnam",
+      "Style": "Activewear",
+      "Closure": "Drawstring",
+      "Collar": "N/A"
+    }
   },
-
-  { 
-      "id": 19, 
-      "name": "Butter Yard Pullover Hood", 
-      "price": 120.00, 
-      "image": "kuhvkuhvkugv", 
-      "description": "Butter Yard Pullover Hood, denim" 
+  {
+    "id": 19,
+    "name": "Under Armour HeatGear Compression Tee",
+    "price": 35.00,
+    "originalPrice": 50.00,
+    "images": "image/Essential Core Legging.jpg",
+    "description": "UA HeatGear Compression T-shirt, royal blue",
+    "fullDescription": "Designed to keep you cool and dry, the HeatGear Compression Tee is perfect for intense training sessions. Its ultra-tight, second-skin fit delivers powerful support. The four-way stretch construction allows for better movement in every direction, and the fabric wicks sweat quickly to the surface.",
+    "category": "T-shirts",
+    "specifications": {
+      "Material": "84% Polyester, 16% Elastane",
+      "Fit": "Compression",
+      "Care": "Wash cold",
+      "Origin": "Jordan",
+      "Style": "Baselayer",
+      "Closure": "Pullover",
+      "Collar": "Crew Neck"
+    }
   },
-
-  { 
-      "id": 20, 
-      "name": "Parra Rug Pull T-shirt", 
-      "price": 60.00, 
-      "image": "hhhhhhh", 
-      "description": "Parra Rug Pull t-shirt, white" 
+  {
+    "id": 20,
+    "name": "Reebok Nano X4 Training Shoes",
+    "price": 140.00,
+    "originalPrice": 160.00,
+    "images": "image/Flow Seamless Tank.jpg",
+    "description": "Reebok Nano X4 cross-training shoe, neon green/black",
+    "fullDescription": "The Nano X4 is built for versatility in the gym. It offers a stable platform for lifting, flexibility for dynamic movements, and comfort for running. Featuring a durable Flexweave upper and a responsive Floatride Energy Foam cushioning.",
+    "category": "Footwear",
+    "specifications": {
+      "Material": "Synthetic/Textile",
+      "Fit": "True to Size",
+      "Care": "Spot clean",
+      "Origin": "China",
+      "Style": "Cross-Trainer",
+      "Closure": "Lace-Up",
+      "Collar": "Low Cut"
+    }
   },
-  
-  { 
-    "id": 21, 
-    "name": "Carhartt L/S Sweat", 
-    "price": 130.00, 
-    "image": "kjhblvihvlhiv", 
-    "description": "Carhartt L/S DeadKebab Knock Knock Sweat" 
+  {
+    "id": 21,
+    "name": "Puma Classic Suede Sneakers",
+    "price": 75.00,
+    "originalPrice": 75.00,
+    "images": "image/image.png",
+    "description": "Puma Suede Classic XXI, burgundy/white",
+    "fullDescription": "A legendary silhouette, the Puma Suede Classic has been an icon since its debut in 1968. Featuring a soft suede upper and the signature Puma Formstrip, these sneakers offer a timeless look and reliable rubber outsole for traction.",
+    "category": "Footwear",
+    "specifications": {
+      "Material": "100% Suede",
+      "Fit": "Regular",
+      "Care": "Wipe clean with a damp cloth",
+      "Origin": "Indonesia",
+      "Style": "Lifestyle Sneaker",
+      "Closure": "Lace-Up",
+      "Collar": "Padded Ankle"
+    }
+  },
+  {
+    "id": 22,
+    "name": "New Balance 990v6 Running Shoe",
+    "price": 199.99,
+    "originalPrice": 220.00,
+    "images": "image/leggings.jpg",
+    "description": "New Balance 990v6, grey/navy/red",
+    "fullDescription": "The latest evolution of the iconic 990 line, the v6 provides a perfect blend of cushioning and style. Featuring FuelCell and ENCAP midsole technologies for optimal performance, this shoe delivers enduring comfort for both running and daily wear.",
+    "category": "Footwear",
+    "specifications": {
+      "Material": "Pigskin Suede and Mesh",
+      "Fit": "True to Size (Wide options available)",
+      "Care": "Spot clean",
+      "Origin": "USA (Made in USA)",
+      "Style": "Performance Running",
+      "Closure": "Lace-Up",
+      "Collar": "Padded"
+    }
+  },
+  {
+    "id": 23,
+    "name": "The North Face Denali Fleece Jacket",
+    "price": 180.00,
+    "originalPrice": 180.00,
+    "images": "image/new hero.jpg",
+    "description": "The North Face Denali Fleece, black",
+    "fullDescription": "An iconic fleece jacket, the Denali provides warmth and comfort in cool weather. Features include reinforced shoulders, chest, and forearms to resist abrasion, and a high-pile fleece body. Perfect for layering or as a standalone piece.",
+    "category": "Outerwear",
+    "specifications": {
+      "Material": "Recycled Fleece/Nylon",
+      "Fit": "Relaxed Fit",
+      "Care": "Machine wash cold",
+      "Origin": "El Salvador",
+      "Style": "Fleece Jacket",
+      "Closure": "Full Zip",
+      "Collar": "Stand Collar"
+    }
+  },
+  {
+    "id": 24,
+    "name": "Lululemon Align High-Rise Pant",
+    "price": 98.00,
+    "originalPrice": 118.00,
+    "images": "image/Pro Grip Yoga Mat.jpg",
+    "description": "Lululemon Align Pant 28\", magenta",
+    "fullDescription": "The buttery-soft Nulu fabric makes the Align Pant feel like a second skin. Designed for yoga and low-impact activities, these high-rise leggings offer weightless coverage and unrestricted movement. They feature a hidden waistband pocket for small essentials.",
+    "category": "Leggings",
+    "specifications": {
+      "Material": "Nulu Fabric (Nylon/Lycra)",
+      "Fit": "High-Rise, Skinny",
+      "Care": "Machine wash cold, lay flat to dry",
+      "Origin": "Bangladesh",
+      "Style": "Yoga Legging",
+      "Closure": "Pull-on",
+      "Collar": "N/A"
+    }
+  },
+  {
+    "id": 25,
+    "name": "Champion Reverse Weave Hoodie",
+    "price": 70.00,
+    "originalPrice": 85.00,
+    "images": "image/Recovery Compression.jpg",
+    "description": "Champion Reverse Weave Pullover Hoodie, oxford grey",
+    "fullDescription": "Known for its heavyweight, durable construction, the Reverse Weave Hoodie resists vertical shrinkage, ensuring a long-lasting fit. Featuring a double-layer hood and signature rib side panels for ease of movement. A true classic.",
+    "category": "Sweatshirts",
+    "specifications": {
+      "Material": "82% Cotton, 18% Polyester",
+      "Fit": "Relaxed/Athletic",
+      "Care": "Machine washable",
+      "Origin": "Honduras",
+      "Style": "Pullover Hoodie",
+      "Closure": "Pullover",
+      "Collar": "Hooded"
+    }
+  },
+  {
+    "id": 26,
+    "name": "Adidas Adilette Comfort Slides",
+    "price": 30.00,
+    "originalPrice": 40.00,
+    "images": "image/Runner 5 Short.jpg",
+    "description": "Adidas Adilette Slides, cloud white/navy",
+    "fullDescription": "The ultimate in post-workout comfort, the Adilette slides feature a contoured footbed and a cloudfoam plus cushioning that provides soft, plush comfort. Perfect for the gym shower, pool, or casual wear.",
+    "category": "Footwear",
+    "specifications": {
+      "Material": "Synthetic Upper and Outsole",
+      "Fit": "Regular",
+      "Care": "Wipe clean",
+      "Origin": "India",
+      "Style": "Slide Sandal",
+      "Closure": "Slip-on",
+      "Collar": "Open"
+    }
+  },
+  {
+    "id": 27,
+    "name": "Patagonia Baggies Shorts 5\"",
+    "price": 55.00,
+    "originalPrice": 55.00,
+    "images": "image/Sculpt Sports Bra.jpg",
+    "description": "Patagonia Baggies Shorts, stone blue",
+    "fullDescription": "Durable, multi-functional shorts designed for wear in and out of the water. Made with quick-drying recycled nylon, they feature a 5-inch inseam, an elasticized waistband with an internal drawstring, and vertical side pockets that reduce drag in the water.",
+    "category": "Shorts",
+    "specifications": {
+      "Material": "100% Recycled Nylon",
+      "Fit": "Regular",
+      "Care": "Machine wash warm",
+      "Origin": "Thailand",
+      "Style": "Utility Short",
+      "Closure": "Drawstring",
+      "Collar": "N/A"
+    }
+  },
+  {
+    "id": 28,
+    "name": "Asics Gel-Kayano 30",
+    "price": 160.00,
+    "originalPrice": 180.00,
+    "images": "image/Unisex Core Hoodie.jpg",
+    "description": "Asics Gel-Kayano 30 stability running shoe, cobalt/lime",
+    "fullDescription": "The Gel-Kayano 30 is a premium stability shoe, now featuring 4D GUIDANCE SYSTEM technology for adaptive support. It offers maximum comfort and shock absorption thanks to its PureGEL technology and FF BLAST PLUS ECO cushioning.",
+    "category": "Footwear",
+    "specifications": {
+      "Material": "Mesh and Synthetic",
+      "Fit": "Structured",
+      "Care": "Air dry",
+      "Origin": "Vietnam",
+      "Style": "Stability Running",
+      "Closure": "Lace-Up",
+      "Collar": "Padded"
+    }
+  },
+  {
+    "id": 29,
+    "name": "Columbia PFG Tamiami Shirt",
+    "price": 45.00,
+    "originalPrice": 60.00,
+    "images": "image/Pro Grip Yoga Mat.jpg",
+    "description": "Columbia PFG Tamiami II long sleeve fishing shirt, fossil",
+    "fullDescription": "Built for long days on the water, this shirt features Omni-Wick moisture management and Omni-Shade UPF 40 sun protection. Its lightweight, quick-drying fabric and strategic venting keep you cool and comfortable in the heat.",
+    "category": "Shirts",
+    "specifications": {
+      "Material": "100% Polyester Ripstop",
+      "Fit": "Modern Classic",
+      "Care": "Machine wash cold",
+      "Origin": "India",
+      "Style": "Fishing/Outdoor",
+      "Closure": "Button-Front",
+      "Collar": "Point Collar"
+    }
+  },
+  {
+    "id": 30,
+    "name": "Vans Sk8-Hi MTE-3 Boots",
+    "price": 150.00,
+    "originalPrice": 180.00,
+    "images": "image/Recovery Compression.jpg",
+    "description": "Vans Sk8-Hi MTE-3 all-weather high-top, black/marshmallow",
+    "fullDescription": "Take on the elements with the Sk8-Hi MTE-3. This shoe features an advanced thermal regulation package, waterproof membrane, and a dynamic All-Trac MTE-3 outsole for serious traction. Perfect for cold, wet conditions.",
+    "category": "Footwear",
+    "specifications": {
+      "Material": "Suede/Canvas/Rubber",
+      "Fit": "High-Top",
+      "Care": "Spot clean",
+      "Origin": "Philippines",
+      "Style": "Weatherized Sneaker",
+      "Closure": "Lace-Up",
+      "Collar": "High Padded Collar"
+    }
+  },
+  {
+    "id": 31,
+    "name": "Reigning Champ Midweight Crewneck",
+    "price": 135.00,
+    "originalPrice": 135.00,
+    "images": "image/Unisex Core Hoodie.jpg",
+    "description": "Reigning Champ Midweight Terry Crewneck Sweatshirt, heather ash",
+    "fullDescription": "Handcrafted in Canada, this crewneck is made from premium midweight terry, offering exceptional comfort and durability. Features include flatlock seams, set-in/raglan sleeves, and rib cuffs. A classic staple for elevated casual wear.",
+    "category": "Sweatshirts",
+    "specifications": {
+      "Material": "100% Cotton Midweight Terry",
+      "Fit": "Classic",
+      "Care": "Machine wash cold, hang dry",
+      "Origin": "Canada",
+      "Style": "Sweatshirt",
+      "Closure": "Pullover",
+      "Collar": "Crew Neck"
+    }
+  },
+  {
+    "id": 32,
+    "name": "Arc'teryx Atom LT Hoody",
+    "price": 250.00,
+    "originalPrice": 250.00,
+    "images": "/image/bottoms.jpg",
+    "description": "Arc'teryx Atom LT insulated hoody, forcefield orange",
+    "fullDescription": "An incredibly versatile synthetic insulated hoody that excels as a mid-layer or standalone jacket. Features Coreloft Compact insulation for warmth, a water-resistant shell, and stretch fleece side panels for ventilation and freedom of movement.",
+    "category": "Outerwear",
+    "specifications": {
+      "Material": "Nylon/Coreloft Insulation",
+      "Fit": "Trim Fit",
+      "Care": "Machine wash gentle",
+      "Origin": "China",
+      "Style": "Insulated Jacket",
+      "Closure": "Zip Front",
+      "Collar": "Hooded"
+    }
+  },
+  {
+    "id": 33,
+    "name": "Hydro Flask 40 oz Wide Mouth",
+    "price": 54.95,
+    "originalPrice": 54.95,
+    "images": "image/Recovery Compression.jpg",
+    "description": "Hydro Flask Wide Mouth Water Bottle (40 oz), olive",
+    "fullDescription": "Keep your drinks cold for 24 hours and hot for 12 hours with the TempShield double-wall vacuum insulation. Made from durable 18/8 pro-grade stainless steel. The wide mouth is perfect for adding ice cubes.",
+    "category": "Accessories",
+    "specifications": {
+      "Material": "Stainless Steel/Polypropylene",
+      "Fit": "N/A",
+      "Care": "Hand wash only",
+      "Origin": "China",
+      "Style": "Water Bottle",
+      "Closure": "Flex Cap",
+      "Collar": "Wide Mouth"
+    }
+  },
+  {
+    "id": 34,
+    "name": "Oakley Frogskins Sunglasses",
+    "price": 126.00,
+    "originalPrice": 160.00,
+    "images": "image/Runner 5 Short.jpg",
+    "description": "Oakley Frogskins Prizm lenses, matte black frame",
+    "fullDescription": "A throwback to the 80s, the Frogskins combine classic style with modern technology. Features lightweight O Matter frame material and Prizm lens technology designed to enhance color, contrast, and detail.",
+    "category": "Accessories",
+    "specifications": {
+      "Material": "O Matter Frame",
+      "Fit": "Standard",
+      "Care": "Wipe with lens cloth",
+      "Origin": "USA",
+      "Style": "Lifestyle Sunglasses",
+      "Closure": "N/A",
+      "Collar": "N/A"
+    }
+  },
+  {
+    "id": 35,
+    "name": "Salomon Speedcross 6 Trail Running",
+    "price": 140.00,
+    "originalPrice": 140.00,
+    "images": "image/Flow Seamless Tank.jpg",
+    "description": "Salomon Speedcross 6, black/red, trail running",
+    "fullDescription": "Lighter and with an even more powerful grip, the Speedcross 6 is engineered for maximum performance on technical trails. The aggressive Contagrip outsole with revised lug geometry sheds mud faster for better traction.",
+    "category": "Footwear",
+    "specifications": {
+      "Material": "Textile/Synthetic",
+      "Fit": "Precise Fit",
+      "Care": "Rinse with water",
+      "Origin": "Vietnam",
+      "Style": "Trail Running",
+      "Closure": "Quicklace System",
+      "Collar": "Low Cut"
+    }
+  },
+  {
+    "id": 36,
+    "name": "Carhartt K87 Pocket T-shirt",
+    "price": 24.99,
+    "originalPrice": 24.99,
+    "images": "/image/anotherhero.jpg",
+    "description": "Carhartt Heavyweight K87 short-sleeve pocket t-shirt, moss green",
+    "fullDescription": "A rugged workwear classic, this heavyweight cotton t-shirt is built for durability and comfort. Features a relaxed fit, a ribbed crewneck, and a convenient left-chest pocket with the Carhartt label.",
+    "category": "T-shirts",
+    "specifications": {
+      "Material": "100% Cotton Jersey",
+      "Fit": "Relaxed Fit",
+      "Care": "Machine wash warm",
+      "Origin": "Haiti",
+      "Style": "Workwear",
+      "Closure": "Pullover",
+      "Collar": "Crew Neck"
+    }
+  },
+  {
+    "id": 37,
+    "name": "Smartwool Classic Hike Socks",
+    "price": 23.00,
+    "originalPrice": 53.00,
+    "images": "image/Sculpt Sports Bra.jpg",
+    "description": "Smartwool Classic Hike Light Cushion Crew Socks, deep navy",
+    "fullDescription": "These merino wool socks offer unparalleled comfort, natural moisture management, and temperature regulation. Featuring a light cushion for performance with less bulk, and a supportive arch brace. Ideal for hiking or everyday wear.",
+    "category": "Accessories",
+    "specifications": {
+      "Material": "69% Merino Wool, 28% Nylon, 3% Elastane",
+      "Fit": "Crew",
+      "Care": "Machine wash cold",
+      "Origin": "USA",
+      "Style": "Hiking Sock",
+      "Closure": "N/A",
+      "Collar": "N/A"
+    }
   }
 ]

@@ -1,10 +1,13 @@
 import React from 'react'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
+import { Link } from 'react-router-dom'
 
-function Cart({isActive, selectedValue, setIsActive}) {
+function Cart({isActive, selectedValue, setIsActive, setShowCheckOut}) {
     const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
     const setSelectedValue = useSetAtom(productAtom)
+    console.log(selectedValue)
+    
     
     function removeFromCart(id, size, colorValue) {
         setSelectedValue(prev => prev.filter(p => 
@@ -47,13 +50,14 @@ function Cart({isActive, selectedValue, setIsActive}) {
                                       height: '12px', 
                                       border:  '1px solid #ddd',
                                       borderRadius: '50%',
-                                      verticalAlign: 'middle'
+                                      verticalAlign: 'middle',
+                                      backgroundColor: ci.color.value
                                     }}
                                   ></span>
-                                  <span className="ms-1">{ci.color}</span>
+                                  <span className="ms-1">{ci.color.name}</span>
                                 </div>
                             </div>
-                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color)}>
+                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color.value)}>
                                 <i className="bi bi-x"></i>
                             </button>
                         </div>
@@ -68,7 +72,11 @@ function Cart({isActive, selectedValue, setIsActive}) {
             </div> 
             <div className="cart-actions">
                     <button type="button" className="btn btn-outline-dark" id="continue-shopping">Continue Shopping</button>
-                    <button type="button" className="btn btn-dark" id="checkout-btn">Checkout</button>
+                    <Link to='/checkout'>
+                    <button type="button" className="btn btn-dark" id="checkout-btn" onClick={() =>setShowCheckOut(true)}>
+                        Checkout
+                    </button>
+                    </Link>
             </div>
         </div>
     </div>

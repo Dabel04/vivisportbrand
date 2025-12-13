@@ -1,9 +1,10 @@
 import React from 'react'
 import NavBar from './NavBar'
-function Header() {
+function Header({setShowCheckOut}) {
+  console.log('ffff')
   return (
     <>
-      <NavBar />
+      <NavBar setShowCheckOut={setShowCheckOut}/>
     </>
   )
 }

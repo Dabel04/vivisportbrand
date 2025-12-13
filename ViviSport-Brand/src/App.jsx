@@ -10,15 +10,18 @@ import {Routes, Route} from 'react-router-dom'
 import Error from "./Components/Error"
 import {atom} from 'jotai'
 import ShopDetails from './Components/ShopDetails'
+import React,{ useState } from "react"
+import Checkout from './Components/Checkout'
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const productAtom = atom([]);
 
 function App() {
+  const [showCheckOut, setShowCheckOut] = useState(false)
 
   return (
     <>
-    <Header />
+    {!showCheckOut && <Header setShowCheckOut={setShowCheckOut}/>}
     <Routes>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/shop" element={<Shop />}/>
@@ -28,8 +31,12 @@ function App() {
       <Route path="/contact" element={<Contact />}/>
       <Route path="/shop/:id" element={<ShopDetails />}/>
       <Route path='*' element={<Error />} />
+      <Route path="/checkout" element={<Checkout />}/>
     </Routes>
-    <Footer />
+    {!showCheckOut && <Footer />}
+    
+    {/*  Conditional Rendering of the checkout  */}
+
     </>
   )
 }
