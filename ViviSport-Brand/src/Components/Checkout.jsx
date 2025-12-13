@@ -1,7 +1,20 @@
 import React from 'react'
 import '../styles/checkout.css'
+import { useAtomValue } from 'jotai'
+import { productAtom } from '../App'
 
 function Checkout() {
+    const selectedValue = useAtomValue(productAtom);
+    const shipping = 10;
+    const discount = 0; // You can make this dynamic later
+    
+    // Calculate subtotal from all products
+    const subtotal = selectedValue.reduce((total, product) => {
+        return total + (product.price * product.quantity);
+    }, 0);
+    
+    // Calculate total
+    const total = subtotal + shipping - discount;
   return (
     <>
       
@@ -132,7 +145,7 @@ function Checkout() {
             {/* TERMS */}
             <div className="terms">
                 <input type="checkbox" id="termsCheck"/>
-                <label for="termsCheck">I agree to the Terms & Conditions and Refund Policy.</label>
+                <label forhtml="termsCheck">I agree to the Terms & Conditions and Refund Policy.</label>
             </div>
 
             {/* PLACE ORDER BUTTON */}
@@ -144,40 +157,32 @@ function Checkout() {
             <div className="summary-card">
                 <h3 className="section-title">Order Summary</h3>
                 <div id="order-items">
-                    <div className="summary-item">
-                        <img src="img/Essential Core Legging.jpg"/>
+                    {
+                        selectedValue.map((product) => (
+                    <div className="summary-item" key={product.id}>
+                        <img src={product.image}/>
                         <div>
-                            <div><strong>Essential Core Legging</strong></div>
-                            <div className="item-meta">Size: M • Qty: 1</div>
-                            <div className="remove-item">Remove</div>
-                        </div>
-                        <div>$68.00</div>
-                    </div>
+                            <div><strong>{product.name}</strong></div>
+                            <div className="item-meta">Size: {product.size} • Qty: {product.quantity}</div>
 
-                    <div className="summary-item">
-                        <img src="img/Unisex Core Hoodie.jpg"/>
-                        <div>
-                            <div><strong>Unisex Core Hoodie</strong></div>
-                            <div className="item-meta">Size: L • Qty: 1</div>
-                            <div className="remove-item">Remove</div>
                         </div>
-                        <div>$85.00</div>
+                        <div>${product.price}</div>
                     </div>
+                        ))
+                    }
                 </div>
-
                 <div className="summary-divider"></div>
 
-                <div className="summary-row"><span>Subtotal</span><span id="subtotal">$153.00</span></div>
-                <div className="summary-row"><span>Shipping</span><span id="shipping">$10.00</span></div>
-                <div className="summary-row"><span>Discount</span><span id="discount">$0.00</span></div>
+                <div className="summary-row"><span>Subtotal</span><span id="subtotal">${subtotal}</span></div>
+                <div className="summary-row"><span>Shipping</span><span id="shipping">${shipping}</span></div>
+                <div className="summary-row"><span>Discount</span><span id="discount">${discount}</span></div>
 
                 <div className="summary-divider"></div>
 
                 <div className="summary-row summary-total">
                     <span>Total</span>
-                    <span id="total">$163.00</span>
+                    <span id="total">${total}</span>
                 </div>
-
             </div>
         </aside>
 

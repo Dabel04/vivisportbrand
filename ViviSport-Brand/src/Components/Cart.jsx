@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
-import Checkout from './Checkout'
+import { Link } from 'react-router-dom'
 
-function Cart({isActive, selectedValue, setIsActive}) {
+function Cart({isActive, selectedValue, setIsActive, setShowCheckOut}) {
     const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
     const setSelectedValue = useSetAtom(productAtom)
-    const [showCheckOut, setShowCheckOut] = useState(false)
+    
     
     function removeFromCart(id, size, colorValue) {
         setSelectedValue(prev => prev.filter(p => 
@@ -71,11 +71,12 @@ function Cart({isActive, selectedValue, setIsActive}) {
             </div> 
             <div className="cart-actions">
                     <button type="button" className="btn btn-outline-dark" id="continue-shopping">Continue Shopping</button>
-                    <button type="button" className="btn btn-dark" id="checkout-btn" onClick={() =>setShowCheckOut(!showCheckOut)}>Checkout</button>
+                    <Link to='/checkout'>
+                    <button type="button" className="btn btn-dark" id="checkout-btn" onClick={() =>setShowCheckOut(true)}>
+                        Checkout
+                    </button>
+                    </Link>
             </div>
-
-            {/*  Conditional Rendering of the checkout  */}
-            {showCheckOut && <Checkout />}
         </div>
     </div>
     </>
