@@ -4,36 +4,37 @@
   padding: 10px;
 } */
  
+   
         :root {
-            /* Brand Colors */
-                /* Vibrant red */
-            --primary-navy: #02182b;    /* Deep navy blue */
+            /* Brand Colors - UPDATED FOR AirPods Max THEME */
+            --primary-navy: #000000;    /* Black for AirPods Max */
+            --primary-red: #a3a3a3;    /* Silver/Grey metallic tone */
             
             /* Background Colors */
             --bg-white: #ffffff;
-            --bg-light: #f8f9fa;
+            --bg-light: #f5f5f7;      /* Apple-style light grey */
             --bg-dark: #000000;
             
             /* Text Colors */
-            --text-primary: #000000;
-            --text-secondary: #666666;
-            --text-light: #999999;
+            --text-primary: #1d1d1f;    /* Dark grey for better readability */
+            --text-secondary: #86868b;  /* Apple-style medium grey */
+            --text-light: #8a8a8e;      /* Lighter grey */
             --text-white: #ffffff;
             
-            /* Accent Colors */
-            --accent-green: #28a745;
-            --accent-yellow: #FFD700;
-            --accent-blue: #4DA6FF;
-            --accent-light-blue: #ADD8E6;
-            --accent-pink: #FFB6C1;
+            /* Accent Colors - UPDATED */
+            --accent-green: #34c759;    /* Apple green */
+            --accent-yellow: #ffcc00;   /* Brighter yellow */
+            --accent-blue: #007aff;     /* Apple blue */
+            --accent-light-blue: #5ac8fa; /* Sky blue */
+            --accent-pink: #ff2d55;     /* Apple pink */
             
             /* UI Colors */
-            --border-light: #eeeeee;
-            --border-dark: #333333;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --overlay-color: rgba(0, 0, 0, 0.5);
+            --border-light: #d2d2d7;    /* Lighter border */
+            --border-dark: #1d1d1f;     /* Dark border */
+            --shadow-color: rgba(0, 0, 0, 0.08); /* Softer shadow */
+            --overlay-color: rgba(0, 0, 0, 0.4); /* Darker overlay */
             
-            /* Font Settings */
+            /* Font Settings - UNCHANGED */
             --font-main: 'Montserrat', sans-serif;
             --font-size-xs: 0.75rem;
             --font-size-sm: 0.85rem;
@@ -44,7 +45,7 @@
             --font-size-3xl: 2.5rem;
             --font-size-4xl: 3.5rem;
             
-            /* Spacing */
+            /* Spacing - UNCHANGED */
             --spacing-xs: 5px;
             --spacing-sm: 10px;
             --spacing-md: 15px;
@@ -52,23 +53,23 @@
             --spacing-xl: 30px;
             --spacing-2xl: 40px;
             
-            /* Border Radius */
+            /* Border Radius - UNCHANGED */
             --radius-sm: 4px;
             --radius-md: 8px;
             --radius-lg: 30px;
             --radius-circle: 50%;
             
-            /* Transitions */
+            /* Transitions - UNCHANGED */
             --transition-fast: 0.2s;
             --transition-normal: 0.3s;
             --transition-slow: 0.5s;
             
-            /* Shadows */
+            /* Shadows - UNCHANGED */
             --shadow-light: 0 2px 5px var(--shadow-color);
             --shadow-medium: 0 5px 15px var(--shadow-color);
             --shadow-heavy: 0 10px 30px var(--shadow-color);
             
-            /* Z-index */
+            /* Z-index - UNCHANGED */
             --z-dropdown: 1001;
             --z-navbar: 1030;
             --z-overlay: 1090;

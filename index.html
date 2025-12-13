@@ -11,34 +11,40 @@
     <!-- Changed font from Inter to Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+     /* .navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+} */
+ 
         :root {
-            /* Brand Colors */
-            --primary-red: #000000;     /* Vibrant red */
-            --primary-navy: #000000;    /* Deep navy blue */
-            /* --primary-navy: #02182b;  */
+            /* Brand Colors - UPDATED FOR AirPods Max THEME */
+            --primary-navy: #000000;    /* Black for AirPods Max */
+            --primary-red: #a3a3a3;    /* Silver/Grey metallic tone */
+            
             /* Background Colors */
             --bg-white: #ffffff;
-            --bg-light: #f8f9fa;
+            --bg-light: #f5f5f7;      /* Apple-style light grey */
             --bg-dark: #000000;
             
             /* Text Colors */
-            --text-primary: #000000;
-            --text-secondary: #666666;
-            --text-light: #999999;
+            --text-primary: #1d1d1f;    /* Dark grey for better readability */
+            --text-secondary: #86868b;  /* Apple-style medium grey */
+            --text-light: #8a8a8e;      /* Lighter grey */
             --text-white: #ffffff;
             
-            /* Accent Colors */
-            --accent-green: #28a745;
-            --accent-yellow: #FFD700;
-            --accent-blue: #4DA6FF;
-            --accent-light-blue: #ADD8E6;
-            --accent-pink: #FFB6C1;
+            /* Accent Colors - UPDATED */
+            --accent-green: #34c759;    /* Apple green */
+            --accent-yellow: #ffcc00;   /* Brighter yellow */
+            --accent-blue: #007aff;     /* Apple blue */
+            --accent-light-blue: #5ac8fa; /* Sky blue */
+            --accent-pink: #ff2d55;     /* Apple pink */
             
             /* UI Colors */
-            --border-light: #eeeeee;
-            --border-dark: #333333;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --overlay-color: rgba(0, 0, 0, 0.5);
+            --border-light: #d2d2d7;    /* Lighter border */
+            --border-dark: #1d1d1f;     /* Dark border */
+            --shadow-color: rgba(0, 0, 0, 0.08); /* Softer shadow */
+            --overlay-color: rgba(0, 0, 0, 0.4); /* Darker overlay */
             
             /* Font Settings */
             --font-main: 'Montserrat', sans-serif;
@@ -106,7 +112,7 @@
             font-weight: 800;
             letter-spacing: 3px;
             font-size: 1.6rem;
-            background: linear-gradient(45deg, var(--primary-red), #ff4d6d);
+            background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -141,7 +147,7 @@
         }
         
         .nav-link:hover {
-            color: var(--primary-red) !important;
+            color: var(--text-secondary) !important;
         }
         
         .nav-link::after {
@@ -293,14 +299,14 @@
         }
         
         .currency-item:hover {
-            background-color: rgba(215, 38, 61, 0.1);
+            background-color: rgba(163, 163, 163, 0.1);
             color: var(--primary-red);
         }
         
         .currency-item.active {
             color: var(--primary-red);
             font-weight: 600;
-            background-color: rgba(215, 38, 61, 0.1);
+            background-color: rgba(163, 163, 163, 0.1);
         }
         
         .currency-selector {
@@ -386,7 +392,7 @@
             
             /* Mobile hamburger icon */
             .navbar-toggler-icon {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28215, 38, 61, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28163, 163, 163, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
                 width: 1.2em;
                 height: 1.2em;
             }
@@ -436,7 +442,7 @@
             /* Mobile Search Dropdown */
             .mobile-search-dropdown {
                 position: fixed;
-                top: 56px;
+                top: 75px;
                 left: 0;
                 right: 0;
                 background: var(--bg-white);
@@ -482,7 +488,7 @@
             /* Mobile promo stays visible */
             .top-bar {
                 position: relative;
-                z-index: var(--z-navbar);
+                z-index: 10;
             }
         }
         
@@ -559,14 +565,14 @@
             text-transform: uppercase;
             font-size: var(--font-size-xl);
             text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            background: rgba(2, 24, 43, 0.6);
+            background: rgba(0, 0, 0, 0.6);
             padding: var(--spacing-xs) var(--spacing-xl);
             border-radius: var(--radius-lg);
             transition: all var(--transition-normal);
           }
           
           .category-card:hover .category-text {
-            background: rgba(215, 38, 61, 0.8);
+            background: rgba(163, 163, 163, 0.8);
             transform: translateY(-5px);
         }
         
@@ -811,8 +817,8 @@
         }
         
         .btn-dark:hover {
-            background-color: #033050;
-            border-color: #033050;
+            background-color: #333333;
+            border-color: #333333;
         }
         
         /* Responsive adjustments for side cart */
@@ -844,7 +850,7 @@
             margin-bottom: var(--spacing-xl);
             display: block;
             text-decoration: none;
-            background: linear-gradient(45deg, var(--primary-red), #ff4d6d);
+            background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -938,7 +944,7 @@
         }
         
         .newsletter-btn:hover {
-            background: #c81e36;
+            background: #8a8a8a;
         }
         
         .social-icons {
@@ -1041,7 +1047,7 @@
         .hero-section {
             position: relative;
             height: 85vh;
-            background-image: url('img/image.png');
+            background-image: url('../img/image.png');
             background-size: cover;
             background-position: center top;
             display: flex;
@@ -1050,7 +1056,7 @@
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, rgba(215, 38, 61, 0.1) 0%, rgba(215, 38, 61, 0) 100%);
+            background: linear-gradient(90deg, rgba(163, 163, 163, 0.1) 0%, rgba(163, 163, 163, 0) 100%);
         }
         .hero-content {
             position: relative;
@@ -1090,8 +1096,8 @@
         }
         
         .btn-light-custom:hover {
-            background: #c81e36;
-            border-color: #c81e36;
+            background: #8a8a8a;
+            border-color: #8a8a8a;
         }
         
         .btn-outline-custom {
@@ -1119,7 +1125,7 @@
             transition: all var(--transition-normal);
         }
         .add-to-cart-btn:hover {
-            background-color: #033050;
+            background-color: #333333;
             transform: translateY(-2px);
         }
         .add-to-cart-btn:active {
@@ -1273,7 +1279,7 @@
             border: none;
         }
         .btn-black:hover {
-            background-color: #033050;
+            background-color: #333333;
             color: var(--text-white);
         }
         /* Testimonials - Updated with primary colors */
@@ -1285,7 +1291,7 @@
         }
         
         .testimonial-box:hover {
-            box-shadow: 0 5px 15px rgba(215, 38, 61, 0.1);
+            box-shadow: 0 5px 15px rgba(163, 163, 163, 0.1);
             transform: translateY(-5px);
         }
         
@@ -1319,13 +1325,13 @@
             font-size: var(--font-size-2xl);
             cursor: pointer;
             z-index: var(--z-chatwidget);
-            box-shadow: 0 4px 12px rgba(2, 24, 43, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             transition: all var(--transition-normal);
         }
         
         .chat-widget:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(2, 24, 43, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
             background-color: var(--primary-red);
         }
         
@@ -1343,7 +1349,7 @@
         }
         
         a.text-decoration-none.text-dark.fw-bold:hover {
-            color: #c81e36 !important;
+            color: #8a8a8a !important;
             padding-right: 5px;
         }
         
@@ -1356,7 +1362,7 @@
         }
         
         .view-all-link:hover {
-            color: #c81e36 !important;
+            color: #8a8a8a !important;
             padding-right: 5px;
         }
         
