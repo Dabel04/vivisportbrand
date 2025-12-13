@@ -93,7 +93,7 @@ function Shop() {
                               <div className="product-card-shop">
                               <Link to={`/shop/${product.id}`}>
                                   <div className="card-image-wrapper">
-                                      <img src={product.image} alt="Legging"/>
+                                      <img src={product.images} alt="Legging"/>
                                   </div>
                               <div>    
                                   <h3 className="card-title-custom">{product.name}</h3>

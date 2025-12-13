@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
+import Checkout from './Checkout'
 
 function Cart({isActive, selectedValue, setIsActive}) {
     const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
     const setSelectedValue = useSetAtom(productAtom)
+    const [showCheckOut, setShowCheckOut] = useState(false)
     
     function removeFromCart(id, size, colorValue) {
         setSelectedValue(prev => prev.filter(p => 
@@ -47,13 +49,14 @@ function Cart({isActive, selectedValue, setIsActive}) {
                                       height: '12px', 
                                       border:  '1px solid #ddd',
                                       borderRadius: '50%',
-                                      verticalAlign: 'middle'
+                                      verticalAlign: 'middle',
+                                      backgroundColor: ci.color.value
                                     }}
                                   ></span>
-                                  <span className="ms-1">{ci.color}</span>
+                                  <span className="ms-1">{ci.color.name}</span>
                                 </div>
                             </div>
-                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color)}>
+                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color.value)}>
                                 <i className="bi bi-x"></i>
                             </button>
                         </div>
@@ -68,8 +71,11 @@ function Cart({isActive, selectedValue, setIsActive}) {
             </div> 
             <div className="cart-actions">
                     <button type="button" className="btn btn-outline-dark" id="continue-shopping">Continue Shopping</button>
-                    <button type="button" className="btn btn-dark" id="checkout-btn">Checkout</button>
+                    <button type="button" className="btn btn-dark" id="checkout-btn" onClick={() =>setShowCheckOut(!showCheckOut)}>Checkout</button>
             </div>
+
+            {/*  Conditional Rendering of the checkout  */}
+            {showCheckOut && <Checkout />}
         </div>
     </div>
     </>
