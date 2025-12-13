@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useAtomValue } from 'jotai'
 import { productAtom } from '../App'
 
-const Navbar = () => {
+const Navbar = ({setShowCheckOut}) => {
     const [isActive, setIsActive] = useState(false);
     const [searchActive, setSearchActive] = useState(false);
 
@@ -105,7 +105,7 @@ const Navbar = () => {
         </form>
     </div>
 
-    <Cart isActive={isActive} selectedValue={selectedValue} setIsActive={setIsActive}/>
+    <Cart isActive={isActive} selectedValue={selectedValue} setIsActive={setIsActive} setShowCheckOut={setShowCheckOut}/>
     </>
   );
 };

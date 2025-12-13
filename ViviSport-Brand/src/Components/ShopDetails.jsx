@@ -60,19 +60,6 @@ function ShopDetails() {
         Free Delivery on orders above $100
     </div>
     
-    
-    {/* Breadcrumb */}
-    {/* <div className="container">
-        <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li className="breadcrumb-item"><a href="index.html#shop-essentials">Shop</a></li>
-                <li className="breadcrumb-item"><a href="#">Tops</a></li>
-                <li className="breadcrumb-item active" aria-current="page">High-Waist Training Leggings</li>
-            </ol>
-        </nav>
-    </div> */}
-    
     {/* Product Detail Section */}
     <section className="container">
         <div className="row g-5">
@@ -116,8 +103,8 @@ function ShopDetails() {
                 
                 <div className="product-price">
                     <span className="old-price">${product.originalPrice}</span>
-                    {product.price}
-                    <span className="sale-badge">Save $20</span>
+                    ${product.price}
+                    <span className="sale-badge">${product.originalPrice}</span>
                 </div>
                 
                 <div className="product-rating">

@@ -1,0 +1,203 @@
+        /* =============== GLOBAL RESETS =============== */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        /* =============== HEADER =============== */
+        .payment-header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+        .payment-header-inner {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .payment-brand {
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .payment-secure-badge {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* =============== MAIN GRID =============== */
+        .payment-container {
+            display: grid;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        .payment-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        .two-cols {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+        .two-cols > div { flex: 1; }
+
+        .payment-tabs {
+            display: flex;
+            gap: 10px;
+        }
+        .payment-tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .payment-tab-active {
+            border: 2px solid #333;
+            font-weight: 700;
+        }
+        .payment-method-content { display: none; margin-top: 20px; }
+        .payment-method-active { display: block; }
+
+        /* =============== ORDER SUMMARY =============== */
+        .summary-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            position: sticky;
+            top: 20px;
+        }
+        .summary-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .summary-item img {
+            width: 60px;
+            height: 70px;
+            border-radius: 4px;
+            object-fit: cover;
+            background: #eee;
+        }
+        .item-meta {
+            font-size: 12px;
+            color: #777;
+        }
+        .remove-item {
+            color: red;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .summary-divider {
+            height: 1px;
+            background: #eee;
+            margin: 20px 0;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .summary-total {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        /* =============== BUTTONS =============== */
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            color: white;
+            background: #111;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Discount */
+        .discount-row {
+            display: flex;
+            gap: 10px;
+        }
+        .apply-btn {
+            padding: 12px;
+            background: #333;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* Terms */
+        .terms {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        /* =============== RESPONSIVE =============== */
+        @media(max-width: 900px){
+            .payment-container { grid-template-columns: 1fr; }
+        }

@@ -7,6 +7,7 @@ import {useAtom} from 'jotai'
 import { productAtom } from '../App'
 
 function LandingPage() {
+    // eslint-disable-next-line no-unused-vars
     const [product, setProduct] = useAtom(productAtom);
     const [selectedSizes, setSelectedSizes] = useState({});
     const [selectedColors, setSelectedColors] = useState({});
@@ -35,7 +36,7 @@ function LandingPage() {
     function updateCart(item, quantitys) {
       const qty = Number(quantitys) || 1
       const size = selectedSizes[item.id] || 'M';
-      const color = selectedColors[item.id] || colors[0]; // Default color
+      const color = selectedColors[item.id] || colors[2]; // Default color
       
       setProduct(prev => {
         const existing = prev.find(p => 
@@ -64,10 +65,8 @@ function LandingPage() {
       })
     }
 
-    console.log(product)
   return (
     <>
-        <>
         <div>
           <div className="top-bar text-center">
               Free Delivery on orders above $100
@@ -262,9 +261,6 @@ function LandingPage() {
         </div>
         <Outlet />
     </>
-    </>
-
-
   )
 }
 
