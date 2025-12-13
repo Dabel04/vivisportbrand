@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 function Cart({isActive, selectedValue, setIsActive, setShowCheckOut}) {
     const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
     const setSelectedValue = useSetAtom(productAtom)
+    console.log(selectedValue)
     
     
     function removeFromCart(id, size, colorValue) {

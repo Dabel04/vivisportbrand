@@ -1,14 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/shop.css'
-import products from '../Data/products.json'
+// import products from '../Data/products.json'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
 import { Link } from 'react-router-dom'
 
 function Shop() {
-
   const setSelectedValue = useSetAtom(productAtom);
   const [selectedSizes, setSelectedSizes] = useState({});
+  const [products, setProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+    useEffect(() => {
+        // Load products
+        fetch('/src/Data/products.json')
+            .then(res => res.json())
+            .then(data => setProducts(data));
+    }, []);
+
+    // Get unique categories and their counts
+    const getCategoryCounts = () => {
+        const counts = products.reduce((acc, product) => {
+            const category = product.category;
+            acc[category] = (acc[category] || 0) + 1;
+            return acc;
+        }, {});
+        return counts;
+    };
+
+    const categoryCounts = getCategoryCounts();
+    const totalProducts = products.length;
+
+    // Filter products based on selected category
+    const filteredProducts = selectedCategory === 'All' 
+        ? products 
+        : products.filter(p => p.category === selectedCategory);
 
 
   function handleSizeSelect(productId, size) {
@@ -56,16 +82,25 @@ function Shop() {
                           <h5 className="filter-header mb-0">Filters</h5>
                           <button className="btn-close" id="close-filter-mobile"></button>
                       </div>
-                      <div className="filter-group">
-                          <h5 className="filter-header">Categories</h5>
-                          <div className="list-group category-list">
-                              <span href="#" className="list-group-item active">All Activewear (9)</span>
-                              <span href="#" className="list-group-item">Leggings (3)</span>
-                              <span href="#" className="list-group-item">Tops & Bras (3)</span>
-                              <span href="#" className="list-group-item">Outerwear (2)</span>
-                              <span href="#" className="list-group-item">Accessories (1)</span>
-                          </div>
-                      </div>
+          <div className="list-group category-list">
+                      <span 
+                          className={`list-group-item ${selectedCategory === 'All' ? 'active' : ''}`}
+                          onClick={() => setSelectedCategory('All')}
+                          style={{ cursor: 'pointer' }}
+                      >
+                          All Activewear ({totalProducts})
+                      </span>
+                      {Object.entries(categoryCounts).map(([category, count]) => (
+                          <span 
+                              key={category}
+                              className={`list-group-item ${selectedCategory === category ? 'active' : ''}`}
+                              onClick={() => setSelectedCategory(category)}
+                              style={{ cursor: 'pointer' }}
+                          >
+                              {category} ({count})
+                          </span>
+                      ))}
+                  </div>
                       <button className="btn btn-outline-secondary w-100 mt-3">Clear All Filters</button>
                   </aside>
                   <div id="filter-overlay" className="filter-overlay"></div>
@@ -88,7 +123,7 @@ function Shop() {
 
                   <div className="row g-3 g-md-4 shop-grid">
                           {  
-                            products.map((product) => (
+                            filteredProducts.map(product => (
                               <div className="col-6 col-md-4 shop-container" key={product.id}>
                               <div className="product-card-shop">
                               <Link to={`/shop/${product.id}`}>
