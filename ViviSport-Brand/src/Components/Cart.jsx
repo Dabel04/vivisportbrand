@@ -51,13 +51,13 @@ function Cart({isActive, selectedValue, setIsActive, setShowCheckOut}) {
                                       border:  '1px solid #ddd',
                                       borderRadius: '50%',
                                       verticalAlign: 'middle',
-                                      backgroundColor: ci.color.value
+                                      backgroundColor: ci.color?.value
                                     }}
                                   ></span>
-                                  <span className="ms-1">{ci.color.name}</span>
+                                  <span className="ms-1">{ci.color?.name}</span>
                                 </div>
                             </div>
-                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color.value)}>
+                            <button className="cart-item-remove" onClick={() => removeFromCart(ci.id, ci.size, ci.color?.value)}>
                                 <i className="bi bi-x"></i>
                             </button>
                         </div>

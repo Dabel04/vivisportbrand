@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import '../styles/shop.css'
+import React, { useEffect, useState } from 'react';
+import '../styles/shop.css';
 // import products from '../Data/products.json'
 import { useSetAtom } from 'jotai'
 import { productAtom } from '../App'
