@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/checkout.css'
 import { useAtomValue } from 'jotai'
 import { productAtom } from '../App'
+import { Link } from 'react-router-dom';
 
 function Checkout() {
     const [activeTab, setActiveTab] = useState('card');
@@ -23,7 +24,6 @@ function Checkout() {
         country: 'Nigeria'
     });
     const [termsAccepted, setTermsAccepted] = useState(false);
-
     const isContactInfoValid = Object.values(contactInfo).every(field => field.trim() !== '');
     const isShippingAddressValid = Object.values(shippingAddress).every(field => field.trim() !== '');
     const isCardDetailsValid = activeTab !== 'card' || Object.values(cardDetails).every(field => field.trim() !== '');
@@ -211,7 +211,11 @@ function Checkout() {
             </div>
 
             {/* PLACE ORDER BUTTON */}
-            <button className="btn-primary" id="placeOrderBtn" disabled={!isFormValid}>Place Order</button>
+            <Link to='/success'>
+            <button className="btn-primary" id="placeOrderBtn" disabled={!isFormValid}>
+                Place Order
+            </button>
+            </Link>
         </div>
 
         {/* RIGHT SIDE (ORDER SUMMARY) */}
