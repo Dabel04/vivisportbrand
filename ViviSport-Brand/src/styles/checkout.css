@@ -90,6 +90,10 @@
         }
         .two-cols > div { flex: 1; }
 
+        .form-row {
+            margin-top: 15px;
+        }
+
         .payment-tabs {
             display: flex;
             gap: 10px;

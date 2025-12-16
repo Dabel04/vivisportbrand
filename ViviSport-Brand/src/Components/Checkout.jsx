@@ -1,9 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react';
 import '../styles/checkout.css'
 import { useAtomValue } from 'jotai'
 import { productAtom } from '../App'
+import { Link } from 'react-router-dom';
 
 function Checkout() {
+    const [activeTab, setActiveTab] = useState('card');
+    const [cardDetails, setCardDetails] = useState({
+        number: '',
+        expiry: '',
+        cvc: '',
+        name: ''
+    });
+    const [contactInfo, setContactInfo] = useState({
+        email: '',
+        phone: ''
+    });
+    const [shippingAddress, setShippingAddress] = useState({
+        fullName: '',
+        address: '',
+        city: '',
+        zip: '',
+        country: 'Nigeria'
+    });
+    const [termsAccepted, setTermsAccepted] = useState(false);
+    const isContactInfoValid = Object.values(contactInfo).every(field => field.trim() !== '');
+    const isShippingAddressValid = Object.values(shippingAddress).every(field => field.trim() !== '');
+    const isCardDetailsValid = activeTab !== 'card' || Object.values(cardDetails).every(field => field.trim() !== '');
+    const isFormValid = isContactInfoValid && isShippingAddressValid && isCardDetailsValid && termsAccepted;
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setCardDetails(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleContactChange = (e) => {
+        const { id, value } = e.target;
+        setContactInfo(prev => ({ ...prev, [id]: value }));
+    };
+
+    const handleShippingChange = (e) => {
+        const { id, value } = e.target;
+        setShippingAddress(prev => ({ ...prev, [id]: value }));
+    };
+
     const selectedValue = useAtomValue(productAtom);
     const shipping = 10;
     const discount = 0; // You can make this dynamic later
@@ -35,10 +79,10 @@ function Checkout() {
                 <h2 className="section-title">Contact Information</h2>
 
                 <label>Email Address</label>
-                <input type="email" id="email" placeholder="you@example.com"/>
+                <input type="email" id="email" placeholder="you@example.com" value={contactInfo.email} onChange={handleContactChange}/>
 
-                <label style={{marginTop: '15px'}}>Phone Number</label>
-                <input type="text" id="phone" placeholder="+234 801 234 5678"/>
+                <label className="form-row">Phone Number</label>
+                <input type="text" id="phone" placeholder="+234 801 234 5678" value={contactInfo.phone} onChange={handleContactChange}/>
             </div>
 
             {/* SHIPPING ADDRESS */}
@@ -46,25 +90,25 @@ function Checkout() {
                 <h2 className="section-title">Shipping Address</h2>
 
                 <label>Full Name</label>
-                <input type="text" id="fullName" placeholder="John Doe"/>
+                <input type="text" id="fullName" placeholder="John Doe" value={shippingAddress.fullName} onChange={handleShippingChange}/>
 
-                <label style={{marginTop: '15px'}}>Street Address</label>
-                <input type="text" id="address" placeholder="123 Athlete Way"/>
+                <label className="form-row">Street Address</label>
+                <input type="text" id="address" placeholder="123 Athlete Way" value={shippingAddress.address} onChange={handleShippingChange}/>
 
                 <div className="two-cols">
                     <div>
                         <label>City</label>
-                        <input type="text" id="city" placeholder="Lagos"/>
+                        <input type="text" id="city" placeholder="Lagos" value={shippingAddress.city} onChange={handleShippingChange}/>
                     </div>
 
                     <div>
                         <label>Postal Code</label>
-                        <input type="text" id="zip" placeholder="100001"/>
+                        <input type="text" id="zip" placeholder="100001" value={shippingAddress.zip} onChange={handleShippingChange}/>
                     </div>
                 </div>
 
                 <label>Country</label>
-                <select id="country">
+                <select id="country" value={shippingAddress.country} onChange={handleShippingChange}>
                     <option>Nigeria</option>
                     <option>United States</option>
                     <option>United Kingdom</option>
@@ -92,42 +136,60 @@ function Checkout() {
                 <h2 className="section-title">Payment Method</h2>
 
                 <div className="payment-tabs">
-                    <button className="payment-tab-btn payment-tab-active" data-tab="card">Credit Card</button>
-                    <button className="payment-tab-btn" data-tab="apple">Apple Pay</button>
-                    <button className="payment-tab-btn" data-tab="paypal">PayPal</button>
+                    <button 
+                        className={`payment-tab-btn ${activeTab === 'card' ? 'payment-tab-active' : ''}`} 
+                        onClick={() => handleTabClick('card')}>
+                        Credit Card
+                    </button>
+                    <button 
+                        className={`payment-tab-btn ${activeTab === 'apple' ? 'payment-tab-active' : ''}`} 
+                        onClick={() => handleTabClick('apple')}>
+                        Apple Pay
+                    </button>
+                    <button 
+                        className={`payment-tab-btn ${activeTab === 'paypal' ? 'payment-tab-active' : ''}`} 
+                        onClick={() => handleTabClick('paypal')}>
+                        PayPal
+                    </button>
                 </div>
 
                 {/* CARD FORM */}
-                <div className="payment-method-content payment-method-active" id="tab-card">
-                    <label>Card Number</label>
-                    <input type="text" placeholder="0000 0000 0000 0000"/>
+                {activeTab === 'card' && (
+                    <div className="payment-method-content payment-method-active" id="tab-card">
+                        <label>Card Number</label>
+                        <input type="text" name="number" value={cardDetails.number} onChange={handleInputChange} placeholder="0000 0000 0000 0000"/>
 
-                    <div className="two-cols" style={{marginTop: '15px'}}>
-                        <div>
-                            <label>Expiry Date</label>
-                            <input type="text" placeholder="MM / YY"/>
+                        <div className="two-cols form-row">
+                            <div>
+                                <label>Expiry Date</label>
+                                <input type="text" name="expiry" value={cardDetails.expiry} onChange={handleInputChange} placeholder="MM / YY"/>
+                            </div>
+                            <div>
+                                <label>CVC</label>
+                                <input type="text" name="cvc" value={cardDetails.cvc} onChange={handleInputChange} placeholder="123"/>
+                            </div>
                         </div>
-                        <div>
-                            <label>CVC</label>
-                            <input type="text" placeholder="123"/>
-                        </div>
+
+                        <label className="form-row">Name on Card</label>
+                        <input type="text" name="name" value={cardDetails.name} onChange={handleInputChange} placeholder="Full Name"/>
                     </div>
-
-                    <label style={{marginTop: '15px'}}>Name on Card</label>
-                    <input type="text" placeholder="Full Name"/>
-                </div>
+                )}
 
                 {/* APPLE PAY */}
-                <div className="payment-method-content" id="tab-apple">
-                    <p>Use Apple Pay on supported devices.</p>
-                    <button className="btn-primary">Pay with  Apple Pay</button>
-                </div>
+                {activeTab === 'apple' && (
+                    <div className="payment-method-content payment-method-active" id="tab-apple">
+                        <p>Use Apple Pay on supported devices.</p>
+                        <button className="btn-primary">Pay with  Apple Pay</button>
+                    </div>
+                )}
 
                 {/* PAYPAL */}
-                <div className="payment-method-content" id="tab-paypal">
-                    <p>You will be redirected to PayPal to complete payment.</p>
-                    <button className="btn-primary">Continue to PayPal</button>
-                </div>
+                {activeTab === 'paypal' && (
+                    <div className="payment-method-content payment-method-active" id="tab-paypal">
+                        <p>You will be redirected to PayPal to complete payment.</p>
+                        <button className="btn-primary">Continue to PayPal</button>
+                    </div>
+                )}
             </div>
 
             {/* DISCOUNT CODE */}
@@ -144,12 +206,16 @@ function Checkout() {
 
             {/* TERMS */}
             <div className="terms">
-                <input type="checkbox" id="termsCheck"/>
-                <label forhtml="termsCheck">I agree to the Terms & Conditions and Refund Policy.</label>
+                <input type="checkbox" id="termsCheck" checked={termsAccepted} onChange={() => setTermsAccepted(!termsAccepted)}/>
+                <label htmlFor="termsCheck">I agree to the Terms & Conditions and Refund Policy.</label>
             </div>
 
             {/* PLACE ORDER BUTTON */}
-            <button className="btn-primary" id="placeOrderBtn" disabled>Place Order</button>
+            <Link to='/success'>
+            <button className="btn-primary" id="placeOrderBtn" disabled={!isFormValid}>
+                Place Order
+            </button>
+            </Link>
         </div>
 
         {/* RIGHT SIDE (ORDER SUMMARY) */}

@@ -1,0 +1,97 @@
+        /* Reusing your Global Resets */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.4;
+            height: 100%;
+        }
+
+        /* Centering Wrapper */
+        .success-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Success Card */
+        .success-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Icon */
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .success-text {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        /* Order Details Box */
+        .order-details {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .detail-row:last-child { margin-bottom: 0; }
+        
+        .detail-label { color: #777; font-weight: 500; }
+        .detail-value { font-weight: 700; color: #111; }
+
+        /* Reusing your Button Style */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            color: white;
+            background: #111;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none; /* For anchor tag */
+            box-sizing: border-box;
+        }
+        
+        .btn-secondary {
+            display: block;
+            margin-top: 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .btn-secondary:hover { color: #111; }
