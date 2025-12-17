@@ -1,12 +1,29 @@
 import { Link } from 'react-router-dom';
 import Cart from './Cart'
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAtomValue } from 'jotai'
 import { productAtom } from '../App'
 
 const Navbar = ({setShowCheckOut}) => {
     const [isActive, setIsActive] = useState(false);
     const [searchActive, setSearchActive] = useState(false);
+
+    const popupRef = useRef(null);
+
+    function clickOutSide(event) {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            setIsActive(false)
+            setSearchActive(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', clickOutSide);
+
+        return () => {
+            document.removeEventListener('mousedown', clickOutSide)
+        }
+    }, )
 
     const selectedValue = useAtomValue(productAtom);
     const cartNumber = selectedValue.reduce((s, i) => s + (i.quantity || 0), 0);
@@ -27,7 +44,7 @@ const Navbar = ({setShowCheckOut}) => {
                 <div className="nav-icons mobile-version">
                     <i className="bi bi-search" id="mobile-search-toggle" onClick={() => setSearchActive(!searchActive)}></i>
                     <i className="bi bi-person"></i>
-                    <div className="position-relative" onClick={() => setIsActive(!isActive)}>
+                    <div className="position-relative" onClick={() => setIsActive(!isActive)} ref={popupRef}>
                         <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
                         <span id="cart-count-mobile" className="cart-count">{cartNumber}</span>
                     </div>
@@ -52,21 +69,9 @@ const Navbar = ({setShowCheckOut}) => {
             
             {/* Desktop Icons */}
             <div className="nav-icons d-none d-lg-flex align-items-center">
-                {/* Currency Dropdown */}
-                <div className="position-relative">
-                    <div className="currency-selector" id="desktop-currency-toggle">
-                        <span id="desktop-currency-text">USD $</span> <i className="bi bi-chevron-down"></i>
-                    </div>
-                    <div className="currency-dropdown" id="desktop-currency-dropdown">
-                        <div className="currency-item active" data-currency="USD">USD $</div>
-                        <div className="currency-item" data-currency="EUR">EUR €</div>
-                        <div className="currency-item" data-currency="GBP">GBP £</div>
-                        <div className="currency-item" data-currency="CAD">CAD $</div>
-                    </div>
-                </div>
                 
                 {/* Search Dropdown */}
-                <div className="position-relative" onClick={() => setSearchActive(!searchActive)}>
+                <div className="position-relative" onClick={() => setSearchActive(!searchActive)} ref={popupRef}>
                     <i className="bi bi-search" id="desktop-search-toggle"></i>
                     <div className={searchActive ? 'search-dropdown active' : 'search-dropdown'} id="desktop-search-dropdown">
                         <form className="search-form" id="desktop-search-form">
@@ -87,7 +92,7 @@ const Navbar = ({setShowCheckOut}) => {
                 
                 <i className="bi bi-person"></i>
                 
-                <div className="position-relative" onClick={() => setIsActive(!isActive)}>
+                <div className="position-relative" onClick={() => setIsActive(!isActive)} ref={popupRef}>
                     <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
                     <span id="cart-count-desktop" className="cart-count">{cartNumber}</span>
                 </div>
