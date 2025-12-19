@@ -199,13 +199,213 @@
         }
 
         /* --- Footer & Side Cart --- */
-        .footer-custom {
-            background-color: var(--bg-dark);
-            color: #ccc;
-            padding: var(--spacing-xl) 0;
+         .footer {
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            padding: 60px 0 30px 0;
+            margin-top: 80px;
         }
-        .footer-custom a { color: #aaa; text-decoration: none; }
-        .footer-custom a:hover { color: var(--primary-red); }
+        
+        /* Updated Footer Brand for 44:11 */
+        .footer-brand {
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-xl);
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-tagline {
+            color: var(--text-light);
+            font-size: var(--font-size-md);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .footer-title {
+            font-weight: 700;
+            font-size: var(--font-size-md);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-white);
+            position: relative;
+            padding-bottom: var(--spacing-md);
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-red);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: var(--font-size-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-red);
+            padding-left: 5px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--border-dark);
+            background: transparent;
+            color: var(--text-white);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-md);
+        }
+        
+        .newsletter-input::placeholder {
+            color: var(--text-light);
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--primary-red);
+            outline: none;
+        }
+        
+        .newsletter-btn {
+            background: var(--primary-red);
+            color: var(--text-white);
+            border: none;
+            padding: 0 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .newsletter-btn:hover {
+            background: #8a8a8a;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .social-icon {
+            color: var(--text-light);
+            font-size: var(--font-size-2xl);
+            transition: all var(--transition-fast);
+        }
+        
+        .social-icon:hover {
+            color: var(--primary-red);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border-dark);
+            margin-top: 50px;
+            padding-top: var(--spacing-xl);
+        }
+        
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-xl);
+        }
+        
+        .copyright {
+            color: var(--text-light);
+            font-size: var(--font-size-sm);
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+        
+        .payment-icon {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color var(--transition-fast);
+        }
+        
+        .payment-icon:hover {
+            color: var(--primary-red);
+        }
+        
+        .footer-links-bottom {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .footer-links-bottom a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-links-bottom a:hover {
+            color: var(--primary-red);
+        }
+        
+        /* Mobile Footer */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 40px 0 20px 0;
+            }
+            
+            .footer-title {
+                margin-top: 30px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-btn {
+                padding: 12px 20px;
+            }
+            
+            .footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .footer-links-bottom {
+                justify-content: center;
+            }
+        }
 
         .side-cart {
             position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px;
@@ -539,10 +739,102 @@
         </div>
     </main>
 
-    <footer class="footer-custom">
-        <div class="container-xl">
-            <div class="text-center pt-4 border-top border-secondary opacity-50">
-                <small>&copy; 2025 44:11 Activewear.</small>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Brand & Description -->
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <a href="#" class="footer-brand">44:11</a>
+                    <p class="footer-tagline">
+                        Elevate your workout with premium activewear designed for performance and style. 
+                        Experience the perfect blend of comfort, durability, and elegance in every piece.
+                    </p>
+                    <div class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h6 class="footer-title">Shop</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Tops</a></li>
+                        <li><a href="#">Bottoms</a></li>
+                        <li><a href="#">Sports Bras</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h6 class="footer-title">Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Care Instructions</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h6 class="footer-title">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Wholesale</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h6 class="footer-title">Contact</h6>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@44eleven.com">hello@44eleven.com</a></li>
+                        <li><a href="tel:+18005551234">1-800-555-1234</a></li>
+                        <li>Mon-Fri: 9am-6pm EST</li>
+                        <li>123 Active Street</li>
+                        <li>New York, NY 10001</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        &copy; 2024 44:11 Activewear. All rights reserved.
+                    </div>
+                    
+                    <div class="footer-links-bottom">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                        <a href="#">Accessibility</a>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <i class="bi bi-credit-card payment-icon"></i>
+                        <i class="bi bi-paypal payment-icon"></i>
+                        <i class="bi bi-google payment-icon"></i>
+                        <i class="bi bi-apple payment-icon"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -580,10 +872,7 @@
                 document.getElementById('open-cart-mobile')?.addEventListener('click', () => this.openSideCart());
                 document.getElementById('close-cart')?.addEventListener('click', () => this.closeSideCart());
                 this.overlayElement?.addEventListener('click', () => this.closeSideCart());
-                document.getElementById('checkout-btn')?.addEventListener('click', () => {
-                    // Navigate to payment page
-                    window.location.href = 'payment.html';
-                });
+                document.getElementById('checkout-btn')?.addEventListener('click', () => this.checkout());
 
                 document.querySelectorAll('.btn-add-to-cart').forEach(button => {
                     button.addEventListener('click', (e) => this.addToCart(e, button));

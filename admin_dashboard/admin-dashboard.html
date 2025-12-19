@@ -1,0 +1,590 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>44:11 Admin Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg-body: #F4F5F7;
+            --bg-surface: #FFFFFF;
+            --text-primary: #111111;
+            --text-secondary: #6B7280;
+            --accent-black: #000000;
+            --border-color: #E5E7EB;
+            
+            /* Status Colors */
+            --status-success-bg: #DEF7EC;
+            --status-success-text: #03543F;
+            --status-pending-bg: #FEF3C7;
+            --status-pending-text: #92400E;
+            --status-error-bg: #FDE8E8;
+            --status-error-text: #9B1C1C;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: var(--bg-surface);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            text-decoration: none;
+            margin-bottom: 40px;
+            display: block;
+            padding-left: 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background-color: #F9FAFB;
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background-color: var(--accent-black);
+            color: #fff;
+        }
+
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .user-profile {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #E5E7EB;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* --- Cards --- */
+        .stats-card {
+            background: var(--bg-surface);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .stats-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stats-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 10px 0 5px;
+        }
+
+        .stats-trend {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .text-success { color: var(--status-success-text) !important; }
+        .text-danger { color: var(--status-error-text) !important; }
+
+        /* --- Tables --- */
+        .admin-table-card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table th {
+            background-color: #F9FAFB;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table td {
+            padding: 15px 20px;
+            vertical-align: middle;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-paid, .status-active { background: var(--status-success-bg); color: var(--status-success-text); }
+        .status-pending, .status-processing { background: var(--status-pending-bg); color: var(--status-pending-text); }
+        .status-cancelled, .status-low { background: var(--status-error-bg); color: var(--status-error-text); }
+
+        .btn-black {
+            background: var(--accent-black);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
+            font-size: 0.9rem;
+        }
+        .btn-black:hover { background: #333; color: white; }
+
+        /* --- Mobile Toggle --- */
+        @media (max-width: 992px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+        }
+
+        /* --- View Visibility --- */
+        .view-section { display: none; animation: fadeIn 0.3s; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <a href="#" class="sidebar-brand">44:11 Admin</a>
+        
+        <div class="nav-links">
+            <a onclick="switchView('dashboard')" class="nav-item active" id="nav-dashboard">
+                <i class="bi bi-grid-1x2"></i> Overview
+            </a>
+            <a onclick="switchView('orders')" class="nav-item" id="nav-orders">
+                <i class="bi bi-box-seam"></i> Orders
+            </a>
+            <a onclick="switchView('products')" class="nav-item" id="nav-products">
+                <i class="bi bi-tag"></i> Products
+            </a>
+            <a href="#" class="nav-item">
+                <i class="bi bi-people"></i> Customers
+            </a>
+            <a href="#" class="nav-item">
+                <i class="bi bi-graph-up"></i> Analytics
+            </a>
+            <a href="#" class="nav-item">
+                <i class="bi bi-gear"></i> Settings
+            </a>
+        </div>
+
+        <div class="user-profile">
+            <div class="user-avatar"></div>
+            <div>
+                <div style="font-weight: 600; font-size: 0.9rem;">Admin User</div>
+                <div style="font-size: 0.8rem; color: #666;">Store Owner</div>
+            </div>
+            <a href="admin-login.html" class="ms-auto text-dark"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- ================= DASHBOARD VIEW ================= -->
+        <div id="view-dashboard" class="view-section active">
+            <div class="page-header">
+                <h1 class="page-title">Dashboard Overview</h1>
+                <div class="text-secondary" id="currentDate"></div>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-label">Total Revenue</div>
+                        <div class="stats-value">$24,500.00</div>
+                        <div class="stats-trend text-success"><i class="bi bi-arrow-up"></i> +12% from last month</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-label">Total Orders</div>
+                        <div class="stats-value">345</div>
+                        <div class="stats-trend text-success"><i class="bi bi-arrow-up"></i> +5% from last month</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-label">Products Sold</div>
+                        <div class="stats-value">892</div>
+                        <div class="stats-trend text-danger"><i class="bi bi-arrow-down"></i> -2% from last month</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-label">Active Customers</div>
+                        <div class="stats-value">1,204</div>
+                        <div class="stats-trend text-success"><i class="bi bi-arrow-up"></i> +8% new signups</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Row -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="stats-card h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="fw-bold m-0">Revenue Analytics</h5>
+                            <select class="form-select w-auto form-select-sm">
+                                <option>Last 7 Days</option>
+                                <option>Last 30 Days</option>
+                                <option>This Year</option>
+                            </select>
+                        </div>
+                        <canvas id="revenueChart" style="max-height: 300px;"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card h-100">
+                        <h5 class="fw-bold mb-3">Top Products</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                <div>
+                                    <div class="fw-bold">Tech Fleece Hoodie</div>
+                                    <small class="text-secondary">84 sold</small>
+                                </div>
+                                <span class="fw-bold">$7,140</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                <div>
+                                    <div class="fw-bold">AeroSwift Shorts</div>
+                                    <small class="text-secondary">62 sold</small>
+                                </div>
+                                <span class="fw-bold">$2,790</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                <div>
+                                    <div class="fw-bold">Compression Top</div>
+                                    <small class="text-secondary">45 sold</small>
+                                </div>
+                                <span class="fw-bold">$2,475</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="admin-table-card">
+                <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="m-0 fw-bold">Recent Orders</h5>
+                    <a href="#" onclick="switchView('orders')" class="text-decoration-none text-dark fw-bold" style="font-size: 0.9rem;">View All</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#4411-9012</td>
+                                <td>John Doe</td>
+                                <td>Oct 24, 2025</td>
+                                <td>$125.00</td>
+                                <td><span class="status-badge status-paid">Paid</span></td>
+                                <td><button class="btn btn-sm btn-outline-dark">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>#4411-9011</td>
+                                <td>Sarah Smith</td>
+                                <td>Oct 24, 2025</td>
+                                <td>$45.00</td>
+                                <td><span class="status-badge status-processing">Processing</span></td>
+                                <td><button class="btn btn-sm btn-outline-dark">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>#4411-9010</td>
+                                <td>Michael Brown</td>
+                                <td>Oct 23, 2025</td>
+                                <td>$210.00</td>
+                                <td><span class="status-badge status-paid">Paid</span></td>
+                                <td><button class="btn btn-sm btn-outline-dark">View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PRODUCTS VIEW ================= -->
+        <div id="view-products" class="view-section">
+            <div class="page-header">
+                <h1 class="page-title">Products</h1>
+                <button class="btn btn-black"><i class="bi bi-plus-lg"></i> Add Product</button>
+            </div>
+
+            <div class="admin-table-card">
+                <div class="p-3 border-bottom">
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="Search products...">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select">
+                                <option>Category: All</option>
+                                <option>Men</option>
+                                <option>Women</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;"><input type="checkbox"></th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div style="width: 40px; height: 40px; background: #eee; border-radius: 4px; margin-right: 10px;"></div>
+                                        <span class="fw-bold">Tech Fleece Hoodie</span>
+                                    </div>
+                                </td>
+                                <td>Men's Training</td>
+                                <td>$85.00</td>
+                                <td>124</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div style="width: 40px; height: 40px; background: #eee; border-radius: 4px; margin-right: 10px;"></div>
+                                        <span class="fw-bold">AeroSwift Shorts</span>
+                                    </div>
+                                </td>
+                                <td>Women's Running</td>
+                                <td>$45.00</td>
+                                <td>8</td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ORDERS VIEW ================= -->
+        <div id="view-orders" class="view-section">
+            <div class="page-header">
+                <h1 class="page-title">Order Management</h1>
+                <button class="btn btn-outline-dark"><i class="bi bi-download"></i> Export CSV</button>
+            </div>
+            
+            <div class="admin-table-card">
+                 <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#4411-9012</td>
+                                <td>Oct 24, 09:41 AM</td>
+                                <td>John Doe</td>
+                                <td>2 items</td>
+                                <td>$125.00</td>
+                                <td>Credit Card</td>
+                                <td><span class="status-badge status-processing">Processing</span></td>
+                                <td>
+                                    <select class="form-select form-select-sm" style="width: 100px;">
+                                        <option>Action</option>
+                                        <option>Ship</option>
+                                        <option>Cancel</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#4411-9010</td>
+                                <td>Oct 23, 02:20 PM</td>
+                                <td>Michael Brown</td>
+                                <td>1 item</td>
+                                <td>$210.00</td>
+                                <td>PayPal</td>
+                                <td><span class="status-badge status-paid">Shipped</span></td>
+                                <td>
+                                     <button class="btn btn-sm btn-light">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+        // 1. Current Date
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', dateOptions);
+
+        // 2. View Switching Logic
+        function switchView(viewName) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            // Show target view
+            document.getElementById('view-' + viewName).classList.add('active');
+            
+            // Update Sidebar Active State
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + viewName);
+            if(activeNav) activeNav.classList.add('active');
+        }
+
+        // 3. Initialize Chart.js
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [1200, 1900, 1500, 2500, 2200, 3000, 3200],
+                    borderColor: '#000000',
+                    backgroundColor: 'rgba(0,0,0,0.05)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { borderDash: [5, 5] }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

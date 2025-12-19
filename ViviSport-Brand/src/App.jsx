@@ -12,7 +12,6 @@ import {atom} from 'jotai'
 import ShopDetails from './Components/ShopDetails'
 import React,{ useState } from "react"
 import Checkout from './Components/Checkout'
-import Success from "./Components/Success"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const productAtom = atom([]);
@@ -33,7 +32,6 @@ function App() {
       <Route path="/shop/:id" element={<ShopDetails />}/>
       <Route path='*' element={<Error />} />
       <Route path="/checkout" element={<Checkout />}/>
-      <Route path="/success" element={<Success />}/>
     </Routes>
     {!showCheckOut && <Footer />}
     
