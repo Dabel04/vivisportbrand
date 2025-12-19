@@ -12,7 +12,6 @@ const Navbar = ({setShowCheckOut}) => {
 
     function clickOutSide(event) {
         if (popupRef.current && !popupRef.current.contains(event.target)) {
-            setIsActive(false)
             setSearchActive(false)
         }
     }
@@ -42,9 +41,9 @@ const Navbar = ({setShowCheckOut}) => {
             {/* Mobile Icons Container */}
             <div className="mobile-icons-container d-lg-none">
                 <div className="nav-icons mobile-version">
-                    <i className="bi bi-search" id="mobile-search-toggle" onClick={() => setSearchActive(!searchActive)}></i>
+                    <i className="bi bi-search" id="mobile-search-toggle" onClick={() => setSearchActive(!searchActive)} ref={popupRef}></i>
                     <i className="bi bi-person"></i>
-                    <div className="position-relative" onClick={() => setIsActive(!isActive)} ref={popupRef}>
+                    <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                         <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
                         <span id="cart-count-mobile" className="cart-count">{cartNumber}</span>
                     </div>
@@ -59,12 +58,6 @@ const Navbar = ({setShowCheckOut}) => {
                     <li className="nav-item"><Link to='/faq' className='nav-link'>Faq</Link></li>
                     <li className="nav-item"><Link to='/contact' className='nav-link'>Contact</Link></li>
                 </ul>
-                
-                <div className="mobile-currency d-lg-none">
-                    <div className="currency-selector" id="mobile-currency-toggle">
-                        Currency: <span id="mobile-currency-text">USD $</span> <i className="bi bi-chevron-down"></i>
-                    </div>
-                </div>
             </div>
             
             {/* Desktop Icons */}
@@ -92,7 +85,7 @@ const Navbar = ({setShowCheckOut}) => {
                 
                 <i className="bi bi-person"></i>
                 
-                <div className="position-relative" onClick={() => setIsActive(!isActive)} ref={popupRef}>
+                <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                     <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
                     <span id="cart-count-desktop" className="cart-count">{cartNumber}</span>
                 </div>

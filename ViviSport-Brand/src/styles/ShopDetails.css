@@ -1,7 +1,7 @@
         :root {
-            /* Brand Colors */
-            --primary-red: #d7263d;     /* Vibrant red */
-            --primary-navy: #02182b;    /* Deep navy blue */
+            /* Brand Colors - UPDATED FOR AirPods Max THEME */
+            --primary-black: #000000f6;    /* Black for AirPods Max */
+            --primary-white: #c4c4c4;    /* Silver/Grey metallic tone */
             
             /* Background Colors */
             --bg-white: #ffffff;
