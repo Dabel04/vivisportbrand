@@ -1332,7 +1332,7 @@
         
         /* View All link in Hot Right Now section */
         .view-all-link {
-            color: var(--primary-white) !important;
+            color: gray !important;
             text-decoration: none;
             font-weight: 600;
             transition: all var(--transition-normal);

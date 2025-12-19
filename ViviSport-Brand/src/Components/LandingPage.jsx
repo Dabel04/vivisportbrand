@@ -162,12 +162,16 @@ function LandingPage() {
           <section className="container">
               <div className="d-flex justify-content-between align-items-end mb-4">
                   <h2 className="section-header mb-0 mt-5">Hot Right Now</h2>
-                  <a href="#" className="view-all-link" style={{fontSize: '0.8rem'}}>VIEW ALL</a>
+                  <Link to='/shop'>
+                  <span  className="view-all-link" style={{fontSize: '0.8rem'}}>
+                    VIEW ALL
+                </span>
+                </Link>
               </div>
               <div className="row">
                   {/* Products looped */}           
                      {
-                        products.map((product) => (
+                        products.slice(0, 16).map((product) => (
                     <div className="col-6 col-lg-3" key={product.id}>
                          <div className="product-card">
                             <Link to={`/shop/${product.id}`}>

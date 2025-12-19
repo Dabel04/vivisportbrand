@@ -10,6 +10,8 @@ function Shop() {
   const [selectedSizes, setSelectedSizes] = useState({});
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
 
     useEffect(() => {
         // Load products
@@ -35,6 +37,12 @@ function Shop() {
     const filteredProducts = selectedCategory === 'All' 
         ? products 
         : products.filter(p => p.category === selectedCategory);
+
+    // Pagination logic
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
 
   function handleSizeSelect(productId, size) {
@@ -85,7 +93,10 @@ function Shop() {
           <div className="list-group category-list">
                       <span 
                           className={`list-group-item ${selectedCategory === 'All' ? 'active' : ''}`}
-                          onClick={() => setSelectedCategory('All')}
+                          onClick={() => {
+                            setSelectedCategory('All');
+                            setCurrentPage(1);
+                          }}
                           style={{ cursor: 'pointer' }}
                       >
                           All Activewear ({totalProducts})
@@ -94,7 +105,10 @@ function Shop() {
                           <span 
                               key={category}
                               className={`list-group-item ${selectedCategory === category ? 'active' : ''}`}
-                              onClick={() => setSelectedCategory(category)}
+                              onClick={() => {
+                                setSelectedCategory(category);
+                                setCurrentPage(1);
+                              }}
                               style={{ cursor: 'pointer' }}
                           >
                               {category} ({count})
@@ -108,7 +122,7 @@ function Shop() {
 
               <div className="col-lg-9">
                   <div className="shop-grid-header d-flex justify-content-between align-items-center">
-                      <p className="mb-0 text-secondary">Showing **1 - 9** of **9** results</p>
+                      <p className="mb-0 text-secondary">Showing **{indexOfFirstItem + 1} - {Math.min(indexOfLastItem, filteredProducts.length)}** of **{filteredProducts.length}** results</p>
                       <div className="d-flex align-items-center">
                           <button className="btn btn-outline-dark mobile-filter-btn d-lg-none me-3" id="open-filter-mobile"><i className="bi bi-funnel"></i> Filter</button>
                           <div className="dropdown sort-dropdown me-3">
@@ -123,7 +137,7 @@ function Shop() {
 
                   <div className="row g-3 g-md-4 shop-grid">
                           {  
-                            filteredProducts.map(product => (
+                            currentItems.map(product => (
                               <div className="col-6 col-md-4 shop-container" key={product.id}>
                               <div className="product-card-shop">
                               <Link to={`/shop/${product.id}`}>
@@ -170,10 +184,17 @@ function Shop() {
                   </div>           
                   <div className="d-flex justify-content-center mt-5">
                       <ul className="pagination">
-                          <li className="page-item disabled"><span className="page-link" href="#">Previous</span></li>
-                          <li className="page-item active"><span className="page-link" href="#">1</span></li>
-                          <li className="page-item"><span className="page-link" href="#">2</span></li>
-                          <li className="page-item"><span className="page-link" href="#">Next</span></li>
+                          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                            <span className="page-link" href="#" onClick={() => setCurrentPage(currentPage - 1)}>Previous</span>
+                          </li>
+                          {Array.from({ length: totalPages }, (_, index) => (
+                            <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+                                <span className="page-link" href="#" onClick={() => setCurrentPage(index + 1)}>{index + 1}</span>
+                            </li>
+                          ))}
+                          <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                            <span className="page-link" href="#" onClick={() => setCurrentPage(currentPage + 1)}>Next</span>
+                          </li>
                       </ul>
                   </div>
               </div>
