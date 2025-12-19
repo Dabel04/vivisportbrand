@@ -1,7 +1,7 @@
         :root {
             /* Brand Colors - UPDATED FOR AirPods Max THEME */
-            --primary-black: #000000f6;    /* Black for AirPods Max */
-            --primary-white: #c4c4c4;    /* Silver/Grey metallic tone */
+            --primary-red: #d7263d;
+            --primary-navy: #000000;
             
             /* Background Colors */
             --bg-white: #ffffff;
@@ -86,7 +86,8 @@
             font-weight: 800;
             letter-spacing: 3px;
             font-size: 1.6rem;
-            background: linear-gradient(45deg, var(--primary-red), #ff4d6d);
+            background: linear-gradient(
+358deg, black, white);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -143,8 +144,8 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background-color: var(--primary-red);
-            color: var(--text-white);
+            background-color: #958d8d;
+            color: beige;
             border-radius: var(--radius-circle);
             width: 18px;
             height: 18px;
@@ -236,7 +237,7 @@
         
         .product-price {
             font-size: var(--font-size-2xl);
-            color: var(--primary-red);
+            color: black;
             font-weight: 700;
             margin-bottom: var(--spacing-xl);
         }
@@ -249,7 +250,7 @@
         }
         
         .sale-badge {
-            background-color: var(--primary-red);
+            background-color: gray;
             color: var(--text-white);
             padding: var(--spacing-xs) var(--spacing-md);
             border-radius: var(--radius-sm);
@@ -468,7 +469,7 @@
         }
         
         .btn-add-to-cart:hover {
-            background-color: #033050;
+            background-color: gray;
             transform: translateY(-2px);
             box-shadow: var(--shadow-medium);
         }
@@ -526,10 +527,6 @@
             transition: all var(--transition-normal);
         }
         
-        .nav-tabs .nav-link:hover {
-            color: var(--primary-red);
-            border-bottom-color: var(--primary-red);
-        }
         
         .nav-tabs .nav-link.active {
             color: var(--primary-navy);
@@ -614,8 +611,8 @@
         }
         
         .related-price {
-            color: var(--primary-red);
-            font-weight: 600;
+            color: rgb(95, 82, 82);
+            font-weight: 900;
             font-size: var(--font-size-md);
         }
         
@@ -709,7 +706,7 @@
                 margin-right: 15px;
                 border: none;
                 padding: 5px;
-                color: var(--primary-red);
+                color: gray;
             }
             
             .navbar-brand {
@@ -739,6 +736,6 @@
             .nav-icons.mobile-version i {
                 margin-left: 0;
                 font-size: var(--font-size-xl);
-                color: var(--primary-red);
+                color: black;
             }
         }
