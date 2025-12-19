@@ -1,8 +1,8 @@
         :root {
+            /* Brand Colors - UPDATED FOR AirPods Max THEME */
             --primary-red: #d7263d;
-            --primary-navy: #02182b;
+            --primary-navy: #000000;
             --bg-white: #ffffff;
-            --bg-light: #f8f9fa;
             --bg-dark: #000000;
             --text-primary: #000000;
             --text-secondary: #666;
@@ -166,8 +166,8 @@
         }
         .btn-shop-to-cart {
             width: 100%;
-            background-color: var(--primary-red);
-            color: var(--text-light);
+            background-color: black;
+            color: white;
             border: none;
             padding: var(--spacing-sm) 0;
             border-radius: 4px;
@@ -178,7 +178,7 @@
         }
 
         .btn-shop-to-cart:hover {
-            background-color: #a31c2d;
+            background-color: gray;
         }
         
         .btn-shop-to-cart.added {
@@ -200,6 +200,15 @@
         .list-group-item { border: none; padding: 8px 0; color: var(--text-secondary); cursor: pointer; }
         .list-group-item:hover, .list-group-item.active { color: var(--primary-red); background: transparent; }
         
+        /* --- Sidebar & Filter Styles --- */
+        .shop-filter-sidebar {
+            background: var(--bg-white);
+            padding: var(--spacing-lg) var(--spacing-md);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            position: sticky; top: 120px;
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 768px) {
             body { padding-top: 80px; }
