@@ -1,6 +1,7 @@
         :root {
+            /* Brand Colors - UPDATED FOR AirPods Max THEME */
             --primary-red: #d7263d;
-            --primary-navy: #02182b;
+            --primary-navy: #000000;
             --bg-white: #ffffff;
             --bg-light: #f8f9fa;
             --bg-dark: #000000;
@@ -94,7 +95,7 @@
         .info-card:hover { transform: translateY(-5px); }
         .info-icon {
             font-size: 2rem;
-            color: var(--primary-red);
+            color: gray;
             margin-bottom: 15px;
         }
         

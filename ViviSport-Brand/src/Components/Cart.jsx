@@ -71,7 +71,7 @@ function Cart({isActive, selectedValue, setIsActive, setShowCheckOut}) {
                 <span>$<span id="cart-total-price">{cartTotal}</span></span>
             </div> 
             <div className="cart-actions">
-                    <button type="button" className="btn btn-outline-dark" id="continue-shopping">Continue Shopping</button>
+                    <button type="button" className="btn btn-outline-dark" id="continue-shopping" onClick={() => setIsActive(false)}>Continue Shopping</button>
                     <Link to='/checkout'>
                     <button type="button" className="btn btn-dark" id="checkout-btn" onClick={() =>setShowCheckOut(true)}>
                         Checkout

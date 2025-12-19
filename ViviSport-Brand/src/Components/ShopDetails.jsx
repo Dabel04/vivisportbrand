@@ -104,7 +104,6 @@ function ShopDetails() {
                 <div className="product-price">
                     <span className="old-price">${product.originalPrice}</span>
                     ${product.price}
-                    <span className="sale-badge">${product.originalPrice}</span>
                 </div>
                 
                 <div className="product-rating">
@@ -201,9 +200,9 @@ function ShopDetails() {
                 
                 {/* Additional Info */}
                 <div className="additional-info" style={{color: 'var(--text-secondary)', fontSize: 'var(--font-size-sm)'}}>
-                    <p><i className="bi bi-truck" style={{color: "var(--primary-red)"}}></i> Free shipping on orders over $100</p>
-                    <p><i className="bi bi-arrow-left-right" style={{color: "var(--primary-red)"}}></i> Free returns within 30 days</p>
-                    <p><i className="bi bi-shield-check" style={{color: "var(--primary-red)"}}></i> 1-year warranty on all products</p>
+                    <p><i className="bi bi-truck" style={{color: "black"}}></i> Free shipping on orders over $100</p>
+                    <p><i className="bi bi-arrow-left-right" style={{color: "black"}}></i> Free returns within 30 days</p>
+                    <p><i className="bi bi-shield-check" style={{color: "black"}}></i> 1-year warranty on all products</p>
                 </div>
             </div>
         </div>

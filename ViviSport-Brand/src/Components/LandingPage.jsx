@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/style.css'
-import {ass, bras, bottoms} from './images'
+import {ass, bras, bottoms, anotherhero} from './images'
 import products from '../Data/products'
 import {useAtom} from 'jotai'
 import { productAtom } from '../App'
@@ -162,12 +162,16 @@ function LandingPage() {
           <section className="container">
               <div className="d-flex justify-content-between align-items-end mb-4">
                   <h2 className="section-header mb-0 mt-5">Hot Right Now</h2>
-                  <a href="#" className="view-all-link" style={{fontSize: '0.8rem'}}>VIEW ALL</a>
+                  <Link to='/shop'>
+                  <span  className="view-all-link" style={{fontSize: '0.8rem'}}>
+                    VIEW ALL
+                </span>
+                </Link>
               </div>
               <div className="row">
                   {/* Products looped */}           
                      {
-                        products.map((product) => (
+                        products.slice(0, 16).map((product) => (
                     <div className="col-6 col-lg-3" key={product.id}>
                          <div className="product-card">
                             <Link to={`/shop/${product.id}`}>
@@ -218,14 +222,18 @@ function LandingPage() {
               <div className="container">
                   <div className="row g-0">
                       <div className="col-md-6">
-                          <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop" className="feature-img" alt="FlexFit" />
+                          <img src={anotherhero} className="feature-img" alt="FlexFit" />
                       </div>
                       <div className="col-md-6 bg-light">
                           <div className="feature-content">
                               <span className="feature-label">Perfect Stretch, Perfect Fit</span>
                               <h2 className="feature-title">Discover FlexFit Freedom</h2>
                               <p className="mb-4 text-muted">Introducing FlexFit: our breakthrough activewear material. It effortlessly adapts to your form for a tailor-made fit without the squeeze. Move with ease and style in every stride.</p>
-                              <button className="btn btn-black shop-now">Shop Now</button>
+                              <Link to='/shop'>
+                              <button className="btn btn-black shop-now">
+                                Shop Now
+                              </button>
+                              </Link>
                           </div>
                       </div>
                   </div>
