@@ -16,67 +16,26 @@
             --text-primary: #111111;
             --text-secondary: #6B7280;
             --border-color: #E5E7EB;
-            --accent-black: #000000;
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-primary);
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-light); color: var(--text-primary); }
 
         /* --- Sidebar --- */
-        .sidebar {
-            width: 260px;
-            height: 100vh;
-            background: var(--primary-navy);
-            position: fixed;
-            top: 0; left: 0;
-            padding: 30px 20px;
-            z-index: 1000;
-            color: white;
-        }
-
-        .sidebar-brand {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            color: white;
-            text-decoration: none;
-            margin-bottom: 50px;
-            display: block;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 14px 18px;
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            border-radius: 10px;
-            margin-bottom: 6px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-        }
-
+        .sidebar { width: 260px; height: 100vh; background: var(--primary-navy); position: fixed; top: 0; left: 0; padding: 30px 20px; z-index: 1000; color: white; }
+        .sidebar-brand { font-size: 1.8rem; font-weight: 900; letter-spacing: -1.5px; color: white; text-decoration: none; margin-bottom: 50px; display: block; text-align: center; font-style: italic; }
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: rgba(255,255,255,0.6); text-decoration: none; border-radius: 10px; margin-bottom: 6px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s; }
         .nav-item:hover { color: white; background: rgba(255,255,255,0.08); }
         .nav-item.active { background: var(--primary-red); color: white; box-shadow: 0 8px 20px rgba(215, 38, 61, 0.35); }
         .nav-item i { margin-right: 12px; font-size: 1.2rem; }
 
         /* --- Main Content --- */
         .main-content { margin-left: 260px; padding: 40px; }
-        .section-card { background: white; border-radius: 16px; border: 1px solid var(--border-color); padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         .page-title { font-weight: 900; text-transform: uppercase; font-style: italic; letter-spacing: -1px; }
 
-        /* --- Modal & Form Styling --- */
+        /* --- Multi-Image Drop Zone --- */
         .drop-zone {
             width: 100%;
-            height: 200px;
+            min-height: 220px;
             border: 2px dashed var(--border-color);
             border-radius: 12px;
             display: flex;
@@ -86,69 +45,51 @@
             color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.2s;
-            position: relative;
             background: #FAFAFA;
-            overflow: hidden;
+            padding: 15px;
+            position: relative;
         }
         .drop-zone:hover { border-color: var(--primary-red); background: #fef2f2; }
-        .drop-zone i { font-size: 2.5rem; color: var(--primary-navy); }
-        .preview-img { position: absolute; width: 100%; height: 100%; object-fit: cover; display: none; }
-
-        .size-btn {
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: white;
-            font-weight: 800;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: 0.2s;
+        
+        /* Preview Grid */
+        #previewTray {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin-top: 10px;
         }
+        .thumb-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .thumb-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Original Inputs & Selectors */
+        .size-btn { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; background: white; font-weight: 800; font-size: 0.75rem; cursor: pointer; transition: 0.2s; }
         .size-btn.active { background: var(--primary-navy); color: white; border-color: var(--primary-navy); }
 
-        .color-dot {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 10px;
-            border: 3px solid transparent;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        .color-dot { width: 28px; height: 28px; border-radius: 50%; display: inline-block; margin-right: 10px; border: 3px solid transparent; cursor: pointer; transition: 0.2s; }
         .color-dot.active { border-color: var(--primary-red); transform: scale(1.1); }
 
         .btn-black { background: var(--primary-navy); color: white; font-weight: 800; font-size: 0.8rem; border-radius: 8px; padding: 12px 24px; border: none; text-transform: uppercase; }
-        .btn-black:hover { background: var(--primary-red); color: white; }
-
-        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
-        .status-active { background: #DEF7EC; color: #03543F; }
-        .status-low { background: #FDE8E8; color: #9B1C1C; }
+        .btn-black:hover { background: var(--primary-red); }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body>
 
     <nav class="sidebar">
         <a href="admin-dashboard.html" class="sidebar-brand">44:11<span style="color:var(--primary-red)">.</span></a>
-        
         <div class="nav-links">
-            <a href="admin-dashboard.html" class="nav-item">
-                <i class="bi bi-grid-1x2-fill"></i> Overview
-            </a>
-            <a href="inventory.html" class="nav-item active">
-                <i class="bi bi-stack"></i> Inventory
-            </a>
-            <a href="#" class="nav-item">
-                <i class="bi bi-lightning-fill"></i> Logistics
-            </a>
-            <a href="#" class="nav-item">
-                <i class="bi bi-person-badge-fill"></i> The Roster
-            </a>
-        </div>
-
-        <div class="mt-auto p-3 rounded-3" style="background: rgba(255,255,255,0.05);">
-            <p class="mb-0 fw-black italic small" id="liveClock">00:00:00</p>
-            <small class="opacity-50 fw-bold" style="font-size: 0.6rem;">CORE_SERVER_ACTIVE</small>
+            <a href="admin-dashboard.html" class="nav-item"><i class="bi bi-grid-1x2-fill"></i> Command Center</a>
+            <a href="inventory.html" class="nav-item active"><i class="bi bi-stack"></i> Inventory</a>
+            <a href="#" class="nav-item"><i class="bi bi-lightning-fill"></i> Logistics</a>
+            <a href="#" class="nav-item"><i class="bi bi-person-badge-fill"></i> The Roster</a>
         </div>
     </nav>
 
@@ -163,49 +104,8 @@
             </button>
         </div>
 
-        <div class="section-card p-0 overflow-hidden">
-            <div class="p-3 border-bottom bg-light">
-                <div class="row g-2">
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control border-start-0 ps-0" placeholder="Search by SKU or Name...">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="bg-light">
-                        <tr>
-                            <th class="ps-4 py-3 text-secondary small fw-bold text-uppercase">Gear Name</th>
-                            <th class="text-secondary small fw-bold text-uppercase">Category</th>
-                            <th class="text-secondary small fw-bold text-uppercase">Price</th>
-                            <th class="text-secondary small fw-bold text-uppercase">Stock</th>
-                            <th class="text-secondary small fw-bold text-uppercase">Status</th>
-                            <th class="text-end pe-4 text-secondary small fw-bold text-uppercase">Control</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="ps-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="rounded-3 bg-light me-3" style="width: 45px; height: 45px; border: 1px solid var(--border-color);"></div>
-                                    <span class="fw-bold">ALPHA VELOCITY TIGHTS</span>
-                                </div>
-                            </td>
-                            <td><span class="badge bg-light text-dark fw-bold">APPAREL</span></td>
-                            <td class="fw-bold font-mono">$85.00</td>
-                            <td class="fw-bold">12</td>
-                            <td><span class="status-badge status-active">Stable</span></td>
-                            <td class="text-end pe-4">
-                                <button class="btn btn-sm btn-light border"><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn btn-sm btn-light border text-danger"><i class="bi bi-trash3"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="bg-white rounded-4 border p-5 text-center text-secondary small fw-bold text-uppercase">
+            Database Sync Active // No Assets to Display
         </div>
     </main>
 
@@ -220,14 +120,19 @@
                     <form id="gearForm">
                         <div class="row g-4">
                             <div class="col-md-5">
-                                <label class="fw-bold small text-uppercase mb-2 d-block">Clothing Visual</label>
-                                <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
-                                    <i class="bi bi-cloud-arrow-up-fill"></i>
-                                    <span class="fw-bold small mt-2">DROP IMAGE</span>
-                                    <small class="opacity-50">PNG/JPG up to 5MB</small>
-                                    <img id="imagePreview" class="preview-img">
-                                    <input type="file" id="fileInput" hidden accept="image/*">
+                                <label class="fw-bold small text-uppercase mb-2 d-block">Visual Assets (Drop Multiple)</label>
+                                <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                                    <div id="dropContent" class="text-center">
+                                        <i class="bi bi-images fs-1 text-navy"></i>
+                                        <span class="fw-bold small d-block mt-2">CLICK OR DRAG IMAGES</span>
+                                        <small class="opacity-50">Upload 1-10 photos</small>
+                                    </div>
+                                    <div id="previewTray"></div>
+                                    <input type="file" id="fileInput" hidden accept="image/*" multiple>
                                 </div>
+                                <button type="button" class="btn btn-link btn-sm text-danger text-decoration-none fw-bold mt-2 p-0" id="clearBtn" style="display:none" onclick="resetImages()">
+                                    <i class="bi bi-x-circle me-1"></i> RESET IMAGES
+                                </button>
                             </div>
 
                             <div class="col-md-7">
@@ -252,16 +157,13 @@
                                     <div class="col-md-6">
                                         <label class="fw-bold small text-uppercase mb-3 d-block">Size Matrix</label>
                                         <div class="d-flex flex-wrap gap-2">
-                                            <div class="size-btn">XS</div>
-                                            <div class="size-btn">S</div>
-                                            <div class="size-btn active">M</div>
-                                            <div class="size-btn">L</div>
-                                            <div class="size-btn">XL</div>
-                                            <div class="size-btn">XXL</div>
+                                            <div class="size-btn">XS</div><div class="size-btn">S</div>
+                                            <div class="size-btn active">M</div><div class="size-btn">L</div>
+                                            <div class="size-btn">XL</div><div class="size-btn">XXL</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="fw-bold small text-uppercase mb-3 d-block">Available Colorways</label>
+                                        <label class="fw-bold small text-uppercase mb-3 d-block">Colorways</label>
                                         <div class="d-flex align-items-center">
                                             <span class="color-dot active" style="background: #000;"></span>
                                             <span class="color-dot" style="background: #fff; border: 1px solid #ddd;"></span>
@@ -285,32 +187,61 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Image Preview Logic
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.getElementById('imagePreview');
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
+        const fileInput = document.getElementById('fileInput');
+        const previewTray = document.getElementById('previewTray');
+        const dropContent = document.getElementById('dropContent');
+        const clearBtn = document.getElementById('clearBtn');
+        const dropZone = document.getElementById('dropZone');
+
+        // MULTI-IMAGE LOGIC
+        fileInput.addEventListener('change', function(e) {
+            handleFiles(e.target.files);
         });
 
-        // Interactive Selection Logic
+        // DRAG & DROP SUPPORT
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-light'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('bg-light'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-light');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        function handleFiles(files) {
+            const fileList = Array.from(files);
+            if(fileList.length > 0) {
+                dropContent.style.display = 'none'; // Hide text
+                clearBtn.style.display = 'block';   // Show Reset link
+                previewTray.innerHTML = '';         // Clear existing previews
+            }
+
+            fileList.forEach(file => {
+                if (!file.type.startsWith('image/')) return;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'thumb-wrapper';
+                    wrapper.innerHTML = `<img src="${e.target.result}">`;
+                    previewTray.appendChild(wrapper);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function resetImages() {
+            fileInput.value = '';
+            previewTray.innerHTML = '';
+            dropContent.style.display = 'block';
+            clearBtn.style.display = 'none';
+        }
+
+        // SELECTION UI LOGIC (Preserved)
         document.querySelectorAll('.size-btn, .color-dot').forEach(btn => {
             btn.addEventListener('click', function() {
                 this.parentElement.querySelectorAll('*').forEach(sib => sib.classList.remove('active'));
                 this.classList.add('active');
             });
         });
-
-        // Live Clock
-        setInterval(() => {
-            document.getElementById('liveClock').innerText = new Date().toLocaleTimeString();
-        }, 1000);
     </script>
 </body>
 </html>
