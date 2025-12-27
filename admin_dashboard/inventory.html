@@ -104,8 +104,11 @@
             </button>
         </div>
 
-        <div class="bg-white rounded-4 border p-5 text-center text-secondary small fw-bold text-uppercase">
-            Database Sync Active // No Assets to Display
+        <div id="inventoryList" class="row g-4">
+            <div class="col-12 text-center p-5 text-secondary border rounded-4 bg-white">
+                <div class="spinner-border text-danger mb-3" role="status"></div>
+                <p class="small fw-bold text-uppercase">Syncing with Mainframe...</p>
+            </div>
         </div>
     </main>
 
@@ -138,18 +141,38 @@
                             <div class="col-md-7">
                                 <div class="mb-3">
                                     <label class="fw-bold small text-uppercase mb-2 d-block">Asset Name</label>
-                                    <input type="text" class="form-control fw-bold py-2" placeholder="e.g. THERMO-SHIELD JACKET">
+                                    <input type="text" id="productName" class="form-control fw-bold py-2" placeholder="e.g. THERMO-SHIELD JACKET" required>
                                 </div>
+
+                                <div class="mb-3">
+                                    <label class="fw-bold small text-uppercase mb-2 d-block">Category</label>
+                                    <select id="productCategory" class="form-select fw-bold py-2">
+                                        <option value="General">Select Category...</option>
+                                        <option value="Tops">Tops / Upper Body</option>
+                                        <option value="Bottoms">Bottoms / Leggings</option>
+                                        <option value="Accessories">Accessories</option>
+                                        <option value="Sets">Full Sets</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="fw-bold small text-uppercase mb-2 d-block">Description</label>
+                                    <textarea id="productDescription" class="form-control fw-bold" rows="3" placeholder="Brief product details..."></textarea>
+                                </div>
+
                                 <div class="row g-3">
                                     <div class="col-6">
                                         <label class="fw-bold small text-uppercase mb-2 d-block">Unit Price ($)</label>
-                                        <input type="number" class="form-control fw-bold font-mono py-2" placeholder="0.00">
+                                        <input type="number" id="productPrice" class="form-control fw-bold font-mono py-2" placeholder="0.00" step="0.01">
                                     </div>
                                     <div class="col-6">
                                         <label class="fw-bold small text-uppercase mb-2 d-block">Batch Quantity</label>
-                                        <input type="number" class="form-control fw-bold py-2" placeholder="100">
+                                        <input type="number" id="productStock" class="form-control fw-bold py-2" placeholder="100">
                                     </div>
                                 </div>
+                                
+                                <input type="hidden" id="selectedSize" value="M">
+                                <input type="hidden" id="selectedColor" value="Black">
                             </div>
 
                             <div class="col-12 mt-4">
@@ -179,7 +202,7 @@
                 </div>
                 <div class="modal-footer border-0 p-4 pt-0">
                     <button type="button" class="btn btn-light fw-bold" data-bs-dismiss="modal">ABORT</button>
-                    <button type="button" class="btn btn-black px-5">CONFIRM DEPLOYMENT</button>
+                    <button type="button" id="confirmDeployBtn" class="btn btn-black px-5">CONFIRM DEPLOYMENT</button>
                 </div>
             </div>
         </div>
@@ -235,11 +258,73 @@
             clearBtn.style.display = 'none';
         }
 
-        // SELECTION UI LOGIC (Preserved)
-        document.querySelectorAll('.size-btn, .color-dot').forEach(btn => {
+        // --- UPDATED SELECTION LOGIC ---
+        // Updates the hidden inputs when buttons are clicked
+        document.querySelectorAll('.size-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                this.parentElement.querySelectorAll('*').forEach(sib => sib.classList.remove('active'));
+                this.parentElement.querySelectorAll('.size-btn').forEach(sib => sib.classList.remove('active'));
                 this.classList.add('active');
+                document.getElementById('selectedSize').value = this.innerText;
+            });
+        });
+
+        document.querySelectorAll('.color-dot').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.color-dot').forEach(sib => sib.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('selectedColor').value = this.style.backgroundColor;
+            });
+        });
+
+        // --- DEPLOYMENT LOGIC (Ready for PHP) ---
+        const deployBtn = document.getElementById('confirmDeployBtn');
+
+        deployBtn.addEventListener('click', () => {
+            // 1. Gather all data
+            const formData = new FormData();
+            formData.append('name', document.getElementById('productName').value);
+            formData.append('category', document.getElementById('productCategory').value);
+            formData.append('description', document.getElementById('productDescription').value);
+            formData.append('price', document.getElementById('productPrice').value);
+            formData.append('stock', document.getElementById('productStock').value);
+            formData.append('size', document.getElementById('selectedSize').value);
+            formData.append('color', document.getElementById('selectedColor').value);
+
+            // 2. Append Images
+            const files = fileInput.files;
+            for (let i = 0; i < files.length; i++) {
+                formData.append('images[]', files[i]);
+            }
+
+            // 3. UI Feedback
+            const originalText = deployBtn.innerText;
+            deployBtn.innerText = "UPLOADING...";
+            deployBtn.disabled = true;
+
+            // 4. Send to Backend
+            fetch('http://localhost/shop-api/add-product.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    alert("Asset Deployed Successfully!");
+                    document.querySelector('.btn-close').click(); // Close Modal
+                    document.getElementById('gearForm').reset();  // Clear Form
+                    resetImages();                                // Clear Images
+                    // Optional: Refresh the list here
+                } else {
+                    alert("Error: " + (data.error || "Unknown error"));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Connection Failed. Is the PHP server running?");
+            })
+            .finally(() => {
+                deployBtn.innerText = originalText;
+                deployBtn.disabled = false;
             });
         });
     </script>
