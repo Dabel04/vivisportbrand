@@ -1,19 +1,10 @@
 import React from 'react'
-import { useSetAtom } from 'jotai'
-import { productAtom } from '../App'
+import { useCart } from '../hooks/useCart'
 import { Link } from 'react-router-dom'
 
-function Cart({isActive, selectedValue, setIsActive, setShowCheckOut}) {
-    const cartTotal = selectedValue.reduce((s, i) => s + (i.price || 0) * (i.quantity || 0), 0).toFixed(2)
-    const setSelectedValue = useSetAtom(productAtom)
-    console.log(selectedValue)
-    
-    
-    function removeFromCart(id, size, colorValue) {
-        setSelectedValue(prev => prev.filter(p => 
-            !(p.id === id && p.size === size && p.color.value === colorValue)
-        ))
-    }
+function Cart({isActive, setIsActive, setShowCheckOut}) {
+    const { cart, removeFromCart, getCartTotal } = useCart()
+    const cartTotal = getCartTotal().toFixed(2)
   return (
     <>
                 {/* Side Cart (Right Sliding Panel) */}
@@ -29,14 +20,14 @@ function Cart({isActive, selectedValue, setIsActive, setShowCheckOut}) {
         <div className="side-cart-body">
             <div id="cart-items-container">
                 {/* Cart items will be dynamically added here */}
-                {selectedValue.length === 0 ? (
+                {cart.length === 0 ? (
                     <div className="text-center py-4" id="empty-cart-message">
                     <i className="bi bi-bag" style={{fontSize: "2rem", color: "#ccc"}}></i>
                     <p className="mt-2">Your cart is empty</p>
                 </div>
                 ) : (
-                    selectedValue.map((ci) => (
-                        <div className="cart-item" key={`${ci.id}`}>
+                    cart.map((ci) => (
+                        <div className="cart-item" key={`${ci.id}-${ci.size}-${ci.color?.value}`}>
                             <img src={ci.image} className="cart-item-img" alt={ci.name}/>
                             <div className="cart-item-details">
                                 <div className="cart-item-title">{ci.name}</div>

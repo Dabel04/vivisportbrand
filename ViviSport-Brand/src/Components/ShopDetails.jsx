@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import '../styles/ShopDetails.css'
 import { useParams } from 'react-router-dom'
 import products from '../Data/products.json'
-import { useAtom } from 'jotai'
-import { productAtom } from '../App'
+import { useCart } from '../hooks/useCart'
 
 
 
@@ -13,11 +12,17 @@ function ShopDetails() {
 
     const product = products.find(p => p.id == numericId)
     
-    // eslint-disable-next-line no-unused-vars
-    const [productCart, setProductCart] = useAtom(productAtom);
+    const { addToCart } = useCart();
     const [selectedSize, setSelectedSize] = useState('XS');
-    const [selectedColor, setSelectedColor] = useState('Black');
+    const [selectedColor, setSelectedColor] = useState({name: 'Black', value: '#000000'});
     const [quantity, setQuantity] = useState(1);
+
+    const colors = [
+        {name: 'Black', value: '#000000'},
+        {name: 'Charcoal', value: '#555555'},
+        {name: 'Sand', value: '#D2B48C'},
+        {name: 'Navy', value: '#02182b'}
+    ];
 
     if (!product) {
         return <h1>404 NOT FOUND, There is no Product {numericId} in the cart</h1>
@@ -34,18 +39,7 @@ function ShopDetails() {
             color: selectedColor,
             quantity: quantity
     };
-
-    setProductCart(prev => {
-        const existing = prev.find(p => p.id === product.id && p.size === selectedSize && p.color === selectedColor);
-        if (existing) {
-            return prev.map(p =>
-                p.id === product.id && p.size === selectedSize && p.color === selectedColor
-                ? { ...p, quantity: p.quantity + quantity }
-                : p
-            );
-        }
-        return [...prev, cartItem];
-    });
+    addToCart(cartItem);
     }
 
     function handleQuantityChange(value) {
@@ -123,36 +117,17 @@ function ShopDetails() {
                 
                 {/* Color Selector */}
                 <div className="color-selector">
-                    <div className="color-label">Color: <span id="selected-color-name">{selectedColor}</span></div>
+                    <div className="color-label">Color: <span id="selected-color-name">{selectedColor.name}</span></div>
                     <div className="color-options">
-                        <div className="color-option-container">
-                            <div className={`color-option ${selectedColor === 'Black' ? 'selected' : ''}`}
-                                 style={{backgroundColor: "#000000"}} 
-                                 onClick={() => setSelectedColor('Black')}
-                                 data-color="Black"></div>
-                            <div className="color-name">Black</div>
-                        </div>
-                        <div className="color-option-container">
-                            <div className={`color-option ${selectedColor === 'Charcoal' ? 'selected' : ''}`}
-                                 style={{backgroundColor: "#555555"}} 
-                                 onClick={() => setSelectedColor('Charcoal')}
-                                 data-color="Charcoal"></div>
-                            <div className="color-name">Charcoal</div>
-                        </div>
-                        <div className="color-option-container">
-                            <div className={`color-option ${selectedColor === 'Sand' ? 'selected' : ''}`}
-                                 style={{backgroundColor: "#D2B48C"}} 
-                                 onClick={() => setSelectedColor('Sand')}
-                                 data-color="Sand"></div>
-                            <div className="color-name">Sand</div>
-                        </div>
-                        <div className="color-option-container">
-                            <div className={`color-option ${selectedColor === 'Navy' ? 'selected' : ''}`}
-                                 style={{backgroundColor: "#02182b"}} 
-                                 onClick={() => setSelectedColor('Navy')}
-                                 data-color="Navy"></div>
-                            <div className="color-name">Navy</div>
-                        </div>
+                        {colors.map(color => (
+                            <div className="color-option-container" key={color.name}>
+                                <div className={`color-option ${selectedColor.name === color.name ? 'selected' : ''}`}
+                                     style={{backgroundColor: color.value}} 
+                                     onClick={() => setSelectedColor(color)}
+                                     data-color={color.name}></div>
+                                <div className="color-name">{color.name}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 

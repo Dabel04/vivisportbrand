@@ -1,0 +1,92 @@
+        :root {
+            --primary-red: #d7263d;
+            --primary-navy: #02182b;
+            --bg-light: #f4f7f9;
+            --text-primary: #000000;
+            --text-secondary: #6c757d;
+            --border-color: #e9ecef;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: var(--primary-navy);
+            position: fixed;
+            top: 0; left: 0;
+            padding: 30px 20px;
+            z-index: 1000;
+            color: white;
+        }
+
+        .sidebar-brand {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 50px;
+            display: block;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover { color: white; background: rgba(255,255,255,0.08); }
+        .nav-item.active { background: var(--primary-red); color: white; box-shadow: 0 8px 20px rgba(215, 38, 61, 0.35); }
+        .nav-item i { margin-right: 12px; font-size: 1.2rem; }
+
+        /* --- Layout --- */
+        .main-content { margin-left: 260px; padding: 40px; }
+        .section-card { background: white; border-radius: 16px; border: none; box-shadow: var(--shadow-sm); padding: 24px; height: 100%; }
+        .page-title { font-weight: 900; text-transform: uppercase; font-style: italic; letter-spacing: -1px; }
+        
+        /* Stats & Data Viz */
+        .stat-box { border-left: 4px solid var(--primary-navy); }
+        .stat-box.highlight { border-left-color: var(--primary-red); }
+        .stat-label { font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .stat-value { font-size: 1.8rem; font-weight: 900; color: var(--primary-navy); }
+
+        /* The Podium (Top Sellers) */
+        .podium-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+        .podium-rank { width: 30px; font-weight: 900; color: var(--primary-red); font-style: italic; font-size: 1.1rem; }
+        .podium-name { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
+        .podium-meta { font-size: 0.7rem; color: var(--text-secondary); font-family: 'JetBrains Mono'; }
+
+        /* Live Activity Feed */
+        .activity-feed { max-height: 350px; overflow-y: auto; padding-right: 10px; }
+        .activity-item { position: relative; padding-left: 20px; padding-bottom: 20px; border-left: 2px solid var(--border-color); }
+        .activity-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--primary-navy); }
+        .activity-item.urgent::before { background: var(--primary-red); }
+        .activity-text { font-size: 0.8rem; font-weight: 600; }
+        .activity-time { font-size: 0.7rem; color: var(--text-secondary); font-family: 'JetBrains Mono'; }
+
+        /* Funnel Graph */
+        .funnel-step { height: 40px; background: var(--primary-navy); margin-bottom: 4px; border-radius: 4px; display: flex; align-items: center; padding: 0 15px; color: white; font-weight: 700; font-size: 0.7rem; }
+
+        .btn-action { background: var(--primary-navy); color: white; font-weight: 800; font-size: 0.75rem; border-radius: 6px; padding: 10px 20px; border: none; text-transform: uppercase; }
+        .btn-action:hover { background: var(--primary-red); color: white; }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/shop.css';
 // import products from '../Data/products.json'
-import { useSetAtom } from 'jotai'
-import { productAtom } from '../App'
+import { useCart } from '../hooks/useCart'
 import { Link } from 'react-router-dom'
 
 function Shop() {
-  const setSelectedValue = useSetAtom(productAtom);
+  const { addToCart } = useCart();
   const [selectedSizes, setSelectedSizes] = useState({});
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -54,29 +53,15 @@ function Shop() {
 
   function updateCart(item) {
     const size = selectedSizes[item.id] || 'S';
-    
-    setSelectedValue(prev => {
-      const existing = prev.find(p => 
-        p.id === item.id && 
-        p.size === size 
-      )
-      if (existing) {
-        return prev.map(p => 
-          p.id === item.id && 
-          p.size === size 
-            ? { ...p, quantity: p.quantity + 1 } 
-            : p
-        )
-      }
-      return [...prev, { 
-        id: item.id, 
-        name: item.name, 
-        price: item.price, 
-        image: item.image, 
-        quantity: 1,
-        size: size
-      }]
-    })
+    const cartItem = {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      size: size,
+      color: {name: 'Black', value: '#000000'} // default color
+    };
+    addToCart(cartItem);
   }
   return (
     <>

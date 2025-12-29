@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import Cart from './Cart'
 import { useEffect, useRef, useState } from 'react';
-import { useAtomValue } from 'jotai'
-import { productAtom } from '../App'
+import { useCart } from '../hooks/useCart'
 
 const Navbar = ({setShowCheckOut}) => {
     const [isActive, setIsActive] = useState(false);
@@ -24,8 +23,9 @@ const Navbar = ({setShowCheckOut}) => {
         }
     }, )
 
-    const selectedValue = useAtomValue(productAtom);
-    const cartNumber = selectedValue.reduce((s, i) => s + (i.quantity || 0), 0);
+    const { cart, getCartCount } = useCart();
+    console.log(cart)
+    const cartNumber = getCartCount();
     
   return (
     <>
@@ -103,7 +103,7 @@ const Navbar = ({setShowCheckOut}) => {
         </form>
     </div>
 
-    <Cart isActive={isActive} selectedValue={selectedValue} setIsActive={setIsActive} setShowCheckOut={setShowCheckOut}/>
+    <Cart isActive={isActive} setIsActive={setIsActive} setShowCheckOut={setShowCheckOut}/>
     </>
   );
 };

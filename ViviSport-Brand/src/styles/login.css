@@ -3,17 +3,7 @@
             --text-primary: #111111;
             --btn-primary: #000000;
         }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-body);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-        }
-
+        
         .login-card {
             background: #FFFFFF;
             padding: 40px;
