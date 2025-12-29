@@ -42,7 +42,7 @@ const Navbar = ({setShowCheckOut}) => {
             <div className="mobile-icons-container d-lg-none">
                 <div className="nav-icons mobile-version">
                     <i className="bi bi-search" id="mobile-search-toggle" onClick={() => setSearchActive(!searchActive)} ref={popupRef}></i>
-                    <i className="bi bi-person"></i>
+                    <Link to='/login'><i className="bi bi-person"></i></Link>
                     <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                         <i className="bi bi-bag cart-icon" id="open-side-cart"></i>
                         <span id="cart-count-mobile" className="cart-count">{cartNumber}</span>
@@ -83,7 +83,7 @@ const Navbar = ({setShowCheckOut}) => {
                     </div>
                 </div>
                 
-                <i className="bi bi-person"></i>
+                <Link to='/login'><i className="bi bi-person"></i></Link>
                 
                 <div className="position-relative" onClick={() => setIsActive(!isActive)}>
                     <i className="bi bi-bag cart-icon" id="open-side-cart-desktop"></i>
