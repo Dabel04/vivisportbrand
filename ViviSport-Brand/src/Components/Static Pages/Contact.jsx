@@ -1,9 +1,12 @@
 import React from 'react'
 import '../../styles/contact.css'
+import Footer from './Footer'
+import Header from '../Dynamic Pages/Header'
 
 function Contact() {
   return (
     <>
+    <Header />
     <main class="container-xl py-5">
         <div class="contact-header">
             <h1 class="display-5 fw-bold">Get In Touch</h1>
@@ -99,6 +102,7 @@ function Contact() {
             </div>
         </div>
     </main>
+    <Footer />
     </>
   )
 }

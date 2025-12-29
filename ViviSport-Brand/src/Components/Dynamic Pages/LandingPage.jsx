@@ -5,6 +5,8 @@ import {ass, bras, bottoms, anotherhero} from '../images'
 import products from '../../Data/products'
 import {useAtom} from 'jotai'
 import { productAtom } from '../../App'
+import Footer from '../Static Pages/Footer'
+import Header from './Header'
 
 function LandingPage() {
     // eslint-disable-next-line no-unused-vars
@@ -67,6 +69,7 @@ function LandingPage() {
 
   return (
     <>
+        <Header />
         <div>
           <div className="top-bar text-center">
               Free Delivery on orders above $100
@@ -268,6 +271,7 @@ function LandingPage() {
           </div>
         </div>
         <Outlet />
+        <Footer />
     </>
   )
 }

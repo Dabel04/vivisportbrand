@@ -1,5 +1,3 @@
-import Header from "./Components/Dynamic Pages/Header"
-import Footer from "./Components/Static Pages/Footer"
 import LandingPage from "./Components/Dynamic Pages/LandingPage"
 import About from "./Components/Static Pages/About"
 import Blog from "./Components/Static Pages/Blog"
@@ -10,7 +8,7 @@ import {Routes, Route} from 'react-router-dom'
 import Error from "./Components/Static Pages/Error"
 import {atom} from 'jotai'
 import ShopDetails from './Components/Dynamic Pages/ShopDetails'
-import React,{ useState } from "react"
+import React from "react"
 import Checkout from './Components/Dynamic Pages/Checkout'
 import Login from "./Components/Dynamic Pages/Login"
 import Success from "./Components/Static Pages/Success"
@@ -21,11 +19,9 @@ import Inventory from "./Components/Admin Page/Inventory"
 export const productAtom = atom([]);
 
 function App() {
-  const [showCheckOut, setShowCheckOut] = useState(false)
 
   return (
     <>
-    {!showCheckOut && <Header setShowCheckOut={setShowCheckOut}/>}
     <Routes>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/shop" element={<Shop />}/>
@@ -41,10 +37,6 @@ function App() {
       <Route path="/admin/dashboard" element={<Dashboard />}/>
       <Route path="/admin/inventory" element={<Inventory />}/>
     </Routes>
-    {!showCheckOut && <Footer />}
-    
-    {/*  Conditional Rendering of the checkout  */}
-
     </>
   )
 }

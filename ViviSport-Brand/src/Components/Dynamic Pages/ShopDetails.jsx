@@ -3,6 +3,8 @@ import '../../styles/ShopDetails.css'
 import { useParams } from 'react-router-dom'
 import products from '../../Data/products.json'
 import { useCart } from '../../hooks/useCart'
+import Footer from '../Static Pages/Footer'
+import Header from './Header'
 
 
 
@@ -49,6 +51,7 @@ function ShopDetails() {
     
   return (
     <>
+    <Header />
           {/* Top Promo Bar */}
     <div className="top-bar text-center">
         Free Delivery on orders above $100
@@ -444,6 +447,7 @@ function ShopDetails() {
             </div>
         </div>
     </div>
+    <Footer />
     </>
   )
 }

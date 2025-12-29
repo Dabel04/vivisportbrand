@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/inventory.css'
 
 function Inventory() {
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [selectedColor, setSelectedColor] = useState('#000');
+  const [files, setFiles] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (e) => {
+    setFiles(Array.from(e.target.files));
+  };
+
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleColorClick = (color) => {
+    setSelectedColor(color);
+  };
+
+  const handleImageClick = (file) => {
+    setSelectedImage(file);
+  };
+
+  const resetImages = () => {
+    setFiles([]);
+    setSelectedImage(null);
+  };
+
   return (
     <>
          <nav className="sidebar">
@@ -46,17 +73,21 @@ function Inventory() {
                         <div className="row g-4">
                             <div className="col-md-5">
                                 <label className="fw-bold small text-uppercase mb-2 d-block">Visual Assets (Drop Multiple)</label>
-                                <div className="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
-                                    <div id="dropContent" className="text-center">
+                                <div className="drop-zone" id="dropZone" onClick={() => fileInputRef.current.click()}>
+                                    <div id="dropContent" className="text-center" style={{display: files.length > 0 ? 'none' : 'block'}}>
                                         <i className="bi bi-images fs-1 text-navy"></i>
                                         <span className="fw-bold small d-block mt-2">CLICK OR DRAG IMAGES</span>
                                         <small className="opacity-50">Upload 1-10 photos</small>
                                     </div>
-                                    <div id="previewTray"></div>
-                                    <input type="file" id="fileInput" hidden accept="image/*" multiple/>
+                                    <div id="previewTray" style={{display: files.length > 0 ? 'block' : 'none'}}>
+                                        {files.map((file, index) => (
+                                            <img key={index} src={URL.createObjectURL(file)} alt={`Preview ${index}`} className={`preview-image ${selectedImage === file ? 'selected' : ''}`} onClick={() => handleImageClick(file)} style={{width: '80px', height: '80px', objectFit: 'cover', margin: '5px', cursor: 'pointer', border: selectedImage === file ? '2px solid red' : '1px solid #ddd'}} />
+                                        ))}
+                                    </div>
+                                    <input type="file" ref={fileInputRef} onChange={handleFileChange} hidden accept="image/*" multiple/>
                                 </div>
                                 <button type="button" className="btn btn-link btn-sm text-danger text-decoration-none fw-bold mt-2 p-0" id="clearBtn" 
-                                style={{display: "none"}} onclick="resetImages()">
+                                style={{display: files.length > 0 ? 'block' : 'none'}} onClick={resetImages}>
                                     <i className="bi bi-x-circle me-1"></i> RESET IMAGES
                                 </button>
                             </div>
@@ -94,8 +125,8 @@ function Inventory() {
                                     </div>
                                 </div>
                                 
-                                <input type="hidden" id="selectedSize" value="M"/>
-                                <input type="hidden" id="selectedColor" value="Black"/>
+                                <input type="hidden" id="selectedSize" value={selectedSize}/>
+                                <input type="hidden" id="selectedColor" value={selectedColor}/>
                             </div>
 
                             <div className="col-12 mt-4">
@@ -103,19 +134,23 @@ function Inventory() {
                                     <div className="col-md-6">
                                         <label className="fw-bold small text-uppercase mb-3 d-block">Size Matrix</label>
                                         <div className="d-flex flex-wrap gap-2">
-                                            <div className="size-btn">XS</div><div className="size-btn">S</div>
-                                            <div className="size-btn active">M</div><div className="size-btn">L</div>
-                                            <div className="size-btn">XL</div><div className="size-btn">XXL</div>
+                                            {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                                                <div key={size} className={`size-btn ${selectedSize === size ? 'active' : ''}`} onClick={() => handleSizeClick(size)}>{size}</div>
+                                            ))}
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <label className="fw-bold small text-uppercase mb-3 d-block">Colorways</label>
                                         <div className="d-flex align-items-center">
-                                            <span className="color-dot active" style={{background: "#000"}}></span>
-                                            <span className="color-dot" style={{background: "#fff", border: "1px solid #ddd"}}></span>
-                                            <span className="color-dot" style={{background: "#d7263d"}}></span>
-                                            <span className="color-dot" style={{background: "#02182b"}}></span>
-                                            <span className="color-dot" style={{background: "#6c757d"}}></span>
+                                            {[
+                                                {color: '#000', border: ''},
+                                                {color: '#fff', border: '1px solid #ddd'},
+                                                {color: '#d7263d', border: ''},
+                                                {color: '#02182b', border: ''},
+                                                {color: '#6c757d', border: ''}
+                                            ].map(({color, border}) => (
+                                                <span key={color} className={`color-dot ${selectedColor === color ? 'active' : ''}`} style={{background: color, border}} onClick={() => handleColorClick(color)}></span>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>

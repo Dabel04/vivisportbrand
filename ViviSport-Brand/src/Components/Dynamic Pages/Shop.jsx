@@ -3,6 +3,8 @@ import '../../styles/shop.css';
 // import products from '../Data/products.json'
 import { useCart } from '../../hooks/useCart'
 import { Link } from 'react-router-dom'
+import Footer from '../Static Pages/Footer';
+import Header from './Header';
 
 function Shop() {
   const { addToCart } = useCart();
@@ -65,6 +67,7 @@ function Shop() {
   }
   return (
     <>
+      <Header />
       <main className="container-xl py-5">
           <h1 className="display-5 fw-bold text-center mb-5">All Products</h1>
 
@@ -185,6 +188,8 @@ function Shop() {
               </div>
           </div>
       </main>
+
+      <Footer />
     </>
   )
 }
