@@ -49,7 +49,7 @@ function Checkout() {
     };
 
     const shipping = 10;
-    const discount = 0; // You can make this dynamic later
+    const discount = 0; //make this dynamic later prolly
     
     // Calculate subtotal from all products
     const subtotal = getCartTotal();
@@ -59,7 +59,6 @@ function Checkout() {
   return (
     <>
       
-    {/* HEADER */}
     <header className="payment-header">
         <div className="payment-header-inner">
             <div className="payment-brand">44:11</div>
@@ -69,12 +68,10 @@ function Checkout() {
 
     <div className="payment-container">
 
-        {/* LEFT SIDE */}
         <div>
             <ContactInfo contactInfo={contactInfo} handleContactChange={handleContactChange} />
             <ShippingAddress shippingAddress={shippingAddress} handleShippingChange={handleShippingChange} />
 
-            {/* DELIVERY OPTIONS */}
             <div className="payment-section">
                 <h2 className="section-title">Delivery Method</h2>
 
@@ -91,7 +88,6 @@ function Checkout() {
 
             <PaymentMethod activeTab={activeTab} setActiveTab={setActiveTab} cardDetails={cardDetails} handleInputChange={handleInputChange} />
 
-            {/* DISCOUNT CODE */}
             <div className="payment-section">
                 <h2 className="section-title">Discount Code</h2>
 
@@ -103,13 +99,11 @@ function Checkout() {
                 <p id="discountMessage" style={{marginTop:'10px', fontSize:'13px'}}></p>
             </div>
 
-            {/* TERMS */}
             <div className="terms">
                 <input type="checkbox" id="termsCheck" checked={termsAccepted} onChange={() => setTermsAccepted(!termsAccepted)}/>
                 <label htmlFor="termsCheck">I agree to the Terms & Conditions and Refund Policy.</label>
             </div>
 
-            {/* PLACE ORDER BUTTON */}
             <Link to='/success'>
             <button className="btn-primary" id="placeOrderBtn" disabled={!isFormValid}>
                 Place Order

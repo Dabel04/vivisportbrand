@@ -1,19 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import '../../styles/dashboard.css'
 
 function Dashboard() {
   return (
     <>
-      
     <nav className="sidebar">
-        <a href="admin-dashboard.html" className="sidebar-brand">44:11<span style="color:var(--primary-red)">.</span></a>
+        <Link to="/admin/dashboard" className="sidebar-brand">44:11<span style={{color: "var(--primary-red)"}}>.</span></Link>
         
         <div className="nav-links">
-            <a href="admin-dashboard.html" className="nav-item active">
+            <Link to="/admin/dashboard" className="nav-item active">
                 <i className="bi bi-grid-1x2-fill"></i> Command Center
-            </a>
-            <a href="inventory.html" className="nav-item">
+            </Link>
+            <Link to="/admin/inventory" className="nav-item">
                 <i className="bi bi-stack"></i> Inventory
-            </a>
+            </Link>
             <a href="#" className="nav-item">
                 <i className="bi bi-lightning-fill"></i> Logistics
             </a>
@@ -23,10 +24,10 @@ function Dashboard() {
         </div>
 
         <div className="mt-auto">
-            <div className="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+            <div className="p-3 rounded-3" style={{background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)"}}>
                 <div className="d-flex align-items-center mb-2">
-                    <div className="bg-success rounded-circle me-2" style="width:8px; height:8px;"></div>
-                    <small className="fw-bold text-uppercase opacity-50" style="font-size: 0.6rem;">Server: ACTIVE</small>
+                    <div className="bg-success rounded-circle me-2" style={{width: "8px", height: "8px"}}></div>
+                    <small className="fw-bold text-uppercase opacity-50" style={{fontSize: "0.6rem"}}>Server: ACTIVE</small>
                 </div>
                 <p className="mb-0 fw-black italic small" id="liveClock">00:00:00</p>
             </div>
@@ -84,7 +85,7 @@ function Dashboard() {
                         <h6 className="fw-black italic text-uppercase small">Revenue Velocity Cycles</h6>
                         <span className="badge bg-light text-dark font-mono">LIVE_FEED</span>
                     </div>
-                    <canvas id="revenueChart" style="max-height: 300px;"></canvas>
+                    <canvas id="revenueChart" style={{maxHeight: "300px"}}></canvas>
                 </div>
             </div>
 
@@ -130,15 +131,15 @@ function Dashboard() {
                     <div className="col-md-6">
                         <div className="section-card">
                             <h6 className="fw-black italic text-uppercase small mb-4">Conversion Funnel</h6>
-                            <div className="funnel-step" style="width: 100%;">SESSIONS (12,402)</div>
-                            <div className="funnel-step" style="width: 75%;">ADD TO CART (3,105)</div>
-                            <div className="funnel-step" style="width: 45%;">CHECKOUT (840)</div>
-                            <div className="funnel-step" style="width: 25%; background: var(--primary-red);">PURCHASE (392)</div>
+                            <div className="funnel-step" style={{width: "100%"}}>SESSIONS (12,402)</div>
+                            <div className="funnel-step" style={{width: "75%"}}>ADD TO CART (3,105)</div>
+                            <div className="funnel-step" style={{width: "45%"}}>CHECKOUT (840)</div>
+                            <div className="funnel-step" style={{width: "25%", background: "var(--primary-red)"}}>PURCHASE (392)</div>
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="section-card" style="background: var(--primary-navy); color: white;">
-                            <h6 className="fw-black italic text-uppercase small mb-4" style="color: var(--primary-red);">Critical Alerts</h6>
+                        <div className="section-card" style={{background: "var(--primary-navy)", color: "white"}}>
+                            <h6 className="fw-black italic text-uppercase small mb-4" style={{color: "var(--primary-red)"}}>Critical Alerts</h6>
                             <div className="d-flex align-items-center mb-3">
                                 <i className="bi bi-exclamation-triangle-fill text-warning me-3 fs-4"></i>
                                 <div>

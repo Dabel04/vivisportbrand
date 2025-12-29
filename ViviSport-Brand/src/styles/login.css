@@ -13,6 +13,7 @@
             max-width: 400px;
             text-align: center;
             border: 1px solid #E5E7EB;
+            justify-self: center;
         }
 
         .brand-logo {

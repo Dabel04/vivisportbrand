@@ -1,13 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import '../../styles/inventory.css'
 
 function Inventory() {
   return (
     <>
          <nav className="sidebar">
-        <a href="admin-dashboard.html" className="sidebar-brand">44:11<span style="color:var(--primary-red)">.</span></a>
+        <Link to="/admin/dashboard" className="sidebar-brand">44:11<span style={{color: "var(--primary-red)"}}>.</span></Link>
         <div className="nav-links">
-            <a href="admin-dashboard.html" className="nav-item"><i className="bi bi-grid-1x2-fill"></i> Command Center</a>
-            <a href="inventory.html" className="nav-item active"><i className="bi bi-stack"></i> Inventory</a>
+            <Link to="/admin/dashboard" className="nav-item"><i className="bi bi-grid-1x2-fill"></i> Command Center</Link>
+            <Link to="/admin/inventory" className="nav-item active"><i className="bi bi-stack"></i> Inventory</Link>
             <a href="#" className="nav-item"><i className="bi bi-lightning-fill"></i> Logistics</a>
             <a href="#" className="nav-item"><i className="bi bi-person-badge-fill"></i> The Roster</a>
         </div>
@@ -34,7 +36,7 @@ function Inventory() {
 
     <div className="modal fade" id="addGearModal" tabindex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg modal-dialog-centered">
-            <div className="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+            <div className="modal-content border-0 shadow-lg" style={{borderRadius: "20px"}}>
                 <div className="modal-header border-0 p-4 pb-0">
                     <h5 className="modal-title fw-black italic text-uppercase">Deploy New Asset</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
@@ -53,7 +55,8 @@ function Inventory() {
                                     <div id="previewTray"></div>
                                     <input type="file" id="fileInput" hidden accept="image/*" multiple/>
                                 </div>
-                                <button type="button" className="btn btn-link btn-sm text-danger text-decoration-none fw-bold mt-2 p-0" id="clearBtn" style="display:none" onclick="resetImages()">
+                                <button type="button" className="btn btn-link btn-sm text-danger text-decoration-none fw-bold mt-2 p-0" id="clearBtn" 
+                                style={{display: "none"}} onclick="resetImages()">
                                     <i className="bi bi-x-circle me-1"></i> RESET IMAGES
                                 </button>
                             </div>
@@ -108,11 +111,11 @@ function Inventory() {
                                     <div className="col-md-6">
                                         <label className="fw-bold small text-uppercase mb-3 d-block">Colorways</label>
                                         <div className="d-flex align-items-center">
-                                            <span className="color-dot active" style="background: #000;"></span>
-                                            <span className="color-dot" style="background: #fff; border: 1px solid #ddd;"></span>
-                                            <span className="color-dot" style="background: #d7263d;"></span>
-                                            <span className="color-dot" style="background: #02182b;"></span>
-                                            <span className="color-dot" style="background: #6c757d;"></span>
+                                            <span className="color-dot active" style={{background: "#000"}}></span>
+                                            <span className="color-dot" style={{background: "#fff", border: "1px solid #ddd"}}></span>
+                                            <span className="color-dot" style={{background: "#d7263d"}}></span>
+                                            <span className="color-dot" style={{background: "#02182b"}}></span>
+                                            <span className="color-dot" style={{background: "#6c757d"}}></span>
                                         </div>
                                     </div>
                                 </div>

@@ -14,6 +14,8 @@ import React,{ useState } from "react"
 import Checkout from './Components/Dynamic Pages/Checkout'
 import Login from "./Components/Dynamic Pages/Login"
 import Success from "./Components/Static Pages/Success"
+import Dashboard from "./Components/Admin Page/Dashboard"
+import Inventory from "./Components/Admin Page/Inventory"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const productAtom = atom([]);
@@ -36,6 +38,8 @@ function App() {
       <Route path="/checkout" element={<Checkout />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/success" element={<Success />}/>
+      <Route path="/admin/dashboard" element={<Dashboard />}/>
+      <Route path="/admin/inventory" element={<Inventory />}/>
     </Routes>
     {!showCheckOut && <Footer />}
     

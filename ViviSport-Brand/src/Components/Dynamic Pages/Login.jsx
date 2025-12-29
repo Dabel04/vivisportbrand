@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../../styles/login.css'
 
 function Login() {
+  const [email, setEmail] = useState('admin4411@gmail.com')
+  const [password, setPassword] = useState('password')
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (email === 'admin4411@gmail.com' && password === 'password') {
+      navigate('/admin/dashboard')
+    } else {
+      alert('Invalid credentials')
+    }
+  }
+
   return (
     <>
-     <div class="login-card">
-        <a href="#" class="brand-logo">44:11</a>
-        <p class="login-subtitle">Sign in to manage your store</p>
+     <div className="login-card">
+        <a href="#" className="brand-logo">44:11</a>
+        <p className="login-subtitle">Sign in to manage your store</p>
 
-         <form action="admin-dashboard.html">
-         {/* Links to dashboard for demo */} 
-            <input type="email" class="form-control" placeholder="admin@4411.com" value="admin@4411.com" required/>
-            <input type="password" class="form-control" placeholder="••••••••" value="password" required/>
+         <form onSubmit={handleSubmit}>
+            <input type="email" className="form-control" placeholder="username" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            <input type="password" className="form-control" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required/>
             
-            <button type="submit" class="btn-login">Sign In</button>
+            <button type="submit" className="btn-login">Sign In</button>
         </form>
 
-        <a href="#" class="forgot-link">Forgot your password?</a>
+        <a href="#" className="forgot-link">Forgot your password?</a>
     </div>
     </>
   )
