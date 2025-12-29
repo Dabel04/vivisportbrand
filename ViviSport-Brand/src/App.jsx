@@ -1,18 +1,19 @@
-import Header from "./Components/Header"
-import Footer from "./Components/Footer"
-import LandingPage from "./Components/LandingPage"
-import About from "./Components/About"
-import Blog from "./Components/Blog"
-import Faq from "./Components/Faq"
-import Contact from "./Components/Contact"
-import Shop from "./Components/Shop"
+import Header from "./Components/Dynamic Pages/Header"
+import Footer from "./Components/Static Pages/Footer"
+import LandingPage from "./Components/Dynamic Pages/LandingPage"
+import About from "./Components/Static Pages/About"
+import Blog from "./Components/Static Pages/Blog"
+import Faq from "./Components/Static Pages/Faq"
+import Contact from "./Components/Static Pages/Contact"
+import Shop from "./Components/Dynamic Pages/Shop"
 import {Routes, Route} from 'react-router-dom' 
-import Error from "./Components/Error"
+import Error from "./Components/Static Pages/Error"
 import {atom} from 'jotai'
-import ShopDetails from './Components/ShopDetails'
+import ShopDetails from './Components/Dynamic Pages/ShopDetails'
 import React,{ useState } from "react"
-import Checkout from './Components/Checkout'
-import Login from "./Components/Login"
+import Checkout from './Components/Dynamic Pages/Checkout'
+import Login from "./Components/Dynamic Pages/Login"
+import Success from "./Components/Static Pages/Success"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const productAtom = atom([]);
@@ -34,6 +35,7 @@ function App() {
       <Route path='*' element={<Error />} />
       <Route path="/checkout" element={<Checkout />}/>
       <Route path="/login" element={<Login />}/>
+      <Route path="/success" element={<Success />}/>
     </Routes>
     {!showCheckOut && <Footer />}
     

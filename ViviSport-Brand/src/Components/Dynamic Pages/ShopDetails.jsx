@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import '../styles/ShopDetails.css'
+import '../../styles/ShopDetails.css'
 import { useParams } from 'react-router-dom'
-import products from '../Data/products.json'
-import { useCart } from '../hooks/useCart'
+import products from '../../Data/products.json'
+import { useCart } from '../../hooks/useCart'
 
 
 

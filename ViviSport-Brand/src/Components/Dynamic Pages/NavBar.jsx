@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Cart from './Cart'
 import { useEffect, useRef, useState } from 'react';
-import { useCart } from '../hooks/useCart'
+import { useCart } from '../../hooks/useCart'
 
 const Navbar = ({setShowCheckOut}) => {
     const [isActive, setIsActive] = useState(false);

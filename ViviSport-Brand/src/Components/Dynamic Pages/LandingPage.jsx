@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import '../styles/style.css'
-import {ass, bras, bottoms, anotherhero} from './images'
-import products from '../Data/products'
+import '../../styles/style.css'
+import {ass, bras, bottoms, anotherhero} from '../images'
+import products from '../../Data/products'
 import {useAtom} from 'jotai'
-import { productAtom } from '../App'
+import { productAtom } from '../../App'
 
 function LandingPage() {
     // eslint-disable-next-line no-unused-vars

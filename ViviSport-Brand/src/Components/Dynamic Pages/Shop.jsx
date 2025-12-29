@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/shop.css';
+import '../../styles/shop.css';
 // import products from '../Data/products.json'
-import { useCart } from '../hooks/useCart'
+import { useCart } from '../../hooks/useCart'
 import { Link } from 'react-router-dom'
 
 function Shop() {

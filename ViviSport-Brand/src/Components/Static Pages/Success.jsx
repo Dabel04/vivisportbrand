@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/success.css'
+import '../../styles/success.css'
 
 function Success() {
   return (

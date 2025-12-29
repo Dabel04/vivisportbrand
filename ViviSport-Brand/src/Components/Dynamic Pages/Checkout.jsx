@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import '../styles/checkout.css'
-import { useCart } from '../hooks/useCart'
+import '../../styles/checkout.css'
+import { useCart } from '../../hooks/useCart'
 import { Link } from 'react-router-dom';
-import ContactInfo from './Checkout/ContactInfo';
-import ShippingAddress from './Checkout/ShippingAddress';
-import PaymentMethod from './Checkout/PaymentMethod';
-import OrderSummary from './Checkout/OrderSummary';
+import ContactInfo from '../Checkout/ContactInfo';
+import ShippingAddress from '../Checkout/ShippingAddress';
+import PaymentMethod from '../Checkout/PaymentMethod';
+import OrderSummary from '../Checkout/OrderSummary';
 
 function Checkout() {
     const { cart, getCartTotal } = useCart()
