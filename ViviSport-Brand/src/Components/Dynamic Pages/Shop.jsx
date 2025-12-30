@@ -110,7 +110,7 @@ function Shop() {
 
               <div className="col-lg-9">
                   <div className="shop-grid-header d-flex justify-content-between align-items-center">
-                      <p className="mb-0 text-secondary">Showing **{indexOfFirstItem + 1} - {Math.min(indexOfLastItem, filteredProducts.length)}** of **{filteredProducts.length}** results</p>
+                      <p className="mb-0 text-secondary">Showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, filteredProducts.length)} of {filteredProducts.length} results</p>
                       <div className="d-flex align-items-center">
                           <button className="btn btn-outline-dark mobile-filter-btn d-lg-none me-3" id="open-filter-mobile"><i className="bi bi-funnel"></i> Filter</button>
                           <div className="dropdown sort-dropdown me-3">
