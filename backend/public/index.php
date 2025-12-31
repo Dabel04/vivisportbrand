@@ -76,7 +76,25 @@ switch ($requestUri) {
             }
         }
         break;
+    
+        
+    // Update Quantity
+    case '/update-cart':
+        if ($requestMethod === 'POST') { // Or PATCH
+            $controller = new CartController($db);
+            $controller->update();
+        }
+        break;
 
+    // Remove Item
+    case '/remove-from-cart':
+        if ($requestMethod === 'POST' || $requestMethod === 'DELETE') {
+            $controller = new CartController($db);
+            $controller->remove();
+        }
+        break;
+        
+        
     // --- 404 NOT FOUND ---
     default:
         http_response_code(404);

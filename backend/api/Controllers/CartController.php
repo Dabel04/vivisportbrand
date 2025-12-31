@@ -24,4 +24,22 @@ class CartController {
         $items = $this->cartModel->getCart($user_id);
         echo json_encode($items, JSON_UNESCAPED_SLASHES);
     }
+
+    public function update() {
+        $data = json_decode(file_get_contents("php://input"));
+        if (!empty($data->cart_id) && !empty($data->user_id) && isset($data->quantity)) {
+            if ($this->cartModel->updateQuantity($data->cart_id, $data->user_id, $data->quantity)) {
+                echo json_encode(["message" => "Quantity updated."]);
+            }
+        }
+    }
+
+    public function remove() {
+        $data = json_decode(file_get_contents("php://input"));
+        if (!empty($data->cart_id) && !empty($data->user_id)) {
+            if ($this->cartModel->removeFromCart($data->cart_id, $data->user_id)) {
+                echo json_encode(["message" => "Item removed from cart."]);
+            }
+        }
+    }
 }
