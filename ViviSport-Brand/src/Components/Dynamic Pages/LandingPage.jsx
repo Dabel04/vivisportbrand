@@ -19,7 +19,7 @@ function LandingPage() {
     // Define an asynchronous function inside useEffect
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/hhh");
+        const response = await fetch("http://localhost:8000/");
 
         if (!response.ok) {
           throw new Error(`${response.status}`)
