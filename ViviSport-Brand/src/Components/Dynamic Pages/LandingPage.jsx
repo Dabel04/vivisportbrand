@@ -19,7 +19,11 @@ function LandingPage() {
     // Define an asynchronous function inside useEffect
     const fetchData = async () => {
       try {
-        const response = await fetch("https://falsest-doctorly-shirl.ngrok-free.dev/");
+        const response = await fetch("https://falsest-doctorly-shirl.ngrok-free.dev");
+
+        if (!response.ok) {
+          throw new Error(`${response.status}`)
+        } 
         console.log(response)
 
         const data = await response.json(); // Await the second promise
@@ -94,6 +98,8 @@ function LandingPage() {
         <div>
           <div className="top-bar text-center">
               Free Delivery on orders above $100
+              {JSON.stringify(userData, null, 2)}
+              jjjjjjj
           </div>
           
           {/* Hero Section */}
