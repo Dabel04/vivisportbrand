@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../../styles/style.css'
 import {ass, bras, bottoms, anotherhero} from '../images'
@@ -13,6 +13,27 @@ function LandingPage() {
     const [product, setProduct] = useAtom(productAtom);
     const [selectedSizes, setSelectedSizes] = useState({});
     const [selectedColors, setSelectedColors] = useState({});
+    const [userData, setUserData] = useState(null);
+
+      useEffect(() => {
+    // Define an asynchronous function inside useEffect
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://falsest-doctorly-shirl.ngrok-free.dev/");
+        console.log(response)
+
+        const data = await response.json(); // Await the second promise
+        console.log(data)
+        setUserData(data);
+        console.log(userData)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    // Call the async function immediately
+    fetchData();
+  });
     
     const colors = [
       { name: 'White', value: '#fff', border: '1px solid #ccc' },
