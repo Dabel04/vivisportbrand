@@ -13,13 +13,13 @@ function LandingPage() {
     const [product, setProduct] = useAtom(productAtom);
     const [selectedSizes, setSelectedSizes] = useState({});
     const [selectedColors, setSelectedColors] = useState({});
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState([]);
 
       useEffect(() => {
     // Define an asynchronous function inside useEffect
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/");
+        const response = await fetch("http://localhost:8080/products");
 
         if (!response.ok) {
           throw new Error(`${response.status}`)
@@ -37,7 +37,7 @@ function LandingPage() {
 
     // Call the async function immediately
     fetchData();
-  });
+  }, []);
     
     const colors = [
       { name: 'White', value: '#fff', border: '1px solid #ccc' },
@@ -98,8 +98,6 @@ function LandingPage() {
         <div>
           <div className="top-bar text-center">
               Free Delivery on orders above $100
-              {JSON.stringify(userData, null, 2)}
-              jjjjjjj
           </div>
           
           {/* Hero Section */}
@@ -201,7 +199,7 @@ function LandingPage() {
               <div className="row">
                   {/* Products looped */}           
                      {
-                        products.slice(0, 16).map((product) => (
+                        userData.slice(0, 16).map((product) => (
                     <div className="col-6 col-lg-3" key={product.id}>
                          <div className="product-card">
                             <Link to={`/shop/${product.id}`}>
