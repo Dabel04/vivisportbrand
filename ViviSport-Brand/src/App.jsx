@@ -11,6 +11,7 @@ import ShopDetails from './Components/Dynamic Pages/ShopDetails'
 import React from "react"
 import Checkout from './Components/Dynamic Pages/Checkout'
 import Login from "./Components/Dynamic Pages/Login"
+import Signup from "./Components/Dynamic Pages/Signup" // <-- ADD THIS
 import Success from "./Components/Static Pages/Success"
 import Dashboard from "./Components/Admin Page/Dashboard"
 import Inventory from "./Components/Admin Page/Inventory"
@@ -33,6 +34,7 @@ function App() {
       <Route path='*' element={<Error />} />
       <Route path="/checkout" element={<Checkout />}/>
       <Route path="/login" element={<Login />}/>
+      <Route path="/signup" element={<Signup />}/> {/* <-- ADD THIS */}
       <Route path="/success" element={<Success />}/>
       <Route path="/admin/dashboard" element={<Dashboard />}/>
       <Route path="/admin/inventory" element={<Inventory />}/>
