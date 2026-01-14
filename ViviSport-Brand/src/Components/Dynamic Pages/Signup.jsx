@@ -11,8 +11,8 @@ function Signup() {
     e.preventDefault()
     
     try {
-        // NOTE: This URL must match your folder name in htdocs
-        const response = await fetch('http://localhost/ecommerce-api/signup.php', {
+        // FIXED: Pointing to the correct folder 'vivi-backend'
+        const response = await fetch('http://localhost/vivi-backend/signup.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -22,16 +22,15 @@ function Signup() {
 
         if (data.success) {
             alert("Success! " + data.message);
-            navigate('/login'); // Send them to login page
+            navigate('/login'); 
         } else {
             alert("Error: " + data.message);
         }
     } catch (error) {
         console.error("Connection Error:", error);
-        alert("Could not connect to the server.");
+        alert("Could not connect to the server. Check if XAMPP is running.");
     }
   }
-
   return (
     <div className="login-card">
         <h2 className="brand-logo">44:11</h2>
