@@ -9,7 +9,7 @@ $username = "dabel";
 $password = "go uni1234"; 
 $dbname = "vivi_sportbrand";
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+$conn = new mysqli($servername, $user, $pass, $dbname);
 
 if ($conn->connect_error) {
     die(json_encode(["success" => false, "message" => "Connection failed: " . $conn->connect_error]));
