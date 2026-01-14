@@ -14,6 +14,7 @@ import Login from "./Components/Dynamic Pages/Login"
 import Success from "./Components/Static Pages/Success"
 import Dashboard from "./Components/Admin Page/Dashboard"
 import Inventory from "./Components/Admin Page/Inventory"
+import Register from "./Components/Dynamic Pages/Register"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const productAtom = atom([]);
@@ -25,6 +26,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/shop" element={<Shop />}/>
+      <Route path="/register" element={<Register />}/>
       <Route path="/blog" element={<Blog />}/>
       <Route path="/about" element={<About />}/>
       <Route path="/faq" element={<Faq />}/>

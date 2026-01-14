@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../../styles/login.css'
 
 function Login() {
@@ -38,13 +38,17 @@ function Login() {
         <p className="login-subtitle">Sign in to manage your store</p>
 
          <form onSubmit={handleSubmit}>
-            <input type="email" className="form-control" placeholder="username" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            <input type="email" className="form-control" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
             <input type="password" className="form-control" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required/>
             
             <button type="submit" className="btn-login">Sign In</button>
         </form>
 
         <a href="#" className="forgot-link">Forgot your password?</a>
+
+        <div>
+          New to 44:11 ? <Link to='/register'><span>Register Now</span></Link>
+        </div>
     </div>
     </>
   )
