@@ -10,7 +10,6 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      // FIXED: Pointing to PHP, not port 8080
       const response = await fetch('', {
         method: 'POST',
         headers: {
