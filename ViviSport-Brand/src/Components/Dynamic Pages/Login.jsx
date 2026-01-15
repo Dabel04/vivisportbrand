@@ -11,13 +11,18 @@ function Login() {
     e.preventDefault()
     try {
       // FIXED: Pointing to PHP, not port 8080
-      const response = await fetch('http://localhost/vivi-backend/login.php', {
+      const response = await fetch('', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
+      if (!response.ok) {
+      const text = await response.text(); // Get the raw text to see the PHP error
+      console.error("Server Error Output:", text);
+      throw new Error("Server returned an error");
+}
       
       const data = await response.json();
       
