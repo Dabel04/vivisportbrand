@@ -5,6 +5,7 @@ import '../../styles/login.css' // Reusing your login styles
 function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
   const navigate = useNavigate()
 
   const handleSignup = async (e) => {
@@ -12,23 +13,25 @@ function Signup() {
     
     try {
         // FIXED: Pointing to the correct folder 'vivi-backend'
-        const response = await fetch('http://localhost/vivi-backend/signup.php', {
+        const response = await fetch('http://localhost:8080/signup.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password, username })
         });
         
         const data = await response.json();
+        console.log(data)
+        console.log(response)
 
         if (data.success) {
             alert("Success! " + data.message);
-            navigate('/login'); 
+            navigate('/'); 
         } else {
             alert("Error: " + data.message);
         }
     } catch (error) {
         console.error("Connection Error:", error);
-        alert("Could not connect to the server. Check if XAMPP is running.");
+        alert("not connecting to php");
     }
   }
   return (
@@ -37,6 +40,14 @@ function Signup() {
         <p className="login-subtitle">Create your account</p>
 
          <form onSubmit={handleSignup}>
+            <input 
+                type="text" 
+                className="form-control" 
+                placeholder="Your Username" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                required
+            />
             <input 
                 type="email" 
                 className="form-control" 
