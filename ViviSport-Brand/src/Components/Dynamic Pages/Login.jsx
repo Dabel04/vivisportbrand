@@ -3,62 +3,60 @@ import { Link, useNavigate } from 'react-router-dom'
 import '../../styles/login.css'
 
 function Login() {
-  const [email, setEmail] = useState('') // FIXED: Removed hardcoded email
-  const [password, setPassword] = useState('') // FIXED: Removed hardcoded password
+  // We rename 'email' to 'identifier' since it can be either
+  const [identifier, setIdentifier] = useState('') 
+  const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
     try {
-      const response = await fetch('', {
+      const response = await fetch('http://localhost:8080/login.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        // We send 'identifier' to match the PHP script we just wrote
+        body: JSON.stringify({ identifier, password }),
       });
-      if (!response.ok) {
-      const text = await response.text(); // Get the raw text to see the PHP error
-      console.error("Server Error Output:", text);
-      throw new Error("Server returned an error");
-}
       
       const data = await response.json();
       
-      // FIXED: Check data.success, not just response.ok
       if (data.success) {
-        // Storing the user object returned by PHP
         localStorage.setItem('user', JSON.stringify(data.user));
-        alert("Login Successful!");
-        navigate('/admin/dashboard'); // Or wherever you want them to go
+        alert("Login Successful! Welcome " + data.user.username);
+        navigate('/'); 
       } else {
         alert(data.message || 'Login failed');
       }
+
     } catch (error) {
       console.error('Login error:', error);
-      alert('Login connection failed.');
+      alert('Could not connect to server. Check XAMPP.');
     }
   }
 
   return (
     <>
      <div className="login-card">
-        <a href="#" className="brand-logo">44:11</a>
+        <Link to="/" className="brand-logo">44:11</Link>
         <p className="login-subtitle">Sign in to manage your store</p>
 
          <form onSubmit={handleSubmit}>
+            {/* CHANGED: type="text" to allow usernames, placeholder updated */}
             <input 
-                type="email" 
+                type="text" 
                 className="form-control" 
-                placeholder="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
+                placeholder="Username or Email" 
+                value={identifier} 
+                onChange={(e) => setIdentifier(e.target.value)} 
                 required
             />
             <input 
                 type="password" 
                 className="form-control" 
-                placeholder="••••••••" 
+                placeholder="Password" 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
                 required
@@ -70,7 +68,7 @@ function Login() {
         <a href="#" className="forgot-link">Forgot your password?</a>
 
         <div>
-          New to 44:11 ? <Link to='/signup'><span>Register Now</span></Link>
+          New to 44:11 ? <Link to='/register'><span>Register Now</span></Link>
         </div>
     </div>
     </>

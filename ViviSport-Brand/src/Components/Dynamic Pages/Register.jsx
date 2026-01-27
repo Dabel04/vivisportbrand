@@ -13,7 +13,7 @@ function Register() {
 
     try {
       // FIXED: Pointing to YOUR actual backend
-      const response = await fetch('http://localhost/vivi-backend/signup.php', {
+      const response = await fetch('http://localhost:8080/signup.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
