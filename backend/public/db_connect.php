@@ -1,6 +1,6 @@
 <?php
 // db_connect.php
-header("Access-Control-Allow-Origin: http://localhost:5173"); // Allow any frontend to talk to this
+header("Access-Control-Allow-Origin: *"); // Allow any frontend to talk to this
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 

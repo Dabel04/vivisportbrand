@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import '../../styles/login.css' // Using the same styles as Login
 
 function Register() {
     const navigate = useNavigate();
@@ -11,7 +12,8 @@ function Register() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/register', {
+      // FIXED: Pointing to YOUR actual backend
+      const response = await fetch('http://localhost/vivi-backend/signup.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,52 +21,59 @@ function Register() {
         body: JSON.stringify({ username, email, password }),
       });
 
-      // 1. Determine how to parse the data based on Content-Type
-      const contentType = response.headers.get("content-type");
-      let data;
-      
-      if (contentType && contentType.includes("application/json")) {
-        data = await response.json();
-      } else {
-        data = await response.text();
-      }
+      const data = await response.json();
 
-      // 2. Handle Success
-      if (response.ok) {
-        // data is assumed to be the user object here
-        localStorage.setItem('user_id', data.user.id);
-        localStorage.setItem('username', data.user.username);
-        navigate('/');
-      } 
-      // 3. Handle Server-Side Errors (400, 500, etc.)
-      else {
-        const errorMessage = typeof data === 'object' ? data.message : data;
-        alert(errorMessage || 'Registration failed');
+      if (data.success) {
+        alert("Registration Successful! Please Log In.");
+        navigate('/login');
+      } else {
+        alert(data.message || 'Registration failed');
       }
 
     } catch (error) {
-      // 4. Handle Network Errors
       console.error('Registration error:', error);
-      alert('Could not connect to the server.');
+      alert('Could not connect to the server. Check if XAMPP is running.');
     }
   };
+
   return (
-    <>
     <div className="login-card">
-        <a href="#" className="brand-logo">44:11</a>
-        <p className="login-subtitle">Sign in to manage your store</p>
+        <Link to="/" className="brand-logo">44:11</Link>
+        <p className="login-subtitle">Create your account</p>
 
          <form onSubmit={handleSubmit}>
-            <input type="text" className="form-control" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
-            <input type="email" className="form-control" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-            <input type="password" className="form-control" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <input 
+                type="text" 
+                className="form-control" 
+                placeholder="Username" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                required
+            />
+            <input 
+                type="email" 
+                className="form-control" 
+                placeholder="Email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+                required
+            />
+            <input 
+                type="password" 
+                className="form-control" 
+                placeholder="Password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                required
+            />
             
-            <button type="submit" className="btn-login">Sign In</button>
+            <button type="submit" className="btn-login">Register</button>
         </form>
 
-        
+        <p style={{marginTop: '1rem', textAlign: 'center'}}>
+            Already have an account? <Link to="/login">Log In</Link>
+        </p>
     </div>
-    </>
   )
 }
 
