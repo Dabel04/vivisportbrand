@@ -1,6 +1,7 @@
 <?php
 // login.php
 include 'db_connect.php';
+include 'jwt_helper.php';
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -9,20 +10,28 @@ if(isset($data->identifier) && isset($data->password)) {
     $password = $data->password;
 
     // 1. Search for a user where Email matches OR Username matches
-    // We bind the same variable ($identifier) twice because we don't know which one it is.
-    $stmt = $conn->prepare("SELECT id, username, email, password FROM users WHERE email = ? OR username = ?");
-    $stmt->bind_param("ss", $identifier, $identifier);
+    $stmt = $conn->prepare("SELECT id, username, email, password FROM users WHERE email = :id1 OR username = :id2");
+    $stmt->bindParam(':id1', $identifier);
+    $stmt->bindParam(':id2', $identifier);
     
     $stmt->execute();
-    $result = $stmt->get_result();
+    $row = $stmt->fetch();
 
-    if ($row = $result->fetch_assoc()) {
+    if ($row) {
         // 2. Verify the password
         if (password_verify($password, $row['password'])) {
+            // 3. Generate JWT
+            $token = JwtHelper::createToken([
+                "id" => $row['id'],
+                "username" => $row['username'],
+                "email" => $row['email']
+            ]);
+
             // SUCCESS
             echo json_encode([
                 "success" => true, 
                 "message" => "Login successful", 
+                "token" => $token,
                 "user" => [
                     "id" => $row['id'],
                     "username" => $row['username'],
